@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://buml6eydhqrmh"]
+
+[ext_resource type="Script" path="res://Scripts/root.gd" id="1_x2kdq"]
+[ext_resource type="PackedScene" uid="uid://dfkbtftqcivbx" path="res://Scene/Camera.tscn" id="2_l1vl2"]
+
+[node name="Root" type="Node3D"]
+script = ExtResource("1_x2kdq")
+
+[node name="Map" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(3.5, 0.037, 3.5)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.563281, 0.826265, 0, -0.826265, 0.563281, 0, 1.31642, 2.65468)
+light_energy = 2.0
+
+[node name="Camera" parent="." instance=ExtResource("2_l1vl2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.724565, 0)
