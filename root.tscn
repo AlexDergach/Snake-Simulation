@@ -3,8 +3,6 @@
 [ext_resource type="Script" path="res://Scripts/root.gd" id="1_x2kdq"]
 [ext_resource type="PackedScene" uid="uid://dfkbtftqcivbx" path="res://Scene/Camera.tscn" id="2_l1vl2"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j5ig8"]
-albedo_color = Color(0.0705882, 0.286275, 0.0705882, 1)
 [sub_resource type="NavigationMesh" id="NavigationMesh_btls3"]
 vertices = PackedVector3Array(-4.5, 0.4815, -4.5, -4.5, 0.4815, 4.5, 4.5, 0.4815, 4.5, 4.5, 0.4815, -4.5)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
