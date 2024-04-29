@@ -5,14 +5,12 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j5ig8"]
 albedo_color = Color(0.0705882, 0.286275, 0.0705882, 1)
+[sub_resource type="NavigationMesh" id="NavigationMesh_btls3"]
+vertices = PackedVector3Array(-4.5, 0.4815, -4.5, -4.5, 0.4815, 4.5, 4.5, 0.4815, 4.5, 4.5, 0.4815, -4.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [node name="Root" type="Node3D"]
 script = ExtResource("1_x2kdq")
-
-[node name="Map" type="CSGBox3D" parent="."]
-use_collision = true
-size = Vector3(10, 0.037, 10)
-material = SubResource("StandardMaterial3D_j5ig8")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.563281, 0.826265, 0, -0.826265, 0.563281, 0, 1.31642, 2.65468)
@@ -20,3 +18,10 @@ light_energy = 2.0
 
 [node name="Camera" parent="." instance=ExtResource("2_l1vl2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.724565, 0)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_btls3")
+
+[node name="Map" type="CSGBox3D" parent="NavigationRegion3D"]
+use_collision = true
+size = Vector3(10, 0.037, 10)

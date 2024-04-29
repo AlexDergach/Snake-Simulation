@@ -39,8 +39,6 @@ shadow_mesh = SubResource("ArrayMesh_nn785")
 
 [node name="snake" type="Node3D"]
 
-[node name="boid" type="CharacterBody3D" parent="."]
-
 [node name="body" type="CharacterBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="body"]
@@ -51,3 +49,5 @@ shape = SubResource("ConcavePolygonShape3D_jd055")
 transform = Transform3D(-0.5, 0, 0, 0, -0.5, 0, 0, 0, -0.5, 0, 0, 0)
 mesh = SubResource("ArrayMesh_bqjih")
 skeleton = NodePath("")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
