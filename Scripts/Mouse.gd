@@ -3,18 +3,21 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const DESTINATION_CHANGE_INTERVAL = 5.0 # Change destination every 5 seconds
+const FOOT_OFFSET = 0.1 # Maximum offset for foot motion
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var nav_agent = $NavigationAgent3D
 var target_destination = Vector3.ZERO
 var destination_change_timer = 0.0
+var move = 1
 
 @onready var foot = $Foot
 @onready var foot_2 = $Foot2
 @onready var foot_3 = $Foot3
 @onready var foot_4 = $Foot4
 
+var foot_offset = 0.0
 
 func _ready():
 	set_random_destination()
@@ -42,7 +45,7 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-	# Timer for new pos
+	# Update the timer and change destination if needed
 	destination_change_timer += delta
 	if destination_change_timer >= DESTINATION_CHANGE_INTERVAL:
 		set_random_destination()
@@ -53,3 +56,4 @@ func set_random_destination():
 	var random_z = randi_range(-10, 10)
 	target_destination = Vector3(random_x, 0, random_z)
 	nav_agent.set_target_position(target_destination)
+

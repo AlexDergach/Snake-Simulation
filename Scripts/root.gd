@@ -13,7 +13,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
-	print(map_size)
 	
 	if spawn_amount > 0:
 		mouse_instance = MOUSE.instantiate()
