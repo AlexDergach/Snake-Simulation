@@ -1,22 +1,24 @@
-[gd_scene load_steps=21 format=3 uid="uid://dqu80dnyng0md"]
+[gd_scene load_steps=23 format=3 uid="uid://dqu80dnyng0md"]
+
+[ext_resource type="Script" path="res://Scripts/Mouse.gd" id="1_k5drl"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3xsc0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jpi2p"]
-albedo_color = Color(0.996078, 0.988235, 0.898039, 1)
+albedo_color = Color(0.535255, 0.495939, 0.485331, 1)
 
 [sub_resource type="PrismMesh" id="PrismMesh_15wxx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ispf"]
-albedo_color = Color(0.996078, 0.988235, 0.898039, 1)
+albedo_color = Color(0.533333, 0.494118, 0.486275, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_mff42"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l0kqm"]
-albedo_color = Color(0.996078, 0.988235, 0.898039, 1)
+albedo_color = Color(0.917647, 0.568627, 0.611765, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h7kjo"]
-albedo_color = Color(0.996078, 0.988235, 0.898039, 1)
+albedo_color = Color(0.917647, 0.568627, 0.611765, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_awm4e"]
 
@@ -26,7 +28,7 @@ albedo_color = Color(0.917647, 0.568627, 0.611765, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_d5efb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ge8ua"]
-albedo_color = Color(0.996078, 0.988235, 0.898039, 1)
+albedo_color = Color(0.533333, 0.494118, 0.486275, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w3hui"]
 albedo_color = Color(0.917647, 0.568627, 0.611765, 1)
@@ -53,7 +55,10 @@ albedo_color = Color(0.917647, 0.568627, 0.611765, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_owkjp"]
 albedo_color = Color(0.917647, 0.568627, 0.611765, 1)
 
-[node name="Mouse" type="Node3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7ogm8"]
+
+[node name="Mouse" type="CharacterBody3D"]
+script = ExtResource("1_k5drl")
 
 [node name="Body" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.54524, 0, 0, 0, 0.599174, 0, 0, 0, 1.01374, 0, 0.204367, 0)
@@ -119,3 +124,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_dwhv1")
 transform = Transform3D(0.35043, 0, 0, 0, 0.155532, 0, 0, 0, 0.128109, -0.496958, -0.267887, -0.299578)
 mesh = SubResource("BoxMesh_fbhwl")
 surface_material_override/0 = SubResource("StandardMaterial3D_owkjp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.037487, 1.16059, 0, -1.16059, 0.037487, 0, 0, 0, 1.1612, 0.129878, 0.226855, 0)
+shape = SubResource("CapsuleShape3D_7ogm8")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
