@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://cydh3egvc4umg"]
+[gd_scene load_steps=77 format=3 uid="uid://cydh3egvc4umg"]
 
 [ext_resource type="Script" path="res://addons/terrabrush/TerraBrush.cs" id="1_latr6"]
 [ext_resource type="Texture2D" uid="uid://demnr07nq0146" path="res://Scene/Map/Heightmap_0_0.res" id="2_ae4g3"]
@@ -24,18 +24,38 @@
 [ext_resource type="Texture2D" uid="uid://7p700ucchida" path="res://Assets/Foliage/Sprites/PNG/Flat/sprite_0001.png" id="19_gej80"]
 [ext_resource type="Script" path="res://addons/terrabrush/Scripts/EditorResources/FoliageDefinitionResource.cs" id="20_2yyk8"]
 [ext_resource type="Script" path="res://addons/terrabrush/Scripts/EditorResources/FoliageResource.cs" id="21_efwj5"]
-[ext_resource type="PackedScene" uid="uid://oogy2mrltaci" path="res://Assets/Map Models/stump_round.glb" id="22_kmwbo"]
 [ext_resource type="Texture2D" uid="uid://02102fhow817" path="res://Scene/Map/Foliage_0_0_0.res" id="22_mgxfg"]
-[ext_resource type="PackedScene" uid="uid://dgs20u8b35re7" path="res://Assets/Map Models/tree_pineDefaultB.glb" id="23_l0ws2"]
+[ext_resource type="PackedScene" uid="uid://b0jhcregvgsuu" path="res://Assets/Map Models/stone_smallA.glb" id="23_cwlcq"]
+[ext_resource type="PackedScene" uid="uid://bjsklukt1rtsr" path="res://Assets/Map Models/stone_smallFlatC.glb" id="24_78pxh"]
 [ext_resource type="Texture2D" uid="uid://dgnicn0tshcl3" path="res://Scene/Map/Splatmap_0_0_0.res" id="24_ansn2"]
-[ext_resource type="PackedScene" uid="uid://b55yoi4qqr0eg" path="res://Assets/Map Models/tree_pineSmallB.glb" id="24_mw5ie"]
 [ext_resource type="Texture2D" uid="uid://cupjgrtuo0p2" path="res://Scene/Map/Splatmap_0_0_1.res" id="25_evvwu"]
+[ext_resource type="PackedScene" uid="uid://ba7p1kjrt1r6w" path="res://Assets/Map Models/stone_smallG.glb" id="25_mok17"]
 [ext_resource type="Script" path="res://addons/terrabrush/Scripts/EditorResources/ObjectDefinitionResource.cs" id="25_qtqpo"]
+[ext_resource type="PackedScene" uid="uid://cdybrx0yn3j37" path="res://Assets/Map Models/stone_smallH.glb" id="26_5ibq3"]
 [ext_resource type="Script" path="res://addons/terrabrush/Scripts/EditorResources/ObjectResource.cs" id="26_i8ble"]
 [ext_resource type="Script" path="res://addons/terrabrush/Scripts/EditorResources/WaterResource.cs" id="27_d6v1h"]
+[ext_resource type="PackedScene" uid="uid://cpuvkgp7u36n8" path="res://Assets/Map Models/stone_smallI.glb" id="27_prqwh"]
+[ext_resource type="PackedScene" uid="uid://ckj6twc4sri27" path="res://Assets/Map Models/stone_smallTopA.glb" id="28_6rbqe"]
+[ext_resource type="PackedScene" uid="uid://cqie2eg1ae20d" path="res://Assets/Map Models/stone_smallTopB.glb" id="29_sxhci"]
+[ext_resource type="PackedScene" uid="uid://ddxaiktlwydla" path="res://Assets/Map Models/stone_tallA.glb" id="30_ie0rf"]
 [ext_resource type="Texture2D" uid="uid://vickbpgryjrt" path="res://Scene/Map/Object_0_0_0.res" id="30_mclsq"]
+[ext_resource type="PackedScene" uid="uid://ccnjo2lw6uf0j" path="res://Assets/Map Models/stone_tallB.glb" id="31_3ajou"]
 [ext_resource type="Texture2D" uid="uid://pxngne175vy5" path="res://Scene/Map/Water_0_0.res" id="33_qj351"]
+[ext_resource type="PackedScene" uid="uid://bpaovmy254xkr" path="res://Assets/Map Models/stone_smallB.glb" id="36_0xxcx"]
 [ext_resource type="PackedScene" uid="uid://dfkbtftqcivbx" path="res://Scene/Camera.tscn" id="36_sfdh1"]
+[ext_resource type="PackedScene" uid="uid://bu0pr1lidbvcp" path="res://Assets/Map Models/stone_smallC.glb" id="37_gpldv"]
+[ext_resource type="PackedScene" uid="uid://dve67cajc8cvt" path="res://Assets/Map Models/stone_smallD.glb" id="38_btjte"]
+[ext_resource type="PackedScene" uid="uid://bpvw6cv102r4j" path="res://Assets/Map Models/stone_smallE.glb" id="39_stymi"]
+[ext_resource type="PackedScene" uid="uid://cfg1huxdg7nuc" path="res://Assets/Map Models/tree_default_dark.glb" id="40_cjggq"]
+[ext_resource type="PackedScene" uid="uid://ciky41q7tjc7r" path="res://Assets/Map Models/stone_smallF.glb" id="40_ihtst"]
+[ext_resource type="Texture2D" uid="uid://4buxlxf5o6ed" path="res://Scene/Map/Object_0_0_1.res" id="40_v1nj3"]
+[ext_resource type="PackedScene" uid="uid://b5ss3afkyr68k" path="res://Assets/Map Models/tree_default_fall.glb" id="41_umrbp"]
+[ext_resource type="PackedScene" uid="uid://d6fhc052xuha" path="res://Assets/Map Models/stone_smallFlatA.glb" id="41_wnp71"]
+[ext_resource type="PackedScene" uid="uid://dby5p22eqyj78" path="res://Assets/Map Models/stone_smallFlatB.glb" id="42_7h61l"]
+[ext_resource type="PackedScene" uid="uid://d26sbkafvvb44" path="res://Assets/Map Models/tree_detailed.glb" id="42_e5ycg"]
+[ext_resource type="PackedScene" uid="uid://t2ano6jv2hvx" path="res://Assets/Map Models/tree_detailed_dark.glb" id="43_lxc5s"]
+[ext_resource type="PackedScene" uid="uid://bmvguwdd6ob3b" path="res://Assets/Map Models/tree_detailed_fall.glb" id="44_wkl7i"]
+[ext_resource type="PackedScene" uid="uid://dcy0p8iqde28r" path="res://Assets/Map Models/tree_fat.glb" id="45_w56cx"]
 
 [sub_resource type="Resource" id="Resource_uyjch"]
 script = ExtResource("5_geed2")
@@ -97,8 +117,8 @@ script = ExtResource("20_2yyk8")
 Mesh = SubResource("QuadMesh_65nsu")
 MeshMaterial = SubResource("StandardMaterial3D_6wqk7")
 MeshScale = Vector3(3, 3, 3)
-MaximumRenderDistance = 50
-EditorMaximumRenderDistance = 50
+MaximumRenderDistance = 260
+EditorMaximumRenderDistance = 1420
 WindStrength = 0.1
 VisualInstanceLayers = 1
 
@@ -106,16 +126,28 @@ VisualInstanceLayers = 1
 script = ExtResource("21_efwj5")
 Definition = SubResource("Resource_sspev")
 
-[sub_resource type="Resource" id="Resource_i0wve"]
+[sub_resource type="Resource" id="Resource_disuk"]
 script = ExtResource("25_qtqpo")
 ObjectFrequency = -1
-RandomRange = 3.0
-RandomYRotation = true
-ObjectScenes = [ExtResource("22_kmwbo"), ExtResource("23_l0ws2"), ExtResource("24_mw5ie")]
+RandomRange = 1.0
+RandomYRotation = false
+ObjectScenes = [ExtResource("41_wnp71"), ExtResource("42_7h61l"), ExtResource("24_78pxh"), ExtResource("25_mok17"), ExtResource("26_5ibq3"), ExtResource("27_prqwh"), ExtResource("28_6rbqe"), ExtResource("29_sxhci"), ExtResource("30_ie0rf"), ExtResource("31_3ajou"), ExtResource("23_cwlcq"), ExtResource("36_0xxcx"), ExtResource("37_gpldv"), ExtResource("38_btjte"), ExtResource("39_stymi"), ExtResource("40_ihtst"), ExtResource("41_wnp71"), ExtResource("42_7h61l"), ExtResource("24_78pxh"), ExtResource("25_mok17"), ExtResource("26_5ibq3"), ExtResource("27_prqwh"), ExtResource("28_6rbqe"), ExtResource("29_sxhci"), ExtResource("30_ie0rf"), ExtResource("31_3ajou")]
 
-[sub_resource type="Resource" id="Resource_hrmrm"]
+[sub_resource type="Resource" id="Resource_5ygci"]
 script = ExtResource("26_i8ble")
-Definition = SubResource("Resource_i0wve")
+Definition = SubResource("Resource_disuk")
+Hide = false
+
+[sub_resource type="Resource" id="Resource_vt8gb"]
+script = ExtResource("25_qtqpo")
+ObjectFrequency = -1
+RandomRange = 1.0
+RandomYRotation = false
+ObjectScenes = [ExtResource("40_cjggq"), ExtResource("41_umrbp"), ExtResource("42_e5ycg"), ExtResource("43_lxc5s"), ExtResource("44_wkl7i"), ExtResource("45_w56cx")]
+
+[sub_resource type="Resource" id="Resource_77cgb"]
+script = ExtResource("26_i8ble")
+Definition = SubResource("Resource_vt8gb")
 Hide = false
 
 [sub_resource type="Resource" id="Resource_b0x8m"]
@@ -146,18 +178,30 @@ ZonePosition = Vector2i(0, 0)
 HeightMapTexture = ExtResource("2_ae4g3")
 SplatmapsTexture = [ExtResource("24_ansn2"), ExtResource("25_evvwu")]
 FoliagesTexture = [ExtResource("22_mgxfg")]
-ObjectsTexture = [ExtResource("30_mclsq")]
+ObjectsTexture = [ExtResource("30_mclsq"), ExtResource("40_v1nj3")]
 WaterTexture = ExtResource("33_qj351")
 
 [sub_resource type="Resource" id="Resource_keq6k"]
 script = ExtResource("4_1u73t")
 Zones = [SubResource("Resource_3jyht")]
 
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_ec71k"]
+ground_color = Color(0.533087, 0.425746, 0.29711, 1)
+
+[sub_resource type="Sky" id="Sky_ay486"]
+sky_material = SubResource("PhysicalSkyMaterial_ec71k")
+
 [sub_resource type="Environment" id="Environment_865qc"]
-ssr_enabled = true
-ssao_enabled = true
-ssil_enabled = true
-sdfgi_enabled = true
+background_mode = 2
+background_energy_multiplier = 3.79
+sky = SubResource("Sky_ay486")
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0059
+volumetric_fog_albedo = Color(0.505122, 0.760483, 0.718451, 1)
+volumetric_fog_emission = Color(1, 1, 1, 1)
+volumetric_fog_emission_energy = 0.4
+volumetric_fog_length = 1024.0
+volumetric_fog_ambient_inject = 1.4
 
 [node name="Map" type="Node3D"]
 
@@ -166,17 +210,17 @@ script = ExtResource("1_latr6")
 DataPath = "res://Scene/Map"
 TextureSets = SubResource("Resource_cxku4")
 Foliages = [SubResource("Resource_gtla2")]
-DefaultObjectFrequency = 8
-Objects = [SubResource("Resource_hrmrm")]
+DefaultObjectFrequency = 30
+Objects = [SubResource("Resource_5ygci"), SubResource("Resource_77cgb")]
 WaterDefinition = SubResource("Resource_b0x8m")
 TerrainZones = SubResource("Resource_keq6k")
-metadata/_edit_lock_ = false
+metadata/_edit_lock_ = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_865qc")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform3D(-0.997603, -0.034408, -0.0600385, 0, 0.867618, -0.497231, 0.0691992, -0.49604, -0.865538, 0, 11.366, -153.477)
+transform = Transform3D(-0.997603, -0.0344081, -0.0600385, -0.0437855, 0.985715, 0.16263, 0.053585, 0.164869, -0.984859, 0, 64.2608, -20.9335)
 
 [node name="Camera" parent="." instance=ExtResource("36_sfdh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 36.9422, 0)
