@@ -5,8 +5,8 @@ Github -- Done
 Research -- Done
 Expand Idea
 Day 2 Plans
-Mouse
+Mouse - Done
+Start map logic
 
-d
 Day 2:
 Map

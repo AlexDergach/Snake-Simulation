@@ -1,0 +1,182 @@
+[gd_scene load_steps=53 format=3 uid="uid://cydh3egvc4umg"]
+
+[ext_resource type="Script" path="res://addons/terrabrush/TerraBrush.cs" id="1_latr6"]
+[ext_resource type="Texture2D" uid="uid://demnr07nq0146" path="res://Scene/Map/Heightmap_0_0.res" id="2_ae4g3"]
+[ext_resource type="Texture2D" uid="uid://bbh5cevxklmn3" path="res://Assets/Textures/Grass/Grass001_1K-JPG_Color.jpg" id="2_xgfmn"]
+[ext_resource type="Script" path="res://addons/terrabrush/Scripts/EditorResources/ZoneResource.cs" id="3_1dxfc"]
+[ext_resource type="Texture2D" uid="uid://cibik1w8o70vu" path="res://Assets/Textures/Grass/Grass001_1K-JPG_NormalGL.jpg" id="3_pfy7s"]
+[ext_resource type="Script" path="res://addons/terrabrush/Scripts/EditorResources/ZonesResource.cs" id="4_1u73t"]
+[ext_resource type="Texture2D" uid="uid://chrxckski6jm6" path="res://Assets/Textures/Grass/Grass001_1K-JPG_Roughness.jpg" id="4_g8pnh"]
+[ext_resource type="Script" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetResource.cs" id="5_geed2"]
+[ext_resource type="Texture2D" uid="uid://drd78smukgp0b" path="res://Assets/Textures/Rock/Rock050_1K-JPG_Color.jpg" id="6_52b4x"]
+[ext_resource type="Texture2D" uid="uid://y36r8mi4w24c" path="res://Assets/Textures/Rock/Rock050_1K-JPG_NormalGL.jpg" id="7_s6bwi"]
+[ext_resource type="Texture2D" uid="uid://c4kukgusgidnr" path="res://Assets/Textures/Rock/Rock050_1K-JPG_Roughness.jpg" id="8_18cjs"]
+[ext_resource type="Texture2D" uid="uid://ckx7msbnutq26" path="res://Assets/Textures/RockGrass/Rock051_1K-JPG_Color.jpg" id="9_ria2g"]
+[ext_resource type="Texture2D" uid="uid://cl0whayx7spgg" path="res://Assets/Textures/RockGrass/Rock051_1K-JPG_NormalGL.jpg" id="10_4f0fl"]
+[ext_resource type="Texture2D" uid="uid://dcjftou4pt0mu" path="res://Assets/Textures/RockGrass/Rock051_1K-JPG_Roughness.jpg" id="11_3o8rv"]
+[ext_resource type="Texture2D" uid="uid://cs3n68o3v32je" path="res://Assets/Textures/RockSand/Ground067_1K-JPG_Color.jpg" id="12_a4eu2"]
+[ext_resource type="Texture2D" uid="uid://dyaul1g1ibult" path="res://Assets/Textures/RockSand/Ground067_1K-JPG_NormalGL.jpg" id="13_n0dbe"]
+[ext_resource type="Texture2D" uid="uid://c37uaem1v7mgp" path="res://Assets/Textures/RockSand/Ground067_1K-JPG_Roughness.jpg" id="14_f0e18"]
+[ext_resource type="Texture2D" uid="uid://b701hao7ttwh4" path="res://Assets/Textures/Sand/Ground054_1K-JPG_Color.jpg" id="15_04hen"]
+[ext_resource type="Texture2D" uid="uid://dmj28hya7nd6x" path="res://Assets/Textures/Sand/Ground054_1K-JPG_NormalGL.jpg" id="16_htu1j"]
+[ext_resource type="Texture2D" uid="uid://uuq5jy400pr1" path="res://Assets/Textures/Sand/Ground054_1K-JPG_Roughness.jpg" id="17_mlvh4"]
+[ext_resource type="Script" path="res://addons/terrabrush/Scripts/EditorResources/TextureSetsResource.cs" id="18_riua6"]
+[ext_resource type="Texture2D" uid="uid://7p700ucchida" path="res://Assets/Foliage/Sprites/PNG/Flat/sprite_0001.png" id="19_gej80"]
+[ext_resource type="Script" path="res://addons/terrabrush/Scripts/EditorResources/FoliageDefinitionResource.cs" id="20_2yyk8"]
+[ext_resource type="Script" path="res://addons/terrabrush/Scripts/EditorResources/FoliageResource.cs" id="21_efwj5"]
+[ext_resource type="PackedScene" uid="uid://oogy2mrltaci" path="res://Assets/Map Models/stump_round.glb" id="22_kmwbo"]
+[ext_resource type="Texture2D" uid="uid://02102fhow817" path="res://Scene/Map/Foliage_0_0_0.res" id="22_mgxfg"]
+[ext_resource type="PackedScene" uid="uid://dgs20u8b35re7" path="res://Assets/Map Models/tree_pineDefaultB.glb" id="23_l0ws2"]
+[ext_resource type="Texture2D" uid="uid://dgnicn0tshcl3" path="res://Scene/Map/Splatmap_0_0_0.res" id="24_ansn2"]
+[ext_resource type="PackedScene" uid="uid://b55yoi4qqr0eg" path="res://Assets/Map Models/tree_pineSmallB.glb" id="24_mw5ie"]
+[ext_resource type="Texture2D" uid="uid://cupjgrtuo0p2" path="res://Scene/Map/Splatmap_0_0_1.res" id="25_evvwu"]
+[ext_resource type="Script" path="res://addons/terrabrush/Scripts/EditorResources/ObjectDefinitionResource.cs" id="25_qtqpo"]
+[ext_resource type="Script" path="res://addons/terrabrush/Scripts/EditorResources/ObjectResource.cs" id="26_i8ble"]
+[ext_resource type="Script" path="res://addons/terrabrush/Scripts/EditorResources/WaterResource.cs" id="27_d6v1h"]
+[ext_resource type="Texture2D" uid="uid://vickbpgryjrt" path="res://Scene/Map/Object_0_0_0.res" id="30_mclsq"]
+[ext_resource type="Texture2D" uid="uid://pxngne175vy5" path="res://Scene/Map/Water_0_0.res" id="33_qj351"]
+[ext_resource type="PackedScene" uid="uid://dfkbtftqcivbx" path="res://Scene/Camera.tscn" id="36_sfdh1"]
+
+[sub_resource type="Resource" id="Resource_uyjch"]
+script = ExtResource("5_geed2")
+Name = "Grass"
+AlbedoTexture = ExtResource("2_xgfmn")
+NormalTexture = ExtResource("3_pfy7s")
+RoughnessTexture = ExtResource("4_g8pnh")
+TextureDetail = -1
+
+[sub_resource type="Resource" id="Resource_k2f6v"]
+script = ExtResource("5_geed2")
+Name = "Rock"
+AlbedoTexture = ExtResource("6_52b4x")
+NormalTexture = ExtResource("7_s6bwi")
+RoughnessTexture = ExtResource("8_18cjs")
+TextureDetail = -1
+
+[sub_resource type="Resource" id="Resource_60q23"]
+script = ExtResource("5_geed2")
+Name = "RockGrass"
+AlbedoTexture = ExtResource("9_ria2g")
+NormalTexture = ExtResource("10_4f0fl")
+RoughnessTexture = ExtResource("11_3o8rv")
+TextureDetail = -1
+
+[sub_resource type="Resource" id="Resource_2wj2c"]
+script = ExtResource("5_geed2")
+Name = "RockSand"
+AlbedoTexture = ExtResource("12_a4eu2")
+NormalTexture = ExtResource("13_n0dbe")
+RoughnessTexture = ExtResource("14_f0e18")
+TextureDetail = -1
+
+[sub_resource type="Resource" id="Resource_hjhtu"]
+script = ExtResource("5_geed2")
+Name = "Sand"
+AlbedoTexture = ExtResource("15_04hen")
+NormalTexture = ExtResource("16_htu1j")
+RoughnessTexture = ExtResource("17_mlvh4")
+TextureDetail = -1
+
+[sub_resource type="Resource" id="Resource_cxku4"]
+script = ExtResource("18_riua6")
+TextureSets = [SubResource("Resource_uyjch"), SubResource("Resource_k2f6v"), SubResource("Resource_60q23"), SubResource("Resource_2wj2c"), SubResource("Resource_hjhtu")]
+
+[sub_resource type="QuadMesh" id="QuadMesh_65nsu"]
+center_offset = Vector3(0, 0.5, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6wqk7"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("19_gej80")
+
+[sub_resource type="Resource" id="Resource_sspev"]
+script = ExtResource("20_2yyk8")
+Mesh = SubResource("QuadMesh_65nsu")
+MeshMaterial = SubResource("StandardMaterial3D_6wqk7")
+MeshScale = Vector3(3, 3, 3)
+MaximumRenderDistance = 50
+EditorMaximumRenderDistance = 50
+WindStrength = 0.1
+VisualInstanceLayers = 1
+
+[sub_resource type="Resource" id="Resource_gtla2"]
+script = ExtResource("21_efwj5")
+Definition = SubResource("Resource_sspev")
+
+[sub_resource type="Resource" id="Resource_i0wve"]
+script = ExtResource("25_qtqpo")
+ObjectFrequency = -1
+RandomRange = 3.0
+RandomYRotation = true
+ObjectScenes = [ExtResource("22_kmwbo"), ExtResource("23_l0ws2"), ExtResource("24_mw5ie")]
+
+[sub_resource type="Resource" id="Resource_hrmrm"]
+script = ExtResource("26_i8ble")
+Definition = SubResource("Resource_i0wve")
+Hide = false
+
+[sub_resource type="Resource" id="Resource_b0x8m"]
+script = ExtResource("27_d6v1h")
+WaterFactor = 1.0
+WaterInnerOffset = 0.2
+WaterColor = Color(0.4, 1, 1, 1)
+WaterFresnelColor = Color(1, 1, 1, 1)
+WaterMetallic = 0.0
+WaterRoughness = 0.0
+WaterTimeScale = 0.1
+WaterStrength = 0.4
+WaterNoiseScale = 10.0
+WaterHeightScale = 0.15
+WaterColorDeep = Color(1, 1, 1, 1)
+WaterColorShallow = Color(1, 1, 1, 1)
+WaterBeersLaw = 2.0
+WaterDepthOffset = -0.75
+WaterEdgeScale = 0.1
+WaterNear = 0.5
+WaterFar = 100.0
+WaterEdgeColor = Color(1, 1, 1, 1)
+VisualInstanceLayers = 1
+
+[sub_resource type="Resource" id="Resource_3jyht"]
+script = ExtResource("3_1dxfc")
+ZonePosition = Vector2i(0, 0)
+HeightMapTexture = ExtResource("2_ae4g3")
+SplatmapsTexture = [ExtResource("24_ansn2"), ExtResource("25_evvwu")]
+FoliagesTexture = [ExtResource("22_mgxfg")]
+ObjectsTexture = [ExtResource("30_mclsq")]
+WaterTexture = ExtResource("33_qj351")
+
+[sub_resource type="Resource" id="Resource_keq6k"]
+script = ExtResource("4_1u73t")
+Zones = [SubResource("Resource_3jyht")]
+
+[sub_resource type="Environment" id="Environment_865qc"]
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+
+[node name="Map" type="Node3D"]
+
+[node name="TerraBrush" type="Node3D" parent="."]
+script = ExtResource("1_latr6")
+DataPath = "res://Scene/Map"
+TextureSets = SubResource("Resource_cxku4")
+Foliages = [SubResource("Resource_gtla2")]
+DefaultObjectFrequency = 8
+Objects = [SubResource("Resource_hrmrm")]
+WaterDefinition = SubResource("Resource_b0x8m")
+TerrainZones = SubResource("Resource_keq6k")
+metadata/_edit_lock_ = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_865qc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(-0.997603, -0.034408, -0.0600385, 0, 0.867618, -0.497231, 0.0691992, -0.49604, -0.865538, 0, 11.366, -153.477)
+
+[node name="Camera" parent="." instance=ExtResource("36_sfdh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 36.9422, 0)
