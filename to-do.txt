@@ -9,4 +9,18 @@ Mouse - Done
 Start map logic - Done
 
 Day 2:
-Map
+Map - IN PROGRESS
+
+Alex :
+	Sounds
+	Finish Collisions for water and assets
+	Day night cycle
+	Lights 
+	Altitude sound for camera
+	Particials
+	Breif
+	
+David:
+	Snake - lunge, movement, head raise
+	Mouse
+	Testing
