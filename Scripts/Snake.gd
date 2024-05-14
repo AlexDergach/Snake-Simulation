@@ -1,8 +1,12 @@
 class_name Snake extends CharacterBody3D
 
 
-const SPEED = 5.0
+
 const JUMP_VELOCITY = 4.5
+
+@export var speed = 5.0
+@export var max_speed: float = 10.0
+@export var vel = Vector3.ZERO
 
 var sine_time : float = 0
 @export var movement_amplitude : float = 1
@@ -39,3 +43,9 @@ func _physics_process(delta):
 
 func get_sine():
 	return sin(sine_time*movement_amplitude)*movement_frequency
+
+func seek_force(target: Vector3):	
+	var toTarget = target - global_transform.origin
+	toTarget = toTarget.normalized()
+	var desired = toTarget * max_speed
+	return desired - vel

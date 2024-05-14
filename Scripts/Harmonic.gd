@@ -25,7 +25,6 @@ func on_draw_gizmos():
 	DebugDraw3D.draw_line(cent, worldTarget, Color.HOT_PINK)
 	
 
-			
 func calculate():		
 	var n  = sin(theta)
 	var angle = deg_to_rad(n * amplitude)
