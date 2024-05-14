@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://cydh3egvc4umg"]
+[gd_scene load_steps=78 format=3 uid="uid://cydh3egvc4umg"]
 
 [ext_resource type="Script" path="res://addons/terrabrush/TerraBrush.cs" id="1_latr6"]
 [ext_resource type="Texture2D" uid="uid://demnr07nq0146" path="res://Scene/Map/Heightmap_0_0.res" id="2_ae4g3"]
@@ -203,6 +203,9 @@ volumetric_fog_emission_energy = 0.4
 volumetric_fog_length = 1024.0
 volumetric_fog_ambient_inject = 1.4
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_3gn4d"]
+size = Vector3(1.05762, 1, 0.164917)
+
 [node name="Map" type="Node3D"]
 
 [node name="TerraBrush" type="Node3D" parent="."]
@@ -224,3 +227,155 @@ transform = Transform3D(-0.997603, -0.0344081, -0.0600385, -0.0437855, 0.985715,
 
 [node name="Camera" parent="." instance=ExtResource("36_sfdh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 36.9422, 0)
+
+[node name="WaterBoundry" type="CollisionShape3D" parent="."]
+transform = Transform3D(4.0898, 0, -2.87638, 0, 5, 0, 2.87638, 0, 4.0898, -125.179, 1.65304, 1.38657)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry2" type="CollisionShape3D" parent="."]
+transform = Transform3D(4.35787, 0, -2.45132, 0, 5, 0, 2.45132, 0, 4.35787, -121.143, 2.08897, 3.56325)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry3" type="CollisionShape3D" parent="."]
+transform = Transform3D(4.6332, 0, -1.87975, 0, 5, 0, 1.87975, 0, 4.6332, -116.415, 2.08897, 6.11441)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry4" type="CollisionShape3D" parent="."]
+transform = Transform3D(4.97294, 0, -0.519518, 0, 5, 0, 0.519518, 0, 4.97294, -110.951, 2.08897, 7.43225)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry5" type="CollisionShape3D" parent="."]
+transform = Transform3D(4.99074, 0, 0.304197, 0, 5, 0, -0.304197, 0, 4.99074, -105.495, 2.08897, 7.43225)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry6" type="CollisionShape3D" parent="."]
+transform = Transform3D(4.56624, 0, 2.03703, 0, 5, 0, -2.03703, 0, 4.56624, -100.017, 2.08897, 5.9944)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry7" type="CollisionShape3D" parent="."]
+transform = Transform3D(4.66039, 0, 1.8113, 0, 5, 0, -1.8113, 0, 4.66039, -94.6109, 2.08897, 4.0855)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry8" type="CollisionShape3D" parent="."]
+transform = Transform3D(4.82217, 0, 1.32164, 0, 5, 0, -1.32164, 0, 4.82217, -89.5142, 2.08897, 2.51868)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry9" type="CollisionShape3D" parent="."]
+transform = Transform3D(4.68878, 0, 1.73648, 0, 5, 0, -1.73648, 0, 4.68878, -84.1789, 2.08897, 0.746707)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry10" type="CollisionShape3D" parent="."]
+transform = Transform3D(4.22724, 0, 2.67029, 0, 5, 0, -2.67029, 0, 4.22724, -79.6442, 2.08897, -1.74412)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry11" type="CollisionShape3D" parent="."]
+transform = Transform3D(4.22724, 0, 2.67029, 0, 5, 0, -2.67029, 0, 4.22724, -74.7958, 2.08897, -4.80725)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry12" type="CollisionShape3D" parent="."]
+transform = Transform3D(4.22724, 0, 2.67029, 0, 5, 0, -2.67029, 0, 4.22724, -70.1591, 2.08897, -8.04264)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry13" type="CollisionShape3D" parent="."]
+transform = Transform3D(4.22724, 0, 2.67029, 0, 5, 0, -2.67029, 0, 4.22724, -64.8019, 1.92903, -11.7195)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry14" type="CollisionShape3D" parent="."]
+transform = Transform3D(4.22724, 0, 2.67029, 0, 5, 0, -2.67029, 0, 4.22724, -60.2625, 1.92903, -13.9728)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry15" type="CollisionShape3D" parent="."]
+transform = Transform3D(4.86469, 0, 1.15534, 0, 5, 0, -1.15534, 0, 4.86469, -54.6913, 1.05346, -15.7974)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry16" type="CollisionShape3D" parent="."]
+transform = Transform3D(4.91117, 0, 0.938277, 0, 5, 0, -0.938277, 0, 4.91117, -48.1199, 0.792527, -16.7432)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry17" type="CollisionShape3D" parent="."]
+transform = Transform3D(4.39874, 0, 2.3772, 0, 5, 0, -2.3772, 0, 4.39874, -41.7462, 1.05346, -18.8436)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry18" type="CollisionShape3D" parent="."]
+transform = Transform3D(3.90373, 0, 3.12424, 0, 5, 0, -3.12424, 0, 3.90373, -37.5049, 1.05346, -21.7393)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry19" type="CollisionShape3D" parent="."]
+transform = Transform3D(2.71814, 0, 4.19663, 0, 5, 0, -4.19663, 0, 2.71814, -33.2014, 1.05346, -25.6353)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry20" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.38833, 0, 4.80339, 0, 5, 0, -4.80339, 0, 1.38833, -29.0213, 1.05346, -30.785)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry21" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.667856, 0, 4.9552, 0, 5, 0, -4.9552, 0, 0.667856, -28.0264, 1.05346, -37.0311)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry22" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.452556, 0, 4.97948, 0, 5, 0, -4.97948, 0, 0.452556, -27.1028, 1.05346, -42.7038)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry23" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1.51659, 0, 4.76445, 0, 5, 0, -4.76445, 0, -1.51659, -27.8044, 1.05346, -49.0586)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry24" type="CollisionShape3D" parent="."]
+transform = Transform3D(-3.07205, 0, 3.94494, 0, 5, 0, -3.94494, 0, -3.07205, -30.5365, 1.05346, -54.3418)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry25" type="CollisionShape3D" parent="."]
+transform = Transform3D(-3.75459, 0, 3.30198, 0, 5, 0, -3.30198, 0, -3.75459, -34.5857, 1.05346, -58.9039)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry26" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.3293, 0, 2.50144, 0, 5, 0, -2.50144, 0, -4.3293, -39.4067, 1.05346, -62.7488)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry27" type="CollisionShape3D" parent="."]
+transform = Transform3D(-3.63922, 0, 3.42871, 0, 5, 0, -3.42871, 0, -3.63922, -44.5413, 1.05346, -66.897)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry28" type="CollisionShape3D" parent="."]
+transform = Transform3D(-2.95099, 0, 4.0363, 0, 5, 0, -4.0363, 0, -2.95099, -48.6451, 1.05346, -71.5558)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry29" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1.76639, 0, 4.67759, 0, 5, 0, -4.67759, 0, -1.76639, -51.2047, 1.05346, -76.6077)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry30" type="CollisionShape3D" parent="."]
+transform = Transform3D(-2.55436, 0, 4.29828, 0, 5, 0, -4.29828, 0, -2.55436, -54.1101, 2.73028, -82.1551)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry31" type="CollisionShape3D" parent="."]
+transform = Transform3D(-3.16954, 0, 3.86705, 0, 5, 0, -3.86705, 0, -3.16954, -57.7405, 2.74685, -87.4632)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry32" type="CollisionShape3D" parent="."]
+transform = Transform3D(-3.16954, 0, 3.86705, 0, 5, 0, -3.86705, 0, -3.16954, -61.1222, 2.74685, -92.3874)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry33" type="CollisionShape3D" parent="."]
+transform = Transform3D(-2.15681, 0, 4.5109, 0, 5, 0, -4.5109, 0, -2.15681, -64.4371, 2.74685, -97.4443)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry34" type="CollisionShape3D" parent="."]
+transform = Transform3D(-2.15681, 0, 4.5109, 0, 5, 0, -4.5109, 0, -2.15681, -66.8906, 2.74685, -103.783)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry35" type="CollisionShape3D" parent="."]
+transform = Transform3D(-2.15681, 0, 4.5109, 0, 5, 0, -4.5109, 0, -2.15681, -70.6997, 2.47761, -109.573)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry36" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.905769, 0, 4.91727, 0, 5, 0, -4.91727, 0, -0.905769, -72.2456, 2.11222, -115.388)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry37" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.0758335, 0, 4.99942, 0, 5, 0, -4.99942, 0, 0.0758335, -73.019, 2.11222, -120.901)
+shape = SubResource("BoxShape3D_3gn4d")
+
+[node name="WaterBoundry38" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.0758335, 0, 4.99942, 0, 5, 0, -4.99942, 0, 0.0758335, -73.019, 2.11222, -124.323)
+shape = SubResource("BoxShape3D_3gn4d")
