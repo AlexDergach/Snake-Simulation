@@ -15,10 +15,6 @@ var new_force = Vector3.ZERO
 var should_calculate = false
 @export var damping = 0.1
 
-var sine_time : float = 0
-@export var movement_amplitude : float = 1
-@export var movement_frequency : float = 1
-
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -33,6 +29,8 @@ func _ready():
 
 func _process(delta):
 	should_calculate = true
+	if draw_gizmos:
+		on_draw_gizmos()
 
 func _physics_process(delta):
 	
@@ -61,6 +59,7 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 	
 	move_and_slide()
+	
 
 func seek_force(target: Vector3):	
 	var toTarget = target - global_transform.origin
@@ -93,7 +92,9 @@ func calculate():
 		DebugDraw2D.set_text(name, behaviors_active)
 	return force_acc
 
-func get_sine():
-	return sin(sine_time*movement_amplitude)*movement_frequency
-
-
+func on_draw_gizmos():
+	DebugDraw3D.draw_arrow(global_position,  global_transform.origin + transform.basis.z * 2.0 , Color(0, 0, 1), 0.1)
+	DebugDraw3D.draw_arrow(global_position,  global_transform.origin + transform.basis.x * 2.0 , Color(1, 0, 0), 0.1)
+	DebugDraw3D.draw_arrow(global_position,  global_transform.origin + transform.basis.y * 2.0 , Color(0, 1, 0), 0.1)
+	DebugDraw3D.draw_arrow(global_position,  global_transform.origin + force, Color(1, 1, 0), 0.1)
+	

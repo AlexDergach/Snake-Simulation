@@ -19,3 +19,4 @@ shape = SubResource("SphereShape3D_pfglf")
 [node name="Camera" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="Camera"]
+current = true

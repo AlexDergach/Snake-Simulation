@@ -109,11 +109,20 @@ shadow_mesh = SubResource("ArrayMesh_fmjim")
 
 [node name="snake" type="Node3D"]
 script = ExtResource("1_4o5bq")
+snake_length = 8
 
 [node name="entity" type="Node3D" parent="."]
 
 [node name="spineAnimation" type="Node3D" parent="entity"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_hayyj")
+bonePaths = [NodePath("")]
+damping = 0.0
+angular_damping = 3.0
+
+[node name="spineAnimation2" type="Node3D" parent="entity"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+visible = false
 script = ExtResource("1_hayyj")
 bonePaths = [NodePath("../snakeHead"), NodePath("../body"), NodePath("../body2"), NodePath("../body3"), NodePath("../tail")]
 damping = 0.0
@@ -121,6 +130,7 @@ angular_damping = 3.0
 
 [node name="snakeHead" type="CharacterBody3D" parent="entity"]
 script = ExtResource("2_7t54e")
+damping = 1.0
 
 [node name="snake_head" type="MeshInstance3D" parent="entity/snakeHead"]
 transform = Transform3D(2.18557e-09, 1.91069e-16, -0.05, 4.37114e-09, -0.05, 0, -0.05, -4.37114e-09, -2.18557e-09, 0, 0, 0)
@@ -133,6 +143,7 @@ shape = SubResource("BoxShape3D_dw13o")
 
 [node name="Behaviour_Avoidance" type="Node" parent="entity/snakeHead"]
 script = ExtResource("3_6hkfr")
+draw_gizmos = false
 enabled = false
 
 [node name="Behaviour_Harmonic" type="Node" parent="entity/snakeHead"]
@@ -145,6 +156,7 @@ enabled = false
 
 [node name="Behaviour_Seek" type="Node" parent="entity/snakeHead"]
 script = ExtResource("5_y7t0y")
+draw_gizmos = false
 
 [node name="State_Wander" type="Node" parent="entity/snakeHead"]
 script = ExtResource("6_p13m4")
@@ -168,9 +180,12 @@ disabled = true
 
 [node name="body" parent="entity" instance=ExtResource("1_bngrd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02504, 0, 0)
+visible = false
 
 [node name="body2" parent="entity" instance=ExtResource("1_bngrd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9159, 0, 0)
+visible = false
 
 [node name="body3" parent="entity" instance=ExtResource("1_bngrd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.86514, 0, 0)
+visible = false
