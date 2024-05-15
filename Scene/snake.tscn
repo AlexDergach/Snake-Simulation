@@ -109,22 +109,12 @@ shadow_mesh = SubResource("ArrayMesh_fmjim")
 
 [node name="snake" type="Node3D"]
 script = ExtResource("1_4o5bq")
-snake_length = 8
 
 [node name="entity" type="Node3D" parent="."]
 
 [node name="spineAnimation" type="Node3D" parent="entity"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_hayyj")
-bonePaths = [NodePath("")]
-damping = 0.0
-angular_damping = 3.0
-
-[node name="spineAnimation2" type="Node3D" parent="entity"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
-visible = false
-script = ExtResource("1_hayyj")
-bonePaths = [NodePath("../snakeHead"), NodePath("../body"), NodePath("../body2"), NodePath("../body3"), NodePath("../tail")]
 damping = 0.0
 angular_damping = 3.0
 

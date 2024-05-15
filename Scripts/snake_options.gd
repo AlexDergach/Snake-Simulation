@@ -10,15 +10,15 @@ var default_slither_amplitude : int = 100
 var default_slither_distance : int = 1
 var default_seek_radius : int = 25
 
-@export var speed : float = default_speed
-@export var max_speed : float = default_max_speed
-@export var damping : float = default_damping
-@export var snake_length : int = default_snake_length
-@export var slither_frequency : float = default_slither_frequency
-@export var slither_radius : int = default_slither_radius
-@export var slither_amplitude : int = default_slither_amplitude
-@export var slither_distance: int = default_slither_distance
-@export var seek_radius : int = default_seek_radius
+@export var speed : float = 4.0
+@export var max_speed : float = 5.0
+@export var damping : float = 1.0
+@export var snake_length : int = 7
+@export var slither_frequency : float = 0.3
+@export var slither_radius : int = 15
+@export var slither_amplitude : int = 100
+@export var slither_distance: int = 1
+@export var seek_radius : int = 25
 
 @onready var entity = get_node("entity")
 @onready var snakeHead = get_node("entity/snakeHead")
@@ -26,14 +26,14 @@ var default_seek_radius : int = 25
 @onready var wanderState = get_node("entity/snakeHead/State_Wander")
 @onready var spineAnimation = get_node("entity/spineAnimation")
 
-var snake_body_pieces_scene = preload("res://Scene/snake_bodypiece.tscn")
+var snake_body_pieces_scene
 @onready var snakeTail = get_node("entity/tail")
-
-
 
 var old_snakeLength = snake_length
 
 func _ready():
+	snake_body_pieces_scene = preload("res://Scene/snake_bodypiece.tscn")
+	generate_body()
 	pass
 
 func _process(delta):
@@ -51,22 +51,27 @@ func _process(delta):
 	if snake_length != old_snakeLength:
 		generate_body()
 		old_snakeLength = snake_length
-		
-		spineAnimation.bonePaths = []
-		
-		spineAnimation.bonePaths.append(snakeHead.get_path())
-		for i in entity.get_children():
-			if "body" in i.name:
-				spineAnimation.bonePaths.append(i.get_path())
-		spineAnimation.bonePaths.append(snakeTail.get_path())
 
 func generate_body():
 	for i in snake_length:
 		var body_instance = snake_body_pieces_scene.instantiate()
 		
-		add_child(body_instance)
+		entity.add_child(body_instance)
 		
-		body_instance.position.x = -i+1/2
-		
-	snakeTail.position.x = -snake_length+1/2
+		body_instance.position.x = -i-1
 	
+	snakeTail.position.x = -snake_length-1
+	
+	
+	spineAnimation.bonePaths = []
+	spineAnimation.bonePaths.append(snakeHead.get_path())
+	
+	for i in entity.get_children():
+		if "CharacterBody3D" in i.name:
+			spineAnimation.bonePaths.append(i.get_path())
+	spineAnimation.bonePaths.append(snakeTail.get_path())
+	
+	spineAnimation.calculateOffsets()
+	
+	print(entity.get_children())
+	print(spineAnimation.bonePaths)
