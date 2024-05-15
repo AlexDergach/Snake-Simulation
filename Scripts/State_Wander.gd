@@ -29,8 +29,8 @@ func _think():
 	else:
 		snake.get_node("Behaviour_Seek").world_target = random_loc
 		
-		if snake.get_node("Behaviour_Avoidance").calculate().length() > snake.get_node("Behaviour_Seek").calculate().length():
-			print("yes")
+		if snake.get_node("Behaviour_Avoidance").calculate().length() > snake.get_node("Behaviour_Seek").calculate().length()*1.5:
+			print(snake.get_node("Behaviour_Avoidance").calculate().length())
 			print("wait")
 			print("wait")
 			print("wait")

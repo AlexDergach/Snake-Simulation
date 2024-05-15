@@ -45,6 +45,7 @@ func feel(local_ray):
 	var feeler = {}
 	var ray_end = snake.global_transform * (local_ray)
 	var query = PhysicsRayQueryParameters3D.create(snake.global_transform.origin, ray_end, snake.collision_mask)
+	query.set_collision_mask(2)
 	var result = space_state.intersect_ray(query)
 	feeler.end = ray_end
 	feeler.hit = result
