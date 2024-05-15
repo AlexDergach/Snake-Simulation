@@ -1,12 +1,10 @@
 class_name Snake extends CharacterBody3D
 
-const JUMP_VELOCITY = 4.5
-
 @export var mass = 1
 @export var acceleration = Vector3.ZERO
 @export var force = Vector3.ZERO
-@export var speed = 5.0
-@export var max_speed: float = 10.0
+@export var speed = 2.0
+@export var max_speed: float = 3.0
 @export var vel = Vector3.ZERO
 
 var behaviors = [] 
@@ -24,34 +22,23 @@ var sine_time : float = 0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+func _ready():
+	print(get_node("/root/Root"))
+	
+	for i in get_child_count():
+		var child = get_child(i)
+		if child.has_method("calculate"):
+			behaviors.push_back(child)
+			child.set_process(child.enabled) 
+
+func _process(delta):
+	should_calculate = true
 
 func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	#var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	#var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	#if direction:
-		#velocity.x = direction.x * SPEED
-		#velocity.z = direction.z * SPEED
-	#else:
-		#velocity.x = move_toward(velocity.x, 0, SPEED)
-		#velocity.z = move_toward(velocity.z, 0, SPEED)
-		
-	#var direction = 
 	
-
 	if should_calculate:
 		new_force = calculate()
-		should_calculate = false
-		
+
 	force = lerp(force, new_force, delta)
 	acceleration = force / mass
 	vel += acceleration * delta
@@ -61,17 +48,31 @@ func _physics_process(delta):
 			print("max_speed is 0")
 		vel = vel.limit_length(max_speed)
 		
-		# Damping
+		# damping
 		vel -= vel * delta * damping
 		
 		set_velocity(vel)
-		move_and_slide()
+		
+		# banking
+		var temp_up = global_transform.basis.y.lerp(Vector3.UP + acceleration/2, delta/2)
+		look_at(global_position - vel.normalized(),temp_up)
+		
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+	
+	move_and_slide()
 
 func seek_force(target: Vector3):	
 	var toTarget = target - global_transform.origin
 	toTarget = toTarget.normalized()
 	var desired = toTarget * max_speed
 	return desired - vel
+
+func update_weights(weights):
+	for behavior in weights:
+		var b = get_node(behavior)
+		if b: 
+			b.weight = weights[behavior]
 
 func calculate():
 	var force_acc = Vector3.ZERO	

@@ -1,9 +1,9 @@
-class_name Harmonic extends SteeringBehavior
+class_name Behaviour_Harmonic extends SteeringBehavior
 
-@export var frequency = 0.3
+@export var frequency = 1
 @export var radius = 10.0
 
-@export var amplitude = 80
+@export var amplitude = 150
 @export var distance = 5
 
 enum Axis { Horizontal, Vertical}
@@ -14,15 +14,15 @@ var worldTarget:Vector3
 var theta
 	
 func _ready():
-	boid = get_parent()
+	snake = get_parent()
 	theta = randf_range(0, PI * 2.0)
 	
-func on_draw_gizmos():
-	boid = get_parent()
-	var cent = boid.global_transform * (Vector3.BACK * distance)
-	DebugDraw3D.draw_sphere(cent, radius, Color.HOT_PINK)
-	DebugDraw3D.draw_line(boid.global_transform.origin, cent, Color.HOT_PINK)
-	DebugDraw3D.draw_line(cent, worldTarget, Color.HOT_PINK)
+#func on_draw_gizmos():
+	#snake = get_parent()
+	#var cent = snake.global_transform * (Vector3.BACK * distance)
+	#DebugDraw3D.draw_sphere(cent, radius, Color.HOT_PINK)
+	#DebugDraw3D.draw_line(snake.global_transform.origin, cent, Color.HOT_PINK)
+	#DebugDraw3D.draw_line(cent, worldTarget, Color.HOT_PINK)
 	
 
 func calculate():		
@@ -31,7 +31,7 @@ func calculate():
 	
 	var delta = get_process_delta_time()
 
-	var rot = boid.global_transform.basis.get_euler()
+	var rot = snake.global_transform.basis.get_euler()
 	rot.x = 0
 
 	if axis == Axis.Horizontal:
@@ -50,9 +50,9 @@ func calculate():
 	
 	var projected = Basis.from_euler(rot)
 	
-	worldTarget = boid.global_transform.origin + (projected * localtarget)	
+	worldTarget = snake.global_transform.origin + (projected * localtarget)	
 	theta += frequency * delta * PI * 2.0
 	
-	var f = boid.seek_force(worldTarget)  
+	var f = snake.seek_force(worldTarget)  
 
 	return f
