@@ -14,10 +14,10 @@ Map - IN PROGRESS
 Alex :
 	Sounds
 	Finish Collisions for water and assets - DONE
-	Day night cycle
-	Lights 
+	Day night cycle - DONE
+	Lights - DONE ?
 	Altitude sound for camera
-	Particials
+	Particials - DONE
 	Breif
 	
 David:

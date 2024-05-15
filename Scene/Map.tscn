@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://cydh3egvc4umg"]
+[gd_scene load_steps=91 format=3 uid="uid://cydh3egvc4umg"]
 
 [ext_resource type="Script" path="res://Scene/Map.gd" id="1_3pr23"]
 [ext_resource type="Script" path="res://addons/terrabrush/TerraBrush.cs" id="1_latr6"]
@@ -57,6 +57,7 @@
 [ext_resource type="PackedScene" uid="uid://t2ano6jv2hvx" path="res://Assets/Map Models/tree_detailed_dark.glb" id="43_lxc5s"]
 [ext_resource type="PackedScene" uid="uid://bmvguwdd6ob3b" path="res://Assets/Map Models/tree_detailed_fall.glb" id="44_wkl7i"]
 [ext_resource type="PackedScene" uid="uid://dcy0p8iqde28r" path="res://Assets/Map Models/tree_fat.glb" id="45_w56cx"]
+[ext_resource type="PackedScene" uid="uid://cdpb7fck2fqgo" path="res://Scene/FireFlyParticles.tscn" id="58_q5mop"]
 
 [sub_resource type="Resource" id="Resource_uyjch"]
 script = ExtResource("5_geed2")
@@ -207,35 +208,6 @@ volumetric_fog_emission_energy = 0.4
 volumetric_fog_length = 1024.0
 volumetric_fog_ambient_inject = 1.4
 
-[sub_resource type="Animation" id="Animation_6bf5f"]
-resource_name = "sun"
-length = 32.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:environment:background_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 10.2, 14.2, 17.2, 32),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(0.671049, 0.780256, 1, 1), Color(0.995953, 0.6747, 0.751477, 1), Color(0, 0, 0, 1), Color(0.996078, 0.67451, 0.752941, 1), Color(0.671049, 0.780256, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:environment:ambient_light_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 10.2, 14.2, 17.2, 32),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(0.670588, 0.780392, 1, 1), Color(0.996078, 0.67451, 0.752941, 1), Color(0, 0, 0, 1), Color(0.996078, 0.67451, 0.752941, 1), Color(0.670588, 0.780392, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_sig5t"]
 length = 0.001
 tracks/0/type = "value"
@@ -263,6 +235,35 @@ tracks/1/keys = {
 "values": [Color(0.670588, 0.780392, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_6bf5f"]
+resource_name = "sun"
+length = 32.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:environment:background_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10.2, 13.9, 17.9, 20, 32),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.671049, 0.780256, 1, 1), Color(0.995953, 0.6747, 0.751477, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0.996078, 0.67451, 0.752941, 1), Color(0.671049, 0.780256, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:environment:ambient_light_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 10.2, 13.9, 17.9, 20, 32),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.670588, 0.780392, 1, 1), Color(0.996078, 0.67451, 0.752941, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0.996078, 0.67451, 0.752941, 1), Color(0.670588, 0.780392, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7jo41"]
 _data = {
 "RESET": SubResource("Animation_sig5t"),
@@ -287,6 +288,45 @@ size = Vector3(6.42235, 10.232, 6.70471)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_sm05j"]
 radius = 0.466066
+
+[sub_resource type="Animation" id="Animation_dhp6l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.772549, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.4142, -0.39518, -2.78525)]
+}
 
 [sub_resource type="Animation" id="Animation_jh8ui"]
 resource_name = "light"
@@ -315,45 +355,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [2.0, 2.0, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-1.4142, -0.39518, -2.78525)]
-}
-
-[sub_resource type="Animation" id="Animation_dhp6l"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:light_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.772549, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:light_energy")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [2.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -556,10 +557,6 @@ shape = SubResource("BoxShape3D_3gn4d")
 
 [node name="BirchCollisions" type="StaticBody3D" parent="."]
 
-[node name="BirchCol2" type="CollisionShape3D" parent="BirchCollisions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.6288, 1.55851, -27.7856)
-shape = SubResource("CylinderShape3D_d5ds0")
-
 [node name="BirchCol4" type="CollisionShape3D" parent="BirchCollisions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -97.6525, 3.35408, 51.5874)
 shape = SubResource("CylinderShape3D_d5ds0")
@@ -577,10 +574,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.9049, 4.65985, 21.0396)
 shape = SubResource("CylinderShape3D_d5ds0")
 
 [node name="OakCollisions" type="StaticBody3D" parent="."]
-
-[node name="OakCol2" type="CollisionShape3D" parent="OakCollisions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.8952, 4.21664, -8.59082)
-shape = SubResource("CylinderShape3D_tp3ug")
 
 [node name="OakCol3" type="CollisionShape3D" parent="OakCollisions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.7491, 4.21664, -98.2331)
@@ -1133,7 +1126,7 @@ transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 7.48686, 41.4619, 104.844)
 shape = SubResource("SphereShape3D_sm05j")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.997603, -0.034408, -0.0600382, -0.0544051, -0.146157, 0.987764, -0.042762, 0.988663, 0.143934, 0, 64.2608, -20.9335)
+transform = Transform3D(-0.997603, -0.0344128, -0.0600395, -0.0544055, -0.14616, 0.987763, -0.0427671, 0.988662, 0.143937, 0, 64.2608, -20.9335)
 light_color = Color(0.772549, 1, 1, 1)
 light_energy = 2.0
 shadow_enabled = true
@@ -1145,3 +1138,71 @@ libraries = {
 "": SubResource("AnimationLibrary_7xqow")
 }
 autoplay = "light"
+
+[node name="FireFlies" type="Node3D" parent="."]
+
+[node name="FireFlyParticles" parent="FireFlies" instance=ExtResource("58_q5mop")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 4.50849, 0)
+
+[node name="FireFlyParticles2" parent="FireFlies" instance=ExtResource("58_q5mop")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 4.50849, -4.17756)
+
+[node name="FireFlyParticles3" parent="FireFlies" instance=ExtResource("58_q5mop")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 26.9079, 4.50849, 0)
+
+[node name="FireFlyParticles4" parent="FireFlies" instance=ExtResource("58_q5mop")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 26.9079, 4.50849, -4.17756)
+
+[node name="FireFlyParticles5" parent="FireFlies" instance=ExtResource("58_q5mop")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -78.3016, 6.55933, 0)
+
+[node name="FireFlyParticles6" parent="FireFlies" instance=ExtResource("58_q5mop")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -78.3016, 6.55933, -4.17756)
+
+[node name="FireFlyParticles7" parent="FireFlies" instance=ExtResource("58_q5mop")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -51.3937, 6.55933, 0)
+
+[node name="FireFlyParticles8" parent="FireFlies" instance=ExtResource("58_q5mop")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -51.3937, 6.55933, -4.17756)
+
+[node name="FireFlyParticles9" parent="FireFlies" instance=ExtResource("58_q5mop")]
+transform = Transform3D(0.32582, 0, 2.98225, 0, 3, 0, -2.98225, 0, 0.32582, -104.669, 4.50849, -27.4068)
+
+[node name="FireFlyParticles10" parent="FireFlies" instance=ExtResource("58_q5mop")]
+transform = Transform3D(0.32582, 0, 2.98225, 0, 3, 0, -2.98225, 0, 0.32582, -108.822, 4.50849, -27.8605)
+
+[node name="FireFlyParticles11" parent="FireFlies" instance=ExtResource("58_q5mop")]
+transform = Transform3D(0.32582, 0, 2.98225, 0, 3, 0, -2.98225, 0, 0.32582, -101.747, 4.50849, -54.1555)
+
+[node name="FireFlyParticles12" parent="FireFlies" instance=ExtResource("58_q5mop")]
+transform = Transform3D(0.32582, 0, 2.98225, 0, 3, 0, -2.98225, 0, 0.32582, -105.9, 4.50849, -54.6092)
+
+[node name="FireFlyParticles13" parent="FireFlies" instance=ExtResource("58_q5mop")]
+transform = Transform3D(0.32582, 0, 2.98225, 0, 3, 0, -2.98225, 0, 0.32582, -113.173, 6.55933, 50.4316)
+
+[node name="FireFlyParticles14" parent="FireFlies" instance=ExtResource("58_q5mop")]
+transform = Transform3D(0.32582, 0, 2.98225, 0, 3, 0, -2.98225, 0, 0.32582, -117.326, 6.55933, 49.9779)
+
+[node name="FireFlyParticles15" parent="FireFlies" instance=ExtResource("58_q5mop")]
+transform = Transform3D(0.32582, 0, 2.98225, 0, 3, 0, -2.98225, 0, 0.32582, -110.251, 6.55933, 23.6829)
+
+[node name="FireFlyParticles16" parent="FireFlies" instance=ExtResource("58_q5mop")]
+transform = Transform3D(0.32582, 0, 2.98225, 0, 3, 0, -2.98225, 0, 0.32582, -114.404, 6.55933, 23.2292)
+
+[node name="FireFlyParticles17" parent="FireFlies" instance=ExtResource("58_q5mop")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -57.806, 4.50849, 28.0824)
+
+[node name="FireFlyParticles18" parent="FireFlies" instance=ExtResource("58_q5mop")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -57.806, 4.50849, 23.9048)
+
+[node name="FireFlyParticles19" parent="FireFlies" instance=ExtResource("58_q5mop")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 4.50849, -50.0458)
+
+[node name="FireFlyParticles20" parent="FireFlies" instance=ExtResource("58_q5mop")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 4.50849, -54.2234)
+
+[node name="FireFlyParticles21" parent="FireFlies" instance=ExtResource("58_q5mop")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 4.50849, 34.9647)
+
+[node name="FireFlyParticles22" parent="FireFlies" instance=ExtResource("58_q5mop")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 4.50849, 30.7871)
