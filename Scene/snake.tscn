@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://csvmu5rfx0dl1"]
+[gd_scene load_steps=20 format=3 uid="uid://b7ahnfr61hl3j"]
 
 [ext_resource type="Script" path="res://Scripts/snake_options.gd" id="1_4o5bq"]
-[ext_resource type="PackedScene" uid="uid://d3mycy64mftpr" path="res://Scene/snake_bodypiece.tscn" id="1_bngrd"]
+[ext_resource type="PackedScene" path="res://Scene/snake_bodypiece.tscn" id="1_bngrd"]
 [ext_resource type="Script" path="res://Scripts/SpineAnimator.gd" id="1_hayyj"]
 [ext_resource type="Script" path="res://Scripts/Snake.gd" id="2_7t54e"]
 [ext_resource type="Script" path="res://Scripts/Avoidance.gd" id="3_6hkfr"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="5_bu41v"]
 [ext_resource type="Script" path="res://Scripts/Behaviour_Seek.gd" id="5_y7t0y"]
 [ext_resource type="Script" path="res://Scripts/State_Wander.gd" id="6_p13m4"]
+[ext_resource type="AudioStream" uid="uid://dh07od4e831iu" path="res://Assets/Audio/snake.mp3" id="10_noo8e"]
+[ext_resource type="AudioStream" uid="uid://wrh4vcwxiumd" path="res://Assets/Audio/whoose.mp3" id="11_s3xef"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jnkwp"]
 resource_name = "Material.001"
@@ -174,3 +176,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9159, 0, 0)
 
 [node name="body3" parent="entity" instance=ExtResource("1_bngrd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.86514, 0, 0)
+
+[node name="MainSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("10_noo8e")
+bus = &"Snake"
+
+[node name="AttackSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("11_s3xef")
+bus = &"Whoose"

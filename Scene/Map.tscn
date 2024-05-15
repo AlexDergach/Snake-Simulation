@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://cydh3egvc4umg"]
+[gd_scene load_steps=92 format=3 uid="uid://cydh3egvc4umg"]
 
 [ext_resource type="Script" path="res://Scripts/Map.gd" id="1_3pr23"]
 [ext_resource type="Script" path="res://addons/terrabrush/TerraBrush.cs" id="1_latr6"]
@@ -58,6 +58,7 @@
 [ext_resource type="PackedScene" uid="uid://bmvguwdd6ob3b" path="res://Assets/Map Models/tree_detailed_fall.glb" id="44_wkl7i"]
 [ext_resource type="PackedScene" uid="uid://dcy0p8iqde28r" path="res://Assets/Map Models/tree_fat.glb" id="45_w56cx"]
 [ext_resource type="PackedScene" uid="uid://cdpb7fck2fqgo" path="res://Scene/FireFlyParticles.tscn" id="58_q5mop"]
+[ext_resource type="AudioStream" uid="uid://cifc2xwryrli" path="res://Assets/Audio/air.mp3" id="59_iqafw"]
 
 [sub_resource type="Resource" id="Resource_uyjch"]
 script = ExtResource("5_geed2")
@@ -1206,3 +1207,7 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 4.50849, 34.9647)
 
 [node name="FireFlyParticles22" parent="FireFlies" instance=ExtResource("58_q5mop")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 4.50849, 30.7871)
+
+[node name="Air" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("59_iqafw")
+bus = &"Air"

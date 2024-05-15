@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://ceh5w0lin4otd"]
+[gd_scene load_steps=24 format=3 uid="uid://dqu80dnyng0md"]
 
 [ext_resource type="Script" path="res://Scripts/Mouse.gd" id="1_k5drl"]
+[ext_resource type="AudioStream" uid="uid://bxvrosesdy7y0" path="res://Assets/Audio/mouse.mp3" id="2_mtmm1"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3xsc0"]
 
@@ -57,7 +58,7 @@ albedo_color = Color(0.917647, 0.568627, 0.611765, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7ogm8"]
 
-[node name="Mouse" type="CharacterBody3D" groups=["mouse"]]
+[node name="Mouse" type="CharacterBody3D"]
 script = ExtResource("1_k5drl")
 
 [node name="Body" type="MeshInstance3D" parent="."]
@@ -130,3 +131,7 @@ transform = Transform3D(0.037487, 1.16059, 0, -1.16059, 0.037487, 0, 0, 0, 1.161
 shape = SubResource("CapsuleShape3D_7ogm8")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="MainSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_mtmm1")
+bus = &"Mouse"

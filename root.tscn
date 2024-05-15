@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/root.gd" id="1_x2kdq"]
 [ext_resource type="PackedScene" uid="uid://dfkbtftqcivbx" path="res://Scene/Camera.tscn" id="2_l1vl2"]
-[ext_resource type="PackedScene" uid="uid://csvmu5rfx0dl1" path="res://Scene/snake.tscn" id="3_iop1g"]
+[ext_resource type="PackedScene" uid="uid://b7ahnfr61hl3j" path="res://Scene/snake.tscn" id="3_iop1g"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_btls3"]
 vertices = PackedVector3Array(-4.5, 0.4815, -4.5, -4.5, 0.4815, 4.5, 4.5, 0.4815, 4.5, 4.5, 0.4815, -4.5)
