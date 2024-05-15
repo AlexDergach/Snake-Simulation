@@ -4,7 +4,7 @@ const MOUSE = preload("res://Scene/Mouse.tscn")
 var mouse_instance
 var spawn_amount = 2
 
-@onready var map_size = get_node("NavigationRegion3D/Map").get_size()
+@onready var map_size = get_node("NavigationRegion3D/map").get_size()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
