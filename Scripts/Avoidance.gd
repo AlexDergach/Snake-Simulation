@@ -11,16 +11,16 @@ var feelers = []
 var space_state
 var needs_updating = true
 
-#func on_draw_gizmos():
-	#for i in feelers.size():
-		#var feeler = feelers[i]
-		#
-		#if feeler.hit:
-			#DebugDraw3D.draw_line(snake.global_transform.origin, feeler.hit_target, Color.CHARTREUSE)
-			#DebugDraw3D.draw_arrow(feeler.hit_target, feeler.hit_target + feeler.normal, Color.BLUE, 0.1)
-			#DebugDraw3D.draw_arrow(feeler.hit_target, feeler.hit_target + feeler.force * weight, Color.RED, 0.1)			
-		#else:
-			#DebugDraw3D.draw_line(snake.global_transform.origin, feeler.end, Color.CHARTREUSE)
+func on_draw_gizmos():
+	for i in feelers.size():
+		var feeler = feelers[i]
+		
+		if feeler.hit:
+			DebugDraw3D.draw_line(snake.global_transform.origin, feeler.hit_target, Color.CHARTREUSE)
+			DebugDraw3D.draw_arrow(feeler.hit_target, feeler.hit_target + feeler.normal, Color.BLUE, 0.1)
+			DebugDraw3D.draw_arrow(feeler.hit_target, feeler.hit_target + feeler.force * weight, Color.RED, 0.1)			
+		else:
+			DebugDraw3D.draw_line(snake.global_transform.origin, feeler.end, Color.CHARTREUSE)
 
 func start_updating():
 	
@@ -39,7 +39,7 @@ func on_needs_updating():
 func _physics_process(delta):
 	if needs_updating:
 		update_feelers()
-		needs_updating = false		
+		needs_updating = false
 
 func feel(local_ray):
 	var feeler = {}
@@ -73,7 +73,6 @@ func update_feelers():
 	feelers.push_back(feel(Quaternion(Vector3.UP, deg_to_rad(feeler_angle)) * forwards))
 	feelers.push_back(feel(Quaternion(Vector3.UP, deg_to_rad(-feeler_angle)) * forwards))
 
-	feelers.push_back(feel(Quaternion(Vector3.RIGHT, deg_to_rad(feeler_angle)) * forwards))
 	feelers.push_back(feel(Quaternion(Vector3.RIGHT, deg_to_rad(-feeler_angle)) * forwards))
 
 func calculate():

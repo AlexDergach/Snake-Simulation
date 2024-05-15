@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://buml6eydhqrmh"]
+[gd_scene load_steps=7 format=3 uid="uid://buml6eydhqrmh"]
 
 [ext_resource type="Script" path="res://Scripts/root.gd" id="1_x2kdq"]
 [ext_resource type="PackedScene" uid="uid://dfkbtftqcivbx" path="res://Scene/Camera.tscn" id="2_l1vl2"]
@@ -12,8 +12,6 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 albedo_color = Color(6.13667e-07, 0.318631, 0.174672, 1)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ljl36"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_eml60"]
 
 [node name="Root" type="Node3D"]
 script = ExtResource("1_x2kdq")
@@ -29,13 +27,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.32816, 10.1977)
 navigation_mesh = SubResource("NavigationMesh_btls3")
 
 [node name="Map" type="CSGBox3D" parent="NavigationRegion3D"]
+layers = 2
 use_collision = true
+collision_layer = 2
 size = Vector3(226.246, 0.037, 226.491)
 material = SubResource("StandardMaterial3D_fvjuc")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(11.37, 0, 0, 0, 11.37, 0, 0, 0, 11.37, 0, 0, 0)
-collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("WorldBoundaryShape3D_ljl36")
@@ -43,6 +42,22 @@ shape = SubResource("WorldBoundaryShape3D_ljl36")
 [node name="snake" parent="." instance=ExtResource("3_iop1g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16704, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.682544, 0)
-mesh = SubResource("BoxMesh_eml60")
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.53959, 2.29184, 18.8676)
+use_collision = true
+size = Vector3(44.6062, 4.60498, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.89289, 2.29184, -24.9805)
+use_collision = true
+size = Vector3(53.3313, 4.60498, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.9812, 2.29184, -0.0405693)
+use_collision = true
+size = Vector3(53.3313, 4.60498, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.2329, 2.29184, -0.0405693)
+use_collision = true
+size = Vector3(53.3313, 4.60498, 1)
