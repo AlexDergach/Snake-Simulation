@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dqu80dnyng0md"]
+[gd_scene load_steps=23 format=3 uid="uid://ceh5w0lin4otd"]
 
 [ext_resource type="Script" path="res://Scripts/Mouse.gd" id="1_k5drl"]
 
@@ -57,7 +57,7 @@ albedo_color = Color(0.917647, 0.568627, 0.611765, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7ogm8"]
 
-[node name="Mouse" type="CharacterBody3D"]
+[node name="Mouse" type="CharacterBody3D" groups=["mouse"]]
 script = ExtResource("1_k5drl")
 
 [node name="Body" type="MeshInstance3D" parent="."]

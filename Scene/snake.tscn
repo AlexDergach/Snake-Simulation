@@ -1,11 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://csvmu5rfx0dl1"]
+[gd_scene load_steps=17 format=3 uid="uid://csvmu5rfx0dl1"]
 
 [ext_resource type="PackedScene" uid="uid://d3mycy64mftpr" path="res://Scene/snake_bodypiece.tscn" id="1_bngrd"]
 [ext_resource type="Script" path="res://Scripts/SpineAnimator.gd" id="1_hayyj"]
 [ext_resource type="Script" path="res://Scripts/Snake.gd" id="2_7t54e"]
 [ext_resource type="Script" path="res://Scripts/Avoidance.gd" id="3_6hkfr"]
 [ext_resource type="Script" path="res://Scripts/Harmonic.gd" id="3_veg7r"]
+[ext_resource type="Script" path="res://Scene/Behaviour_Wander.gd" id="5_1yvo2"]
 [ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="5_bu41v"]
+[ext_resource type="Script" path="res://Scripts/State_Wander.gd" id="6_p13m4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jnkwp"]
 resource_name = "Material.001"
@@ -126,14 +128,22 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0216421, 0.00974724, 0.0137453)
 shape = SubResource("BoxShape3D_dw13o")
 
-[node name="Avoidance" type="Node" parent="entity/snakeHead"]
+[node name="Behaviour_Avoidance" type="Node" parent="entity/snakeHead"]
 script = ExtResource("3_6hkfr")
 
-[node name="Harmonic" type="Node" parent="entity/snakeHead"]
+[node name="Behaviour_Harmonic" type="Node" parent="entity/snakeHead"]
 script = ExtResource("3_veg7r")
+enabled = false
+
+[node name="Behaviour_Wander" type="Node" parent="entity/snakeHead"]
+script = ExtResource("5_1yvo2")
+
+[node name="State_Wander" type="Node" parent="entity/snakeHead"]
+script = ExtResource("6_p13m4")
 
 [node name="StateMachine" type="Node" parent="entity/snakeHead"]
 script = ExtResource("5_bu41v")
+initial_state = NodePath("../State_Wander")
 
 [node name="tail" type="CharacterBody3D" parent="entity"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.03706, 0, 0)
