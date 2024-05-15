@@ -6,11 +6,13 @@ uniform sampler2D depth_texture : source_color, hint_depth_texture, filter_neare
 uniform sampler2D normal_texture : source_color, hint_normal_roughness_texture, filter_nearest;
 
 uniform float edge_threshold : hint_range(0, 1) = 0.1;
-uniform float saturation_strength : hint_range(0, 1) = 1.65;
-uniform float contrast_strength : hint_range(0, 1) = 1.65;
+uniform float saturation_strength : hint_range(0, 1) = 1.35;
+uniform float contrast_strength : hint_range(0, 1) = 1.35;
+uniform float vignette_radius : hint_range(0, 1) = 3.5;
+uniform float vignette_softness : hint_range(0, 1) = 6.5;
 
 void vertex() {
-	POSITION = vec4(VERTEX, 1.0);
+    POSITION = vec4(VERTEX, 1.0);
 }
 
 void fragment() {
@@ -41,10 +43,13 @@ void fragment() {
     // Apply contrast
     vec3 contrasted_color = (saturated_color - 0.5) * contrast_strength + 0.5;
     
-    // Mix original color with edge-enhanced color based on edge strength
-    vec3 final_color = mix(contrasted_color, linear_color, edge);
+    // Calculate vignette
+    vec2 uv = (2.0 * SCREEN_UV) - 1.0;
+    float vignette = smoothstep(vignette_radius, vignette_radius - vignette_softness, length(uv));
+    
+    // Apply vignette
+    vec3 final_color = mix(contrasted_color, contrasted_color * vignette, edge);
     
     // Output the final color
     ALBEDO = vec3(final_color);
 }
-
