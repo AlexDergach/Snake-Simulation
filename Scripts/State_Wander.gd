@@ -4,7 +4,7 @@ var snake
 var prey
 var random_loc
 var field_of_view_angle = PI / 2
-@export var radius : float = 10
+@export var radius : float = 25
 
 func _ready():
 	snake = get_parent()
@@ -29,7 +29,7 @@ func _think():
 	else:
 		snake.get_node("Behaviour_Seek").world_target = random_loc
 		
-		if snake.get_node("Behaviour_Avoidance").calculate().length() > snake.get_node("Behaviour_Seek").calculate().length()*1.5:
+		if snake.get_node("Behaviour_Avoidance").calculate().length() > snake.get_node("Behaviour_Seek").calculate().length():
 			print(snake.get_node("Behaviour_Avoidance").calculate().length())
 			print("wait")
 			print("wait")

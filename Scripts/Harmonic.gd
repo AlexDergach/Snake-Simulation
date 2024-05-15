@@ -1,6 +1,6 @@
 class_name Behaviour_Harmonic extends SteeringBehavior
 
-@export var frequency = 1
+@export var frequency = 1.0
 @export var radius = 10.0
 
 @export var amplitude = 150
