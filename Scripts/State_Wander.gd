@@ -6,18 +6,23 @@ var random_loc
 var field_of_view_angle = PI / 2
 @export var radius : float = 25
 
+var collision_lock = false
+
 func _ready():
 	snake = get_parent()
 
 func _enter():
 	snake.get_node("Behaviour_Seek").set_enabled(true)
 	snake.get_node("Behaviour_Avoidance").set_enabled(true)
+	snake.get_node("Behaviour_Harmonic").set_enabled(true)
 	
 	random_loc = get_random_point_in_radius()
 	snake.get_node("Behaviour_Seek").world_target = random_loc
 
 func _exit():
 	snake.get_node("Behaviour_Seek").set_enabled(false)
+	snake.get_node("Behaviour_Harmonic").set_enabled(false)
+	snake.get_node("Behaviour_Avoidance").set_enabled(false)
 
 func _think():
 	#if prey.distance_to(snake.global_transform.origin) < 5:
@@ -30,13 +35,16 @@ func _think():
 		snake.get_node("Behaviour_Seek").world_target = random_loc
 		
 		if snake.get_node("Behaviour_Avoidance").calculate().length() > snake.get_node("Behaviour_Seek").calculate().length():
+			var avoidance_force = snake.get_node("Behaviour_Avoidance").calculate()
+			var opposite_direction = -avoidance_force.normalized()
+			random_loc = snake.global_transform.origin + -opposite_direction * radius
+			snake.get_node("Behaviour_Seek").world_target = random_loc
 			print(snake.get_node("Behaviour_Avoidance").calculate().length())
-			print("wait")
-			print("wait")
-			print("wait")
+			collision_lock = true
 		
-		if random_loc.distance_to(snake.global_position) < 2:
+		if random_loc.distance_to(snake.global_position) < 3:
 			random_loc = null
+			collision_lock = false
 			
 
 func get_random_point_in_radius():

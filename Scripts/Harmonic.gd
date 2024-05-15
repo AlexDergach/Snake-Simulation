@@ -1,6 +1,6 @@
 class_name Behaviour_Harmonic extends SteeringBehavior
 
-@export var frequency = 1.0
+@export var frequency = 0.5
 @export var radius = 10.0
 
 @export var amplitude = 150
@@ -17,12 +17,12 @@ func _ready():
 	snake = get_parent()
 	theta = randf_range(0, PI * 2.0)
 	
-#func on_draw_gizmos():
-	#snake = get_parent()
-	#var cent = snake.global_transform * (Vector3.BACK * distance)
-	#DebugDraw3D.draw_sphere(cent, radius, Color.HOT_PINK)
-	#DebugDraw3D.draw_line(snake.global_transform.origin, cent, Color.HOT_PINK)
-	#DebugDraw3D.draw_line(cent, worldTarget, Color.HOT_PINK)
+func on_draw_gizmos():
+	snake = get_parent()
+	var cent = snake.global_transform * (Vector3.BACK * distance)
+	DebugDraw3D.draw_sphere(cent, radius, Color.HOT_PINK)
+	DebugDraw3D.draw_line(snake.global_transform.origin, cent, Color.HOT_PINK)
+	DebugDraw3D.draw_line(cent, worldTarget, Color.HOT_PINK)
 	
 
 func calculate():		

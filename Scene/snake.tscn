@@ -133,14 +133,15 @@ shape = SubResource("BoxShape3D_dw13o")
 
 [node name="Behaviour_Avoidance" type="Node" parent="entity/snakeHead"]
 script = ExtResource("3_6hkfr")
-direction = 1
 enabled = false
 
 [node name="Behaviour_Harmonic" type="Node" parent="entity/snakeHead"]
 script = ExtResource("3_veg7r")
-frequency = 0.5
-radius = 20.0
-amplitude = 500
+radius = 7.0
+amplitude = 100
+distance = 1
+draw_gizmos = false
+enabled = false
 
 [node name="Behaviour_Seek" type="Node" parent="entity/snakeHead"]
 script = ExtResource("5_y7t0y")
