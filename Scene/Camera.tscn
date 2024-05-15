@@ -1,11 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfkbtftqcivbx"]
+[gd_scene load_steps=8 format=3 uid="uid://dfkbtftqcivbx"]
 
 [ext_resource type="Script" path="res://Scripts/camera.gd" id="1_v82m2"]
 [ext_resource type="AudioStream" uid="uid://cifc2xwryrli" path="res://Assets/Audio/air.mp3" id="2_r13f0"]
+[ext_resource type="Shader" path="res://Scene/Camera.gdshader" id="3_lnejf"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_81e6g"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pfglf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mq50e"]
+render_priority = 0
+shader = ExtResource("3_lnejf")
+shader_parameter/edge_threshold = 0.1
+shader_parameter/saturation_strength = 1.5
+shader_parameter/contrast_strength = 1.5
+
+[sub_resource type="QuadMesh" id="QuadMesh_6toyk"]
+material = SubResource("ShaderMaterial_mq50e")
+flip_faces = true
+size = Vector2(2, 2)
 
 [node name="Camera" type="CharacterBody3D"]
 script = ExtResource("1_v82m2")
@@ -20,6 +33,11 @@ shape = SubResource("SphereShape3D_pfglf")
 [node name="Camera" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="Camera"]
+
+[node name="PostProcessing" type="MeshInstance3D" parent="Camera/Camera3D"]
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_6toyk")
+skeleton = NodePath("../../..")
 
 [node name="Air" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_r13f0")

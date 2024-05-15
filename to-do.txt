@@ -12,15 +12,16 @@ Day 2:
 Map - IN PROGRESS
 
 Alex :
-	Sounds
+	Sounds - DONE
 	Finish Collisions for water and assets - DONE
 	Day night cycle - DONE
 	Lights - DONE ?
-	Altitude sound for camera
+	Altitude sound for camera - DONE
 	Particials - DONE
 	Breif
 	UI
 	Post Processing?
+	Exporting it out of editor?
 	
 David:
 	Snake - lunge, movement, head raise

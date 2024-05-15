@@ -1234,10 +1234,10 @@ stream = ExtResource("59_82ef7")
 autoplay = true
 emission_angle_enabled = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="background1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("60_0sp2c")
 autoplay = true
 
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+[node name="background2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("61_cmfag")
 autoplay = true
