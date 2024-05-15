@@ -13,7 +13,7 @@ Map - IN PROGRESS
 
 Alex :
 	Sounds
-	Finish Collisions for water and assets
+	Finish Collisions for water and assets - DONE
 	Day night cycle
 	Lights 
 	Altitude sound for camera
