@@ -15,7 +15,6 @@ mesh = SubResource("SphereMesh_81e6g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_pfglf")
-disabled = true
 
 [node name="Camera" type="Node3D" parent="."]
 

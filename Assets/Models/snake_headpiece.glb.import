@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://ckdq4hllrlyd7"
-path="res://.godot/imported/snake_headpiece.glb-26b0a3a70b1d3d4e4684e1ee9151766f.scn"
+path="res://.godot/imported/snake_headpiece.glb-bb31fd55f787291a2fbab2aaf06f9a28.scn"
 
 [deps]
 
-source_file="res://assets/snake_headpiece.glb"
-dest_files=["res://.godot/imported/snake_headpiece.glb-26b0a3a70b1d3d4e4684e1ee9151766f.scn"]
+source_file="res://Assets/Models/snake_headpiece.glb"
+dest_files=["res://.godot/imported/snake_headpiece.glb-bb31fd55f787291a2fbab2aaf06f9a28.scn"]
 
 [params]
 

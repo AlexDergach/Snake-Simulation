@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snake-simulation", "Snake-simulation.csproj", "{2B3DE1A1-F348-4F62-A8EB-B3C15C2DC586}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snake-simulation", "Snake-simulation.csproj", "{20A99B37-826A-4712-A17B-A97FA350B013}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,11 +9,11 @@ Global
 	ExportRelease|Any CPU = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2B3DE1A1-F348-4F62-A8EB-B3C15C2DC586}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2B3DE1A1-F348-4F62-A8EB-B3C15C2DC586}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2B3DE1A1-F348-4F62-A8EB-B3C15C2DC586}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
-		{2B3DE1A1-F348-4F62-A8EB-B3C15C2DC586}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
-		{2B3DE1A1-F348-4F62-A8EB-B3C15C2DC586}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
-		{2B3DE1A1-F348-4F62-A8EB-B3C15C2DC586}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{20A99B37-826A-4712-A17B-A97FA350B013}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20A99B37-826A-4712-A17B-A97FA350B013}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20A99B37-826A-4712-A17B-A97FA350B013}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{20A99B37-826A-4712-A17B-A97FA350B013}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{20A99B37-826A-4712-A17B-A97FA350B013}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{20A99B37-826A-4712-A17B-A97FA350B013}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 	EndGlobalSection
 EndGlobal
