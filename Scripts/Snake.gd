@@ -1,5 +1,7 @@
 class_name Snake extends CharacterBody3D
 
+
+
 @export var mass = 1
 @export var acceleration = Vector3.ZERO
 @export var force = Vector3.ZERO
@@ -19,10 +21,18 @@ var sine_time : float = 0
 @export var movement_amplitude : float = 1
 @export var movement_frequency : float = 1
 
+
+
+@onready var attack_sound = $AttackSound
+@onready var main_sound = $MainSound
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
+	
+	main_sound.play()
+		
 	print(get_node("/root/Root"))
 	
 	for i in get_child_count():

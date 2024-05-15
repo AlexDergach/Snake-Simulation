@@ -155,6 +155,17 @@ script = ExtResource("6_p13m4")
 script = ExtResource("5_bu41v")
 initial_state = NodePath("../State_Wander")
 
+[node name="MainSound" type="AudioStreamPlayer3D" parent="entity/snakeHead"]
+stream = ExtResource("10_noo8e")
+autoplay = true
+max_distance = 10.0
+bus = &"Snake"
+emission_angle_enabled = true
+
+[node name="AttackSound" type="AudioStreamPlayer3D" parent="entity/snakeHead"]
+stream = ExtResource("11_s3xef")
+bus = &"Whoose"
+
 [node name="tail" type="CharacterBody3D" parent="entity"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.03706, 0, 0)
 
@@ -176,11 +187,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9159, 0, 0)
 
 [node name="body3" parent="entity" instance=ExtResource("1_bngrd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.86514, 0, 0)
-
-[node name="MainSound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("10_noo8e")
-bus = &"Snake"
-
-[node name="AttackSound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("11_s3xef")
-bus = &"Whoose"

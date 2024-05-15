@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfkbtftqcivbx"]
+[gd_scene load_steps=5 format=3 uid="uid://dfkbtftqcivbx"]
 
 [ext_resource type="Script" path="res://Scripts/camera.gd" id="1_v82m2"]
+[ext_resource type="AudioStream" uid="uid://cifc2xwryrli" path="res://Assets/Audio/air.mp3" id="2_r13f0"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_81e6g"]
 
@@ -19,3 +20,8 @@ shape = SubResource("SphereShape3D_pfglf")
 [node name="Camera" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="Camera"]
+
+[node name="Air" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_r13f0")
+volume_db = 80.0
+bus = &"Air"

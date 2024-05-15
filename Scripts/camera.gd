@@ -5,10 +5,15 @@ var cameraRotaion = 0.005
 var default_fov = 80
 var sprint_fov_increase = 15
 var fov_change_speed = 50.0
-
+var sound_playing = false
 # For pivot of Camera
 @onready var head = $Camera
 @onready var camera = $Camera/Camera3D
+@onready var air = $Air
+var audio_volume_max = 1.0  # Maximum volume
+var audio_volume_min = 0.0  # Minimum volume
+var audio_height_max = 50.0  # Max height for maximum volume
+var audio_height_min = 0.0  # Min height for minimum volume
 
 var flying = true  # Start in flying state
 var fly_speed = 8.0
@@ -108,6 +113,15 @@ func _physics_process(delta):
 
 	move_and_slide()
 
+	# Adjust volume based on camera height
+	var camera_height = camera.global_transform.origin.y
+	if camera_height >= 30 and !sound_playing:
+		air.play()
+		sound_playing = true
+	if air.playing and camera_height <= 30:
+		air.stop()
+		sound_playing = false
+		
+
 func _process(delta):
 	pass
-

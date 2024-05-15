@@ -19,6 +19,8 @@ Alex :
 	Altitude sound for camera
 	Particials - DONE
 	Breif
+	UI
+	Post Processing?
 	
 David:
 	Snake - lunge, movement, head raise
