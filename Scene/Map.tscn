@@ -1,5 +1,6 @@
-[gd_scene load_steps=83 format=3 uid="uid://cydh3egvc4umg"]
+[gd_scene load_steps=90 format=3 uid="uid://cydh3egvc4umg"]
 
+[ext_resource type="Script" path="res://Scene/Map.gd" id="1_3pr23"]
 [ext_resource type="Script" path="res://addons/terrabrush/TerraBrush.cs" id="1_latr6"]
 [ext_resource type="Texture2D" uid="uid://demnr07nq0146" path="res://Scene/Map/Heightmap_0_0.res" id="2_ae4g3"]
 [ext_resource type="Texture2D" uid="uid://bbh5cevxklmn3" path="res://Assets/Textures/Grass/Grass001_1K-JPG_Color.jpg" id="2_xgfmn"]
@@ -192,9 +193,12 @@ ground_color = Color(0.533087, 0.425746, 0.29711, 1)
 sky_material = SubResource("PhysicalSkyMaterial_ec71k")
 
 [sub_resource type="Environment" id="Environment_865qc"]
-background_mode = 2
-background_energy_multiplier = 3.79
+background_mode = 1
+background_color = Color(0.671049, 0.780256, 1, 1)
+background_energy_multiplier = 2.19
 sky = SubResource("Sky_ay486")
+ambient_light_color = Color(0.670588, 0.780392, 1, 1)
+glow_enabled = true
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0059
 volumetric_fog_albedo = Color(0.505122, 0.760483, 0.718451, 1)
@@ -202,6 +206,68 @@ volumetric_fog_emission = Color(1, 1, 1, 1)
 volumetric_fog_emission_energy = 0.4
 volumetric_fog_length = 1024.0
 volumetric_fog_ambient_inject = 1.4
+
+[sub_resource type="Animation" id="Animation_6bf5f"]
+resource_name = "sun"
+length = 32.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:environment:background_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10.2, 14.2, 17.2, 32),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.671049, 0.780256, 1, 1), Color(0.995953, 0.6747, 0.751477, 1), Color(0, 0, 0, 1), Color(0.996078, 0.67451, 0.752941, 1), Color(0.671049, 0.780256, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:environment:ambient_light_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 10.2, 14.2, 17.2, 32),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.670588, 0.780392, 1, 1), Color(0.996078, 0.67451, 0.752941, 1), Color(0, 0, 0, 1), Color(0.996078, 0.67451, 0.752941, 1), Color(0.670588, 0.780392, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sig5t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:environment:background_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.671049, 0.780256, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:environment:ambient_light_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.670588, 0.780392, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7jo41"]
+_data = {
+"RESET": SubResource("Animation_sig5t"),
+"sun": SubResource("Animation_6bf5f")
+}
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3gn4d"]
 size = Vector3(1.05762, 1, 0.164917)
@@ -222,7 +288,94 @@ size = Vector3(6.42235, 10.232, 6.70471)
 [sub_resource type="SphereShape3D" id="SphereShape3D_sm05j"]
 radius = 0.466066
 
+[sub_resource type="Animation" id="Animation_jh8ui"]
+resource_name = "light"
+length = 32.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath(".:light_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.772549, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(-0.1, 6.2, 14.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [2.0, 2.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.4142, -0.39518, -2.78525)]
+}
+
+[sub_resource type="Animation" id="Animation_dhp6l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.772549, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.4142, -0.39518, -2.78525)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7xqow"]
+_data = {
+"RESET": SubResource("Animation_dhp6l"),
+"light": SubResource("Animation_jh8ui")
+}
+
 [node name="Map" type="Node3D"]
+script = ExtResource("1_3pr23")
 
 [node name="TerraBrush" type="Node3D" parent="."]
 script = ExtResource("1_latr6")
@@ -238,8 +391,11 @@ metadata/_edit_lock_ = false
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_865qc")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform3D(-0.997603, -0.0344081, -0.0600385, -0.0437855, 0.985715, 0.16263, 0.053585, 0.164869, -0.984859, 0, 64.2608, -20.9335)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WorldEnvironment"]
+libraries = {
+"": SubResource("AnimationLibrary_7jo41")
+}
+autoplay = "sun"
 
 [node name="Camera" parent="." instance=ExtResource("36_sfdh1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 36.9422, 0)
@@ -400,16 +556,8 @@ shape = SubResource("BoxShape3D_3gn4d")
 
 [node name="BirchCollisions" type="StaticBody3D" parent="."]
 
-[node name="BirchCol" type="CollisionShape3D" parent="BirchCollisions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.0534, 3.89883, -8.42961)
-shape = SubResource("CylinderShape3D_d5ds0")
-
 [node name="BirchCol2" type="CollisionShape3D" parent="BirchCollisions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.6288, 1.55851, -27.7856)
-shape = SubResource("CylinderShape3D_d5ds0")
-
-[node name="BirchCol3" type="CollisionShape3D" parent="BirchCollisions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -127.552, 3.35408, 52.1344)
 shape = SubResource("CylinderShape3D_d5ds0")
 
 [node name="BirchCol4" type="CollisionShape3D" parent="BirchCollisions"]
@@ -417,7 +565,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -97.6525, 3.35408, 51.5874)
 shape = SubResource("CylinderShape3D_d5ds0")
 
 [node name="BirchCol5" type="CollisionShape3D" parent="BirchCollisions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77.3902, 10.7902, 71.9928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.6927, 24.8477, 81.188)
 shape = SubResource("CylinderShape3D_d5ds0")
 
 [node name="BirchCol6" type="CollisionShape3D" parent="BirchCollisions"]
@@ -425,14 +573,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.683, 4.65985, 52.3582)
 shape = SubResource("CylinderShape3D_d5ds0")
 
 [node name="BirchCol7" type="CollisionShape3D" parent="BirchCollisions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77.9744, 4.65985, 21.2924)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.9049, 4.65985, 21.0396)
 shape = SubResource("CylinderShape3D_d5ds0")
 
 [node name="OakCollisions" type="StaticBody3D" parent="."]
-
-[node name="OakCol" type="CollisionShape3D" parent="OakCollisions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.1414, 4.21664, 21.3826)
-shape = SubResource("CylinderShape3D_tp3ug")
 
 [node name="OakCol2" type="CollisionShape3D" parent="OakCollisions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.8952, 4.21664, -8.59082)
@@ -447,15 +591,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.022, 12.3549, -97.3315)
 shape = SubResource("CylinderShape3D_tp3ug")
 
 [node name="OakCol5" type="CollisionShape3D" parent="OakCollisions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.8175, 8.88524, -77.8361)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.98684, 24.5608, -97.4883)
 shape = SubResource("CylinderShape3D_tp3ug")
 
 [node name="OakCol6" type="CollisionShape3D" parent="OakCollisions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.71516, 7.49956, -68.3281)
-shape = SubResource("CylinderShape3D_tp3ug")
-
-[node name="OakCol7" type="CollisionShape3D" parent="OakCollisions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.172, -0.344529, -77.3148)
 shape = SubResource("CylinderShape3D_tp3ug")
 
 [node name="OakCol8" type="CollisionShape3D" parent="OakCollisions"]
@@ -464,10 +604,6 @@ shape = SubResource("CylinderShape3D_tp3ug")
 
 [node name="OakCol9" type="CollisionShape3D" parent="OakCollisions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.8342, 4.57086, 22.2596)
-shape = SubResource("CylinderShape3D_tp3ug")
-
-[node name="OakCol10" type="CollisionShape3D" parent="OakCollisions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.5988, 19.5511, 70.8639)
 shape = SubResource("CylinderShape3D_tp3ug")
 
 [node name="OakCol11" type="CollisionShape3D" parent="OakCollisions"]
@@ -482,10 +618,6 @@ shape = SubResource("CylinderShape3D_tp3ug")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.49, -6.13668, 21.3769)
 shape = SubResource("CylinderShape3D_tp3ug")
 
-[node name="OakCol14" type="CollisionShape3D" parent="OakCollisions"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5563, -4.23813, -28.6838)
-shape = SubResource("CylinderShape3D_tp3ug")
-
 [node name="BushCollisions" type="StaticBody3D" parent="."]
 
 [node name="BushCol" type="CollisionShape3D" parent="BushCollisions"]
@@ -497,7 +629,7 @@ transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -37.8291, 7.02394, 51.0707)
 shape = SubResource("CapsuleShape3D_j5w8s")
 
 [node name="BushCol3" type="CollisionShape3D" parent="BushCollisions"]
-transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -128.16, 7.02394, 72.5762)
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -39.3481, 31.9093, 81.521)
 shape = SubResource("CapsuleShape3D_j5w8s")
 
 [node name="BushCol4" type="CollisionShape3D" parent="BushCollisions"]
@@ -506,10 +638,6 @@ shape = SubResource("CapsuleShape3D_j5w8s")
 
 [node name="BushCol5" type="CollisionShape3D" parent="BushCollisions"]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 72.4051, 0.343859, -27.1469)
-shape = SubResource("CapsuleShape3D_j5w8s")
-
-[node name="BushCol6" type="CollisionShape3D" parent="BushCollisions"]
-transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -28.7444, 21.7728, -126.883)
 shape = SubResource("CapsuleShape3D_j5w8s")
 
 [node name="BigStone" type="StaticBody3D" parent="."]
@@ -1003,3 +1131,17 @@ shape = SubResource("SphereShape3D_sm05j")
 [node name="SmallStoneCol101" type="CollisionShape3D" parent="SmallStoneCollisions"]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 7.48686, 41.4619, 104.844)
 shape = SubResource("SphereShape3D_sm05j")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.997603, -0.034408, -0.0600382, -0.0544051, -0.146157, 0.987764, -0.042762, 0.988663, 0.143934, 0, 64.2608, -20.9335)
+light_color = Color(0.772549, 1, 1, 1)
+light_energy = 2.0
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 6.253
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DirectionalLight3D"]
+libraries = {
+"": SubResource("AnimationLibrary_7xqow")
+}
+autoplay = "light"
