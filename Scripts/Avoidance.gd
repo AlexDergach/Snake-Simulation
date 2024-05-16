@@ -16,11 +16,11 @@ func on_draw_gizmos():
 		var feeler = feelers[i]
 		
 		if feeler.hit:
-			DebugDraw3D.draw_line(snake.global_transform.origin, feeler.hit_target, Color.CHARTREUSE)
+			DebugDraw3D.draw_line(boid.global_transform.origin, feeler.hit_target, Color.CHARTREUSE)
 			DebugDraw3D.draw_arrow(feeler.hit_target, feeler.hit_target + feeler.normal, Color.BLUE, 0.1)
 			DebugDraw3D.draw_arrow(feeler.hit_target, feeler.hit_target + feeler.force * weight, Color.RED, 0.1)			
 		else:
-			DebugDraw3D.draw_line(snake.global_transform.origin, feeler.end, Color.CHARTREUSE)
+			DebugDraw3D.draw_line(boid.global_transform.origin, feeler.end, Color.CHARTREUSE)
 
 func start_updating():
 	
@@ -43,26 +43,25 @@ func _physics_process(delta):
 
 func feel(local_ray):
 	var feeler = {}
-	var ray_end = snake.global_transform * (local_ray)
-	var query = PhysicsRayQueryParameters3D.create(snake.global_transform.origin, ray_end, snake.collision_mask)
-	query.set_collision_mask(2)
+	var ray_end = boid.global_transform * (local_ray)
+	var query = PhysicsRayQueryParameters3D.create(boid.global_transform.origin, ray_end,2)
 	var result = space_state.intersect_ray(query)
 	feeler.end = ray_end
 	feeler.hit = result
 	if result:
 		feeler.hit_target = result.position
 		feeler.normal = result.normal
-		var to_snake = snake.global_transform.origin - result.position 
-		var force_mag = ((feeler_length - to_snake.length()) / feeler_length)
+		var to_boid = boid.global_transform.origin - result.position 
+		var force_mag = ((feeler_length - to_boid.length()) / feeler_length)
 		match direction:
 			ForceDirection.Normal:
 				feeler.force = result.normal * force_mag
 			ForceDirection.Incident:
-				feeler.force = to_snake.reflect(result.normal).normalized() * force_mag
+				feeler.force = to_boid.reflect(result.normal).normalized() * force_mag
 			ForceDirection.Up:
 				feeler.force = Vector3.UP * force_mag
 			ForceDirection.Braking:
-				feeler.force = to_snake.normalized() * force_mag
+				feeler.force = to_boid.normalized() * force_mag
 		force += feeler.force
 	return feeler
 
@@ -80,8 +79,8 @@ func calculate():
 	return force
 
 func _ready():
-	snake = get_parent()
-	space_state = snake.get_world_3d().direct_space_state
+	boid = get_parent()
+	space_state = boid.get_world_3d().direct_space_state
 	
 	var timer = Timer.new()
 	add_child(timer)

@@ -17,35 +17,27 @@ var new_force = Vector3.ZERO
 var should_calculate = false
 @export var damping = 0.1
 
-var sine_time : float = 0
-@export var movement_amplitude : float = 1
-@export var movement_frequency : float = 1
-
-
-
 @onready var attack_sound = $AttackSound
 @onready var main_sound = $MainSound
-
+	
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-func _ready():
-	
-	main_sound.play()
-		
-	print(get_node("/root/Root"))
-	
+func _ready():	
 	for i in get_child_count():
 		var child = get_child(i)
 		if child.has_method("calculate"):
 			behaviors.push_back(child)
-			child.set_process(child.enabled) 
+			child.set_process(child.enabled)
+
+	main_sound.play()
 
 func _process(delta):
 	should_calculate = true
+	if draw_gizmos:
+		on_draw_gizmos()
 
 func _physics_process(delta):
-	
 	if should_calculate:
 		new_force = calculate()
 
@@ -67,15 +59,28 @@ func _physics_process(delta):
 		var temp_up = global_transform.basis.y.lerp(Vector3.UP + acceleration/2, delta/2)
 		look_at(global_position - vel.normalized(),temp_up)
 		
-	if not is_on_floor():
-		velocity.y -= gravity * delta
 	
 	move_and_slide()
+
+	if not is_on_floor():
+		velocity.y -= gravity * delta
 
 func seek_force(target: Vector3):	
 	var toTarget = target - global_transform.origin
 	toTarget = toTarget.normalized()
 	var desired = toTarget * max_speed
+	return desired - vel
+	
+func arrive_force(target:Vector3, slowingDistance:float):
+	var toTarget = target - global_transform.origin
+	var dist = toTarget.length()
+	
+	if dist < 2:
+		return Vector3.ZERO
+	
+	var ramped = (dist / slowingDistance) * max_speed
+	var limit_length = min(max_speed, ramped)
+	var desired = (toTarget * limit_length) / dist 
 	return desired - vel
 
 func update_weights(weights):
@@ -103,7 +108,9 @@ func calculate():
 		DebugDraw2D.set_text(name, behaviors_active)
 	return force_acc
 
-func get_sine():
-	return sin(sine_time*movement_amplitude)*movement_frequency
-
-
+func on_draw_gizmos():
+	DebugDraw3D.draw_arrow(global_position,  global_transform.origin + transform.basis.z * 2.0 , Color(0, 0, 1), 0.1)
+	DebugDraw3D.draw_arrow(global_position,  global_transform.origin + transform.basis.x * 2.0 , Color(1, 0, 0), 0.1)
+	DebugDraw3D.draw_arrow(global_position,  global_transform.origin + transform.basis.y * 2.0 , Color(0, 1, 0), 0.1)
+	DebugDraw3D.draw_arrow(global_position,  global_transform.origin + force, Color(1, 1, 0), 0.1)
+	

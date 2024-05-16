@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://buml6eydhqrmh"]
+[gd_scene load_steps=8 format=3 uid="uid://buml6eydhqrmh"]
 
 [ext_resource type="Script" path="res://Scripts/root.gd" id="1_x2kdq"]
 [ext_resource type="PackedScene" uid="uid://dfkbtftqcivbx" path="res://Scene/Camera.tscn" id="2_l1vl2"]
-[ext_resource type="PackedScene" uid="uid://b7ahnfr61hl3j" path="res://Scene/snake.tscn" id="3_iop1g"]
+[ext_resource type="PackedScene" uid="uid://csvmu5rfx0dl1" path="res://Scene/snake.tscn" id="3_iop1g"]
+[ext_resource type="PackedScene" uid="uid://ceh5w0lin4otd" path="res://Scene/Mouse.tscn" id="4_myyfw"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_btls3"]
 vertices = PackedVector3Array(-4.5, 0.4815, -4.5, -4.5, 0.4815, 4.5, 4.5, 0.4815, 4.5, 4.5, 0.4815, -4.5)
@@ -39,26 +40,17 @@ shape = SubResource("WorldBoundaryShape3D_ljl36")
 [node name="snake" parent="." instance=ExtResource("3_iop1g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16704, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.53959, 2.29184, 18.8676)
-use_collision = true
-collision_layer = 3
-size = Vector3(44.6062, 4.60498, 1)
+[node name="Mouse" parent="." instance=ExtResource("4_myyfw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.3846, 0.249423, 18.5139)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.89289, 2.29184, -24.9805)
-use_collision = true
-collision_layer = 3
-size = Vector3(53.3313, 4.60498, 1)
+[node name="Mouse2" parent="." instance=ExtResource("4_myyfw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.341436, 0.249423, 29.4805)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.9812, 2.29184, -0.0405693)
-use_collision = true
-collision_layer = 3
-size = Vector3(53.3313, 4.60498, 1)
+[node name="Mouse3" parent="." instance=ExtResource("4_myyfw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.9765, 0.249423, -21.8593)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.2329, 2.29184, -0.0405693)
-use_collision = true
-collision_layer = 3
-size = Vector3(53.3313, 4.60498, 1)
+[node name="Mouse4" parent="." instance=ExtResource("4_myyfw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.5163, 0.249422, 17.4465)
+
+[node name="Mouse5" parent="." instance=ExtResource("4_myyfw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.321, 0.249423, -25.4209)

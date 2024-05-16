@@ -1,7 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://dqu80dnyng0md"]
+[gd_scene load_steps=25 format=3 uid="uid://ceh5w0lin4otd"]
 
 [ext_resource type="Script" path="res://Scripts/Mouse.gd" id="1_k5drl"]
-[ext_resource type="AudioStream" uid="uid://bxvrosesdy7y0" path="res://Assets/Audio/mouse.mp3" id="2_mtmm1"]
+[ext_resource type="Script" path="res://Scripts/Avoidance.gd" id="2_clo42"]
+[ext_resource type="Script" path="res://Scene/Behaviour_Seek_Mouse.gd" id="3_4k2oh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o6d2p"]
+size = Vector3(0.424255, 1, 0.754883)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3xsc0"]
 
@@ -56,82 +60,105 @@ albedo_color = Color(0.917647, 0.568627, 0.611765, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_owkjp"]
 albedo_color = Color(0.917647, 0.568627, 0.611765, 1)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7ogm8"]
-
-[node name="Mouse" type="CharacterBody3D"]
+[node name="Mouse" type="CharacterBody3D" groups=["mouse"]]
 script = ExtResource("1_k5drl")
-
-[node name="Body" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.54524, 0, 0, 0, 0.599174, 0, 0, 0, 1.01374, 0, 0.204367, 0)
-mesh = SubResource("CapsuleMesh_3xsc0")
-surface_material_override/0 = SubResource("StandardMaterial3D_jpi2p")
-
-[node name="Nose" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.0210323, 0.6008, 0, -0.594551, 0.0212534, 0, 0, 0, 0.286942, 1.33661, 0.400639, 0)
-mesh = SubResource("PrismMesh_15wxx")
-surface_material_override/0 = SubResource("StandardMaterial3D_3ispf")
-
-[node name="Tail" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.934571, -0.0398534, 0, 0.355776, 0.104689, 0, 0, 0, 0.100928, -0.910745, 0.246646, 0)
-mesh = SubResource("BoxMesh_mff42")
-surface_material_override/0 = SubResource("StandardMaterial3D_l0kqm")
-
-[node name="Tail2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.991886, -0.0142413, 0, 0.127134, 0.111109, 0, 0, 0, 0.100928, -1.85213, 0.00693282, 0)
-mesh = SubResource("BoxMesh_mff42")
-surface_material_override/0 = SubResource("StandardMaterial3D_h7kjo")
-
-[node name="Ear" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.255022, 0.0398277, 5.04481e-08, 0.543106, 0.0187016, -1.43658e-08, -3.44459e-08, 2.90095e-09, -0.6, 0.842164, 0.821312, 0.345447)
-mesh = SubResource("CylinderMesh_awm4e")
-surface_material_override/0 = SubResource("StandardMaterial3D_i5vdu")
-
-[node name="Head" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.7, 0, 0, 0, 0.430106, 0, 0, 0, 0.7, 0.912719, 0.47559, 0)
-mesh = SubResource("CapsuleMesh_d5efb")
-surface_material_override/0 = SubResource("StandardMaterial3D_ge8ua")
-
-[node name="Ear2" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.255022, 0.0398277, 5.04481e-08, 0.543106, 0.0187016, -1.43658e-08, -3.44459e-08, 2.90095e-09, -0.6, 0.842164, 0.821312, -0.491507)
-mesh = SubResource("CylinderMesh_awm4e")
-surface_material_override/0 = SubResource("StandardMaterial3D_w3hui")
-
-[node name="Eye" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.17126, 0.618481, 0.225709)
-mesh = SubResource("SphereMesh_efqoo")
-surface_material_override/0 = SubResource("StandardMaterial3D_2pkv4")
-
-[node name="Eye2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.18065, 0.618481, -0.259103)
-mesh = SubResource("SphereMesh_efqoo")
-surface_material_override/0 = SubResource("StandardMaterial3D_b6sje")
-
-[node name="Foot" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.35043, 0, 0, 0, 0.155532, 0, 0, 0, 0.128109, 0.571988, -0.267887, 0.21954)
-mesh = SubResource("BoxMesh_fbhwl")
-surface_material_override/0 = SubResource("StandardMaterial3D_qq6h5")
-
-[node name="Foot2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.35043, 0, 0, 0, 0.155532, 0, 0, 0, 0.128109, 0.571988, -0.267887, -0.271374)
-mesh = SubResource("BoxMesh_fbhwl")
-surface_material_override/0 = SubResource("StandardMaterial3D_dku80")
-
-[node name="Foot3" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.35043, 0, 0, 0, 0.155532, 0, 0, 0, 0.128109, -0.496958, -0.267887, 0.317562)
-mesh = SubResource("BoxMesh_fbhwl")
-surface_material_override/0 = SubResource("StandardMaterial3D_dwhv1")
-
-[node name="Foot4" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.35043, 0, 0, 0, 0.155532, 0, 0, 0, 0.128109, -0.496958, -0.267887, -0.299578)
-mesh = SubResource("BoxMesh_fbhwl")
-surface_material_override/0 = SubResource("StandardMaterial3D_owkjp")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.037487, 1.16059, 0, -1.16059, 0.037487, 0, 0, 0, 1.1612, 0.129878, 0.226855, 0)
-shape = SubResource("CapsuleShape3D_7ogm8")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
-[node name="MainSound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("2_mtmm1")
-bus = &"Mouse"
+[node name="Behaviour_Avoidance" type="Node" parent="."]
+script = ExtResource("2_clo42")
+enabled = false
+
+[node name="Behaviour_Seek" type="Node" parent="."]
+script = ExtResource("3_4k2oh")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.037487, 1.16059, 0, -1.16059, 0.037487, 0, 0, 0, 1.1612, 0.132794, 0.136574, 0.153655)
+shape = SubResource("BoxShape3D_o6d2p")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0, 0, 0)
+
+[node name="Body" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1.54524, 0, 0, 0, 0.599174, 0, 0, 0, 1.01374, 0, 0.204367, 0)
+mesh = SubResource("CapsuleMesh_3xsc0")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_jpi2p")
+
+[node name="Nose" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.0210323, 0.6008, 0, -0.594551, 0.0212534, 0, 0, 0, 0.286942, 1.33661, 0.400639, 0)
+mesh = SubResource("PrismMesh_15wxx")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_3ispf")
+
+[node name="Tail" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.934571, -0.0398534, 0, 0.355776, 0.104689, 0, 0, 0, 0.100928, -0.910745, 0.246646, 0)
+mesh = SubResource("BoxMesh_mff42")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_l0kqm")
+
+[node name="Tail2" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.991886, -0.0142413, 0, 0.127134, 0.111109, 0, 0, 0, 0.100928, -1.85213, 0.00693282, 0)
+mesh = SubResource("BoxMesh_mff42")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_h7kjo")
+
+[node name="Ear" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(-0.255022, 0.0398277, 5.04481e-08, 0.543106, 0.0187016, -1.43658e-08, -3.44459e-08, 2.90095e-09, -0.6, 0.842164, 0.821312, 0.345447)
+mesh = SubResource("CylinderMesh_awm4e")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_i5vdu")
+
+[node name="Head" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.7, 0, 0, 0, 0.430106, 0, 0, 0, 0.7, 0.912719, 0.47559, 0)
+mesh = SubResource("CapsuleMesh_d5efb")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_ge8ua")
+
+[node name="Ear2" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(-0.255022, 0.0398277, 5.04481e-08, 0.543106, 0.0187016, -1.43658e-08, -3.44459e-08, 2.90095e-09, -0.6, 0.842164, 0.821312, -0.491507)
+mesh = SubResource("CylinderMesh_awm4e")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_w3hui")
+
+[node name="Eye" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.17126, 0.618481, 0.225709)
+mesh = SubResource("SphereMesh_efqoo")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_2pkv4")
+
+[node name="Eye2" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 1.18065, 0.618481, -0.259103)
+mesh = SubResource("SphereMesh_efqoo")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_b6sje")
+
+[node name="Foot" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.35043, 0, 0, 0, 0.155532, 0, 0, 0, 0.128109, 0.571988, -0.267887, 0.21954)
+mesh = SubResource("BoxMesh_fbhwl")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_qq6h5")
+
+[node name="Foot2" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.35043, 0, 0, 0, 0.155532, 0, 0, 0, 0.128109, 0.571988, -0.267887, -0.271374)
+mesh = SubResource("BoxMesh_fbhwl")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_dku80")
+
+[node name="Foot3" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.35043, 0, 0, 0, 0.155532, 0, 0, 0, 0.128109, -0.496958, -0.267887, 0.317562)
+mesh = SubResource("BoxMesh_fbhwl")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_dwhv1")
+
+[node name="Foot4" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.35043, 0, 0, 0, 0.155532, 0, 0, 0, 0.128109, -0.496958, -0.267887, -0.299578)
+mesh = SubResource("BoxMesh_fbhwl")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_owkjp")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

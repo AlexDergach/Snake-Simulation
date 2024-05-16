@@ -14,14 +14,14 @@ var worldTarget:Vector3
 var theta
 	
 func _ready():
-	snake = get_parent()
+	boid = get_parent()
 	theta = randf_range(0, PI * 2.0)
 	
 func on_draw_gizmos():
-	snake = get_parent()
-	var cent = snake.global_transform * (Vector3.BACK * distance)
+	boid = get_parent()
+	var cent = boid.global_transform * (Vector3.BACK * distance)
 	DebugDraw3D.draw_sphere(cent, radius, Color.HOT_PINK)
-	DebugDraw3D.draw_line(snake.global_transform.origin, cent, Color.HOT_PINK)
+	DebugDraw3D.draw_line(boid.global_transform.origin, cent, Color.HOT_PINK)
 	DebugDraw3D.draw_line(cent, worldTarget, Color.HOT_PINK)
 	
 
@@ -31,7 +31,7 @@ func calculate():
 	
 	var delta = get_process_delta_time()
 
-	var rot = snake.global_transform.basis.get_euler()
+	var rot = boid.global_transform.basis.get_euler()
 	rot.x = 0
 
 	if axis == Axis.Horizontal:
@@ -50,9 +50,9 @@ func calculate():
 	
 	var projected = Basis.from_euler(rot)
 	
-	worldTarget = snake.global_transform.origin + (projected * localtarget)	
+	worldTarget = boid.global_transform.origin + (projected * localtarget)	
 	theta += frequency * delta * PI * 2.0
 	
-	var f = snake.seek_force(worldTarget)  
+	var f = boid.seek_force(worldTarget)  
 
 	return f
