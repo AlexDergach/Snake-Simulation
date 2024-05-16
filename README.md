@@ -50,7 +50,31 @@ The UI allows the player to tweak four values in game: max speed, slither radius
 
 ### Behaviours
 The snake has three steering behaviours and two states: avoidance behaviour, harmonic behaviour, seek behaviour, wander state, and attack state. The state machine will initialise the wander state at game start, which adopts the avoidance, harmonic, and seek behaviours all at once. The avoidance detects and avoids obstacles, the harmonic allows the snake to move in a slithering style of movement, and the seek behaviour and go to a destination point. Once the snake detects a mouse in its vicinity, it will change its state to the attack state.  
-The attack state adopts all the behaviours as well up until it closly reaches the mouse, which will quickly lunge at the mouse with a chance of missing depending on its own orientation.
+The attack state adopts all the behaviours as well up until it closly reaches the mouse, which will quickly lunge at the mouse with a chance of missing depending on its own orientation. When the snake successfully attacks the mouse, the mouse will die and the snake will return to the wander state.
+
+#### Wander State
+```
+# in the _think function
+if random_loc == null:
+    random_loc = get_random_point_in_radius()
+else:
+    snake.get_node("Behaviour_Seek").world_target = random_loc
+    
+    if snake.get_node("Behaviour_Avoidance").calculate().length() > snake.get_node("Behaviour_Seek").calculate().length()/2:
+        var avoidance_force = snake.get_node("Behaviour_Avoidance").calculate()
+        var opposite_direction = -avoidance_force.normalized()
+        random_loc = snake.global_position + -opposite_direction * radius/2
+        random_loc = put_on_ground(random_loc)
+        snake.get_node("Behaviour_Seek").world_target = random_loc
+        collision_lock = true
+    
+    if random_loc.distance_to(snake.global_position) < 3:
+        random_loc = null
+        collision_lock = false
+        timer.stop()
+        timer.start()
+```
+The Wander state gets a random position in the snake's radius
 
 ### Movement
 
