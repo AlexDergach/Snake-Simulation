@@ -85,3 +85,5 @@ func _on_timer_timeout():
 	collision_lock = false
 	timer.start()
 
+func get_state():
+	return "Attack"

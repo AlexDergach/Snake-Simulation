@@ -4,22 +4,25 @@ var toggle = true
 var mouse = 1
 var full = false
 
-@onready var max_speed_slider = $Sliders/HSlider
-@onready var snake_length_slider = $Sliders/HSlider2
-@onready var slither_radius_slider = $Sliders/HSlider3
-@onready var slither_amp_slider = $Sliders/HSlider4
-@onready var seek_radius_slider = $Sliders/HSlider5
+@onready var label_6 = $Sliders/Label6
+@onready var label_7 = $Sliders/Label7
+@onready var label_8 = $Sliders/Label8
+@onready var label_9 = $Sliders/Label9
+@onready var label_10 = $Sliders/Label10
 
-@onready var label_2 = $Info/Label2
+@onready var current_state = $Info/Label2
 
-# Called when the node enters the scene tree for the first time.
+@onready var snake = $"../snake"
+@onready var snakeHead = $"../snake/entity/snakeHead"
+
+var toggle_gizmos = false
+
 func _ready():
-	
-	pass # Replace with function body.
+	pass 
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	current_state.text = snake.get_node("entity/snakeHead/StateMachine").current_state.get_state()
 	
 	if Input.is_action_just_pressed("F"):
 		if full:
@@ -42,4 +45,36 @@ func _process(delta):
 			mouse_filter = MOUSE_FILTER_PASS
 			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 			mouse = 1
-	pass
+
+
+func _on_h_slider_value_changed(value):
+	label_6.text = str(value)
+	snake.max_speed = value
+
+func _on_h_slider_3_value_changed(value):
+	label_8.text = str(value)
+	snake.slither_radius = value
+
+func _on_h_slider_4_value_changed(value):
+	label_9.text = str(value)
+	snake.slither_amplitude = value
+
+func _on_h_slider_5_value_changed(value):
+	label_10.text = str(value)
+	snake.seek_radius = value
+
+func _on_button_pressed():
+	if toggle_gizmos:
+		snakeHead.get_node("Behaviour_Avoidance").draw_gizmos = false
+		snakeHead.get_node("Behaviour_Harmonic").draw_gizmos = false
+		snakeHead.get_node("Behaviour_Seek").draw_gizmos = false
+		snakeHead.draw_gizmos = false
+		
+		toggle_gizmos = false
+	else:
+		snakeHead.get_node("Behaviour_Avoidance").draw_gizmos = true
+		snakeHead.get_node("Behaviour_Harmonic").draw_gizmos = true
+		snakeHead.get_node("Behaviour_Seek").draw_gizmos = true
+		snakeHead.draw_gizmos = true
+		
+		toggle_gizmos = true

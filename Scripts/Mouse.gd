@@ -9,7 +9,7 @@ class_name Mouse extends CharacterBody3D
 
 var behaviors = [] 
 @export var max_force = 10
-@export var draw_gizmos = true
+@export var draw_gizmos = false
 
 var new_force = Vector3.ZERO
 var should_calculate = false

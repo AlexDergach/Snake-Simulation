@@ -27,9 +27,6 @@ func _enter():
 	
 	timer.start(10)
 	
-	
-	
-	
 
 func _exit():
 	snake.get_node("Behaviour_Seek").set_enabled(false)
@@ -121,4 +118,7 @@ func _on_timer_timeout():
 	random_loc = null
 	collision_lock = false
 	timer.start()
+	
+func get_state():
+	return "Wander"
 

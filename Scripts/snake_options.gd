@@ -27,8 +27,8 @@ func _ready():
 	pass
 
 func _process(delta):
-	snakeHead.speed = speed
-	snakeHead.max_speed = speed
+	snakeHead.speed = max_speed-1
+	snakeHead.max_speed = max_speed
 	snakeHead.damping = damping
 	
 	harmonic.frequency = slither_frequency

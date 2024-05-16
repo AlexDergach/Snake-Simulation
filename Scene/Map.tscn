@@ -383,7 +383,7 @@ _data = {
 script = ExtResource("1_3pr23")
 
 [node name="Camera" parent="." instance=ExtResource("36_sfdh1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.0424, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.7154, 10.0424, 35.4358)
 
 [node name="TerraBrush" type="Node3D" parent="."]
 script = ExtResource("1_latr6")
@@ -1252,16 +1252,16 @@ volume_db = -33.564
 autoplay = true
 
 [node name="snake" parent="." instance=ExtResource("59_yjti4")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -27.4062, 1.55529, 3.59933)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -59.9331, 1.55529, 40.8063)
 
 [node name="Mouse" parent="." instance=ExtResource("63_2cwlc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.50237, -3.64868, 47.0169)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.5934, 1.53106, 6.66421)
 
 [node name="Mouse2" parent="." instance=ExtResource("63_2cwlc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.6753, 0.636484, 39.8503)
 
 [node name="Mouse3" parent="." instance=ExtResource("63_2cwlc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.6679, 0.382883, 2.49552)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.9868, 0.330796, -5.16155)
 
 [node name="Mouse4" parent="." instance=ExtResource("63_2cwlc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3513, -4.39186, -32.8482)

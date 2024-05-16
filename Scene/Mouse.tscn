@@ -67,10 +67,12 @@ script = ExtResource("1_k5drl")
 
 [node name="Behaviour_Avoidance" type="Node" parent="."]
 script = ExtResource("2_clo42")
+draw_gizmos = false
 enabled = false
 
 [node name="Behaviour_Seek" type="Node" parent="."]
 script = ExtResource("3_ns2ah")
+draw_gizmos = false
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0

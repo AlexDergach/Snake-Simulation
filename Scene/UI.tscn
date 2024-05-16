@@ -2,8 +2,8 @@
 
 [ext_resource type="FontFile" uid="uid://covbr1f1dky7w" path="res://Assets/Fonts/Jersey15-Regular.ttf" id="1_8ho2i"]
 [ext_resource type="Script" path="res://Scripts/UI.gd" id="1_356e0"]
-[ext_resource type="LabelSettings" path="res://Assets/label.tres" id="2_f40kj"]
-[ext_resource type="LabelSettings" path="res://Assets/label2.tres" id="3_nr2ls"]
+[ext_resource type="LabelSettings" uid="uid://dffl0rdmoqskh" path="res://Assets/label.tres" id="2_f40kj"]
+[ext_resource type="LabelSettings" uid="uid://c5e3av3i78ut7" path="res://Assets/label2.tres" id="3_nr2ls"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nynd7"]
 
@@ -50,6 +50,10 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_nynd7")
 layout_mode = 0
 offset_right = 323.0
 offset_bottom = 16.0
+min_value = 1.0
+max_value = 10.0
+step = 0.5
+value = 5.0
 tick_count = 4
 ticks_on_borders = true
 
@@ -62,73 +66,97 @@ offset_bottom = 16.0
 text = "Max Speed"
 label_settings = SubResource("LabelSettings_pv41s")
 
-[node name="HSlider2" type="HSlider" parent="Sliders"]
+[node name="Label6" type="Label" parent="Sliders"]
+layout_mode = 0
+offset_left = 333.0
+offset_top = -5.0
+offset_right = 373.0
+offset_bottom = 18.0
+text = "5"
+
+[node name="HSlider3" type="HSlider" parent="Sliders"]
 layout_mode = 0
 offset_top = 43.0
 offset_right = 323.0
 offset_bottom = 59.0
-tick_count = 4
-ticks_on_borders = true
-
-[node name="Label2" type="Label" parent="Sliders"]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 16.0
-offset_right = 131.0
-offset_bottom = 57.0
-text = "Snake Length"
-label_settings = SubResource("LabelSettings_pv41s")
-
-[node name="HSlider3" type="HSlider" parent="Sliders"]
-layout_mode = 0
-offset_top = 86.0
-offset_right = 323.0
-offset_bottom = 102.0
+min_value = 5.0
+max_value = 30.0
+value = 10.0
 tick_count = 4
 ticks_on_borders = true
 
 [node name="Label3" type="Label" parent="Sliders"]
 layout_mode = 0
 offset_left = 40.0
-offset_top = 59.0
-offset_right = 131.0
-offset_bottom = 100.0
+offset_top = 16.0
+offset_right = 192.0
+offset_bottom = 57.0
 text = "Slither Radius"
 label_settings = SubResource("LabelSettings_pv41s")
 
+[node name="Label8" type="Label" parent="Sliders"]
+layout_mode = 0
+offset_left = 331.0
+offset_top = 38.0
+offset_right = 371.0
+offset_bottom = 61.0
+text = "10"
+
 [node name="HSlider4" type="HSlider" parent="Sliders"]
 layout_mode = 0
-offset_top = 127.0
+offset_top = 84.0
 offset_right = 323.0
-offset_bottom = 143.0
+offset_bottom = 100.0
+min_value = 10.0
+max_value = 150.0
+value = 60.0
 tick_count = 4
 ticks_on_borders = true
 
 [node name="Label4" type="Label" parent="Sliders"]
 layout_mode = 0
 offset_left = 40.0
-offset_top = 100.0
-offset_right = 131.0
-offset_bottom = 141.0
+offset_top = 57.0
+offset_right = 228.0
+offset_bottom = 98.0
 text = "Slither Amplitude"
 label_settings = SubResource("LabelSettings_pv41s")
 
+[node name="Label9" type="Label" parent="Sliders"]
+layout_mode = 0
+offset_left = 332.0
+offset_top = 80.0
+offset_right = 372.0
+offset_bottom = 103.0
+text = "60"
+
 [node name="HSlider5" type="HSlider" parent="Sliders"]
 layout_mode = 0
-offset_top = 170.0
+offset_top = 127.0
 offset_right = 323.0
-offset_bottom = 186.0
+offset_bottom = 143.0
+min_value = 10.0
+max_value = 50.0
+value = 25.0
 tick_count = 4
 ticks_on_borders = true
 
 [node name="Label5" type="Label" parent="Sliders"]
 layout_mode = 0
 offset_left = 40.0
-offset_top = 143.0
+offset_top = 100.0
 offset_right = 228.0
-offset_bottom = 184.0
+offset_bottom = 141.0
 text = "Seek Radius"
 label_settings = SubResource("LabelSettings_pv41s")
+
+[node name="Label10" type="Label" parent="Sliders"]
+layout_mode = 0
+offset_left = 332.0
+offset_top = 124.0
+offset_right = 372.0
+offset_bottom = 147.0
+text = "25"
 
 [node name="Info" type="Panel" parent="."]
 layout_mode = 1
@@ -148,10 +176,11 @@ offset_left = -64.0
 offset_top = 1.0
 offset_right = 369.0
 offset_bottom = 62.0
-text = "Current behaviour :"
+text = "Current State :"
 label_settings = SubResource("LabelSettings_1bfmn")
 
 [node name="Label2" type="Label" parent="Info"]
+layout_mode = 0
 offset_left = 391.0
 offset_top = 2.0
 offset_right = 824.0
@@ -322,11 +351,11 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_1meki")
 
 [node name="Label11" type="Label" parent="Controls"]
 layout_mode = 0
-offset_left = -13.0
-offset_top = 331.0
-offset_right = 149.0
-offset_bottom = 357.0
-text = "First Person View"
+offset_left = 3.0
+offset_top = 332.0
+offset_right = 143.0
+offset_bottom = 358.0
+text = "Toggle Camera"
 label_settings = ExtResource("3_nr2ls")
 
 [node name="Panel8" type="Panel" parent="Controls"]
@@ -409,3 +438,17 @@ offset_bottom = 574.0
 theme_override_font_sizes/font_size = 40
 text = "F"
 label_settings = ExtResource("2_f40kj")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 334.0
+offset_right = 203.0
+offset_bottom = 393.0
+text = "Toggle Gizmos"
+
+[connection signal="value_changed" from="Sliders/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="Sliders/HSlider3" to="." method="_on_h_slider_3_value_changed"]
+[connection signal="value_changed" from="Sliders/HSlider4" to="." method="_on_h_slider_4_value_changed"]
+[connection signal="value_changed" from="Sliders/HSlider5" to="." method="_on_h_slider_5_value_changed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
