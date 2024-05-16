@@ -1,0 +1,284 @@
+[gd_scene load_steps=7 format=3 uid="uid://05jdkdjwclli"]
+
+[ext_resource type="FontFile" uid="uid://covbr1f1dky7w" path="res://Assets/Fonts/Jersey15-Regular.ttf" id="1_8ho2i"]
+[ext_resource type="LabelSettings" uid="uid://dffl0rdmoqskh" path="res://label.tres" id="2_f40kj"]
+[ext_resource type="LabelSettings" uid="uid://c5e3av3i78ut7" path="res://label2.tres" id="3_nr2ls"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pv41s"]
+font = ExtResource("1_8ho2i")
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_1bfmn"]
+font = ExtResource("1_8ho2i")
+font_size = 60
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1meki"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[node name="Ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sliders" type="Panel" parent="."]
+layout_mode = 0
+offset_top = 155.0
+offset_right = 40.0
+offset_bottom = 195.0
+
+[node name="HSlider" type="HSlider" parent="Sliders"]
+layout_mode = 0
+offset_right = 323.0
+offset_bottom = 16.0
+tick_count = 4
+ticks_on_borders = true
+
+[node name="Label" type="Label" parent="Sliders"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = -27.0
+offset_right = 158.0
+offset_bottom = 16.0
+text = "Max Speed"
+label_settings = SubResource("LabelSettings_pv41s")
+
+[node name="HSlider2" type="HSlider" parent="Sliders"]
+offset_top = 43.0
+offset_right = 323.0
+offset_bottom = 59.0
+tick_count = 4
+ticks_on_borders = true
+
+[node name="Label2" type="Label" parent="Sliders"]
+offset_left = 40.0
+offset_top = 16.0
+offset_right = 131.0
+offset_bottom = 57.0
+text = "Snake Length"
+label_settings = SubResource("LabelSettings_pv41s")
+
+[node name="HSlider3" type="HSlider" parent="Sliders"]
+offset_top = 86.0
+offset_right = 323.0
+offset_bottom = 102.0
+tick_count = 4
+ticks_on_borders = true
+
+[node name="Label3" type="Label" parent="Sliders"]
+offset_left = 40.0
+offset_top = 59.0
+offset_right = 131.0
+offset_bottom = 100.0
+text = "Slither Radius"
+label_settings = SubResource("LabelSettings_pv41s")
+
+[node name="HSlider4" type="HSlider" parent="Sliders"]
+offset_top = 127.0
+offset_right = 323.0
+offset_bottom = 143.0
+tick_count = 4
+ticks_on_borders = true
+
+[node name="Label4" type="Label" parent="Sliders"]
+offset_left = 40.0
+offset_top = 100.0
+offset_right = 131.0
+offset_bottom = 141.0
+text = "Slither Amplitude"
+label_settings = SubResource("LabelSettings_pv41s")
+
+[node name="HSlider5" type="HSlider" parent="Sliders"]
+offset_top = 170.0
+offset_right = 323.0
+offset_bottom = 186.0
+tick_count = 4
+ticks_on_borders = true
+
+[node name="Label5" type="Label" parent="Sliders"]
+offset_left = 40.0
+offset_top = 143.0
+offset_right = 228.0
+offset_bottom = 184.0
+text = "Seek Radius"
+label_settings = SubResource("LabelSettings_pv41s")
+
+[node name="Info" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -454.0
+offset_top = 1.0
+offset_right = -414.0
+offset_bottom = 41.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Info"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Current behaviour :"
+label_settings = SubResource("LabelSettings_1bfmn")
+
+[node name="Controls" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1001.0
+offset_top = 1.0
+offset_right = 1149.0
+offset_bottom = 478.0
+
+[node name="Label" type="Label" parent="Controls"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 5.0
+offset_right = 81.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 40
+text = "P"
+label_settings = ExtResource("2_f40kj")
+
+[node name="Panel" type="Panel" parent="Controls"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 10.0
+offset_right = 86.0
+offset_bottom = 50.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1meki")
+
+[node name="Label2" type="Label" parent="Controls"]
+layout_mode = 0
+offset_left = -7.0
+offset_top = 54.0
+offset_right = 149.0
+offset_bottom = 80.0
+theme_override_font_sizes/font_size = 0
+text = "Post Processing "
+label_settings = ExtResource("3_nr2ls")
+
+[node name="Label3" type="Label" parent="Controls"]
+offset_left = 34.0
+offset_top = 81.0
+offset_right = 98.0
+offset_bottom = 136.0
+theme_override_font_sizes/font_size = 40
+text = "Esc"
+label_settings = ExtResource("2_f40kj")
+
+[node name="Panel2" type="Panel" parent="Controls"]
+offset_left = 28.0
+offset_top = 87.0
+offset_right = 104.0
+offset_bottom = 127.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1meki")
+
+[node name="Label4" type="Label" parent="Controls"]
+offset_left = 12.0
+offset_top = 131.0
+offset_right = 137.0
+offset_bottom = 157.0
+text = "Leave / Exit"
+label_settings = ExtResource("3_nr2ls")
+
+[node name="Label5" type="Label" parent="Controls"]
+offset_left = 51.0
+offset_top = 154.0
+offset_right = 89.0
+offset_bottom = 209.0
+theme_override_font_sizes/font_size = 40
+text = "W"
+label_settings = ExtResource("2_f40kj")
+
+[node name="Panel3" type="Panel" parent="Controls"]
+offset_left = 47.0
+offset_top = 158.0
+offset_right = 87.0
+offset_bottom = 198.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1meki")
+
+[node name="Label6" type="Label" parent="Controls"]
+offset_left = 13.0
+offset_top = 192.0
+offset_right = 38.0
+offset_bottom = 247.0
+theme_override_font_sizes/font_size = 40
+text = "A"
+label_settings = ExtResource("2_f40kj")
+
+[node name="Panel4" type="Panel" parent="Controls"]
+offset_left = 8.0
+offset_top = 198.0
+offset_right = 48.0
+offset_bottom = 238.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1meki")
+
+[node name="Label7" type="Label" parent="Controls"]
+offset_left = 55.0
+offset_top = 193.0
+offset_right = 80.0
+offset_bottom = 248.0
+theme_override_font_sizes/font_size = 40
+text = "S"
+label_settings = ExtResource("2_f40kj")
+
+[node name="Panel5" type="Panel" parent="Controls"]
+offset_left = 47.0
+offset_top = 198.0
+offset_right = 87.0
+offset_bottom = 238.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1meki")
+
+[node name="Label8" type="Label" parent="Controls"]
+offset_left = 97.0
+offset_top = 194.0
+offset_right = 122.0
+offset_bottom = 249.0
+theme_override_font_sizes/font_size = 40
+text = "D"
+label_settings = ExtResource("2_f40kj")
+
+[node name="Panel6" type="Panel" parent="Controls"]
+offset_left = 87.0
+offset_top = 198.0
+offset_right = 127.0
+offset_bottom = 238.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1meki")
+
+[node name="Label9" type="Label" parent="Controls"]
+offset_left = 24.0
+offset_top = 244.0
+offset_right = 115.0
+offset_bottom = 267.0
+text = "Movement"
+label_settings = ExtResource("3_nr2ls")
+
+[node name="Label10" type="Label" parent="Controls"]
+offset_left = 55.0
+offset_top = 274.0
+offset_right = 80.0
+offset_bottom = 329.0
+theme_override_font_sizes/font_size = 40
+text = "C"
+label_settings = ExtResource("2_f40kj")
+
+[node name="Panel7" type="Panel" parent="Controls"]
+offset_left = 46.0
+offset_top = 279.0
+offset_right = 86.0
+offset_bottom = 319.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1meki")
+
+[node name="Label11" type="Label" parent="Controls"]
+offset_left = -8.0
+offset_top = 325.0
+offset_right = 143.0
+offset_bottom = 351.0
+text = "First Peron View"
+label_settings = ExtResource("3_nr2ls")
