@@ -33,7 +33,6 @@ func _exit():
 	snake.get_node("Behaviour_Seek").set_enabled(false)
 
 func _think():
-	
 	if prey.global_position.distance_to(snake.global_position) < 10:
 		if snake.get_node("Behaviour_Harmonic").is_enabled():
 			snake.get_node("Behaviour_Harmonic").set_enabled(false)
