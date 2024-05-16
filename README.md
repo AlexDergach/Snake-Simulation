@@ -195,11 +195,6 @@ There are mountainous regions, sandy beaches, and a rocky dune, letting the snak
 Night Example:
 ![image](https://github.com/AlexDergach/Snake-Simulation/assets/98461460/61e8ac2c-1402-4ce4-a1ec-af8dcfa7a8a9)
 
-
-## Map
-
-Map is made up of a number of different assets and the terrian is a !!!!!!!!!!!!!!!!!! FIX !!!!!!!!!!!!!!!!!!!!!!!
-
 ## Post Processing
 
 We enabled a post processing function that you can toggle for a different experince when obeserving the simulation.
