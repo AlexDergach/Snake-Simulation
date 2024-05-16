@@ -3,7 +3,7 @@ extends Node3D
 var default_speed : float = 2.0
 var default_max_speed : float = 3.0
 var default_damping : float = 1.0
-var default_snake_length : int = 7
+var default_snake_length : int = 15
 var default_slither_frequency : float = 0.5
 var default_slither_radius : int = 7
 var default_slither_amplitude : int = 100
@@ -13,10 +13,10 @@ var default_seek_radius : int = 25
 @export var speed : float = 4.0
 @export var max_speed : float = 5.0
 @export var damping : float = 1.0
-@export var snake_length : int = 7
+@export var snake_length : int = 15
 @export var slither_frequency : float = 0.3
-@export var slither_radius : int = 15
-@export var slither_amplitude : int = 100
+@export var slither_radius : int = 10
+@export var slither_amplitude : int = 60
 @export var slither_distance: int = 1
 @export var seek_radius : int = 25
 
@@ -59,19 +59,17 @@ func generate_body():
 		entity.add_child(body_instance)
 		
 		body_instance.position.x = -i-1
-	
+		#body_instance.scale = Vector3(3,3,3)
+		
 	snakeTail.position.x = -snake_length-1
-	
+	#snakeTail.scale = Vector3(3,3,3)
 	
 	spineAnimation.bonePaths = []
 	spineAnimation.bonePaths.append(snakeHead.get_path())
 	
 	for i in entity.get_children():
-		if "CharacterBody3D" in i.name:
+		if "CharacterBody3D" in i.name or "body" in i.name:
 			spineAnimation.bonePaths.append(i.get_path())
 	spineAnimation.bonePaths.append(snakeTail.get_path())
 	
 	spineAnimation.calculateOffsets()
-	
-	print(entity.get_children())
-	print(spineAnimation.bonePaths)

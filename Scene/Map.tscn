@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://cydh3egvc4umg"]
+[gd_scene load_steps=92 format=3 uid="uid://cydh3egvc4umg"]
 
 [ext_resource type="Script" path="res://Scripts/Map.gd" id="1_3pr23"]
 [ext_resource type="Script" path="res://addons/terrabrush/TerraBrush.cs" id="1_latr6"]
@@ -58,6 +58,7 @@
 [ext_resource type="PackedScene" uid="uid://bmvguwdd6ob3b" path="res://Assets/Map Models/tree_detailed_fall.glb" id="44_wkl7i"]
 [ext_resource type="PackedScene" uid="uid://dcy0p8iqde28r" path="res://Assets/Map Models/tree_fat.glb" id="45_w56cx"]
 [ext_resource type="PackedScene" uid="uid://cdpb7fck2fqgo" path="res://Scene/FireFlyParticles.tscn" id="58_q5mop"]
+[ext_resource type="PackedScene" uid="uid://csvmu5rfx0dl1" path="res://Scene/snake.tscn" id="59_yjti4"]
 
 [sub_resource type="Resource" id="Resource_uyjch"]
 script = ExtResource("5_geed2")
@@ -196,10 +197,9 @@ sky_material = SubResource("PhysicalSkyMaterial_ec71k")
 [sub_resource type="Environment" id="Environment_865qc"]
 background_mode = 1
 background_color = Color(0.671049, 0.780256, 1, 1)
-background_energy_multiplier = 2.19
 sky = SubResource("Sky_ay486")
 ambient_light_color = Color(0.670588, 0.780392, 1, 1)
-glow_enabled = true
+ambient_light_energy = 0.5
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0059
 volumetric_fog_albedo = Color(0.505122, 0.760483, 0.718451, 1)
@@ -402,6 +402,7 @@ autoplay = "sun"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 36.9422, 0)
 
 [node name="Waterbounderis" type="StaticBody3D" parent="."]
+collision_layer = 3
 
 [node name="WaterBoundry" type="CollisionShape3D" parent="Waterbounderis"]
 transform = Transform3D(4.0898, 0, -2.87638, 0, 5, 0, 2.87638, 0, 4.0898, -125.179, 1.65304, 1.38657)
@@ -556,6 +557,7 @@ transform = Transform3D(0.0758335, 0, 4.99942, 0, 5, 0, -4.99942, 0, 0.0758335, 
 shape = SubResource("BoxShape3D_3gn4d")
 
 [node name="BirchCollisions" type="StaticBody3D" parent="."]
+collision_layer = 3
 
 [node name="BirchCol4" type="CollisionShape3D" parent="BirchCollisions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -97.6525, 3.35408, 51.5874)
@@ -574,6 +576,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.9049, 4.65985, 21.0396)
 shape = SubResource("CylinderShape3D_d5ds0")
 
 [node name="OakCollisions" type="StaticBody3D" parent="."]
+collision_layer = 3
 
 [node name="OakCol3" type="CollisionShape3D" parent="OakCollisions"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -68.7491, 4.21664, -98.2331)
@@ -612,6 +615,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.49, -6.13668, 21.3769)
 shape = SubResource("CylinderShape3D_tp3ug")
 
 [node name="BushCollisions" type="StaticBody3D" parent="."]
+collision_layer = 3
 
 [node name="BushCol" type="CollisionShape3D" parent="BushCollisions"]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -38.8399, 5.40409, 22.1553)
@@ -634,6 +638,7 @@ transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 72.4051, 0.343859, -27.1469)
 shape = SubResource("CapsuleShape3D_j5w8s")
 
 [node name="BigStone" type="StaticBody3D" parent="."]
+collision_layer = 3
 
 [node name="BigStoneCol" type="CollisionShape3D" parent="BigStone"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.7883, -4.88778, 15.855)
@@ -720,6 +725,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.5359, 5.43237, 31.5926)
 shape = SubResource("BoxShape3D_tm3ky")
 
 [node name="SmallStoneCollisions" type="StaticBody3D" parent="."]
+collision_layer = 3
 
 [node name="SmallStoneCol" type="CollisionShape3D" parent="SmallStoneCollisions"]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 8.23687, -5.91085, -24.962)
@@ -1140,6 +1146,7 @@ libraries = {
 autoplay = "light"
 
 [node name="FireFlies" type="Node3D" parent="."]
+visible = false
 
 [node name="FireFlyParticles" parent="FireFlies" instance=ExtResource("58_q5mop")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 4.50849, 0)
@@ -1206,3 +1213,6 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 4.50849, 34.9647)
 
 [node name="FireFlyParticles22" parent="FireFlies" instance=ExtResource("58_q5mop")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 4.50849, 30.7871)
+
+[node name="snake" parent="." instance=ExtResource("59_yjti4")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -65.4036, 1.63019, 34.0456)

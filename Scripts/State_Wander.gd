@@ -3,10 +3,11 @@ class_name State_Wander extends State
 var snake
 var prey
 var random_loc
-var field_of_view_angle = PI / 2
+var field_of_view_angle = PI / 4
 @export var radius : float = 25
 
 var collision_lock = false
+@onready var timer = get_node("../Timer")
 
 func _ready():
 	snake = get_parent()
@@ -18,6 +19,9 @@ func _enter():
 	
 	random_loc = get_random_point_in_radius()
 	snake.get_node("Behaviour_Seek").world_target = random_loc
+	
+	timer.start(10)
+	
 
 func _exit():
 	snake.get_node("Behaviour_Seek").set_enabled(false)
@@ -45,6 +49,8 @@ func _think():
 		if random_loc.distance_to(snake.global_position) < 3:
 			random_loc = null
 			collision_lock = false
+			timer.stop()
+			timer.start()
 			
 
 func get_random_point_in_radius():
@@ -62,3 +68,8 @@ func get_random_point_in_radius():
 	var z = direction.z * radius * randf()
 
 	return snake.global_position + Vector3(x, 0, z)
+
+func _on_timer_timeout():
+	random_loc = null
+	collision_lock = false
+	timer.start()

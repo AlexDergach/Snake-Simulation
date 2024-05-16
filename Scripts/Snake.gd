@@ -18,9 +18,7 @@ var should_calculate = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-func _ready():
-	print(get_node("/root/Root"))
-	
+func _ready():	
 	for i in get_child_count():
 		var child = get_child(i)
 		if child.has_method("calculate"):

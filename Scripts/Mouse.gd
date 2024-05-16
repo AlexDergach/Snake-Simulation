@@ -1,52 +1,145 @@
-extends CharacterBody3D
+class_name Mouse extends CharacterBody3D
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
-const DESTINATION_CHANGE_INTERVAL = 5.0 # Change destination every 5 seconds
+@export var mass = 1
+@export var acceleration = Vector3.ZERO
+@export var force = Vector3.ZERO
+@export var speed = 2.0
+@export var max_speed: float = 3.0
+@export var vel = Vector3.ZERO
 
+var behaviors = [] 
+@export var max_force = 10
+@export var draw_gizmos = true
+
+var new_force = Vector3.ZERO
+var should_calculate = false
+@export var damping = 0.1
+
+var random_loc
+var field_of_view_angle = PI / 4
+var radius = 10
+var collision_lock = true
+@onready var timer = get_node("Timer")
+
+# Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-@onready var nav_agent = $NavigationAgent3D
-var target_destination = Vector3.ZERO
-var destination_change_timer = 0.0
-var move = 1
-
-var foot_offset = 0.0
-
 func _ready():
-	set_random_destination()
+	timer.start(10)
+	
+	for i in get_child_count():
+		var child = get_child(i)
+		if child.has_method("calculate"):
+			behaviors.push_back(child)
+			child.set_process(child.enabled) 
+
+func _process(delta):
+	should_calculate = true
+	if draw_gizmos:
+		on_draw_gizmos()
+	
 
 func _physics_process(delta):
+	
+	if random_loc == null:
+		random_loc = get_random_point_in_radius()
+	else:
+		get_node("Behaviour_Seek").world_target = random_loc
+		
+		if get_node("Behaviour_Avoidance").calculate().length() > get_node("Behaviour_Seek").calculate().length():
+			var avoidance_force = get_node("Behaviour_Avoidance").calculate()
+			var opposite_direction = -avoidance_force.normalized()
+			random_loc = global_transform.origin + -opposite_direction * radius
+			get_node("Behaviour_Seek").world_target = random_loc
+			collision_lock = true
+		
+		if random_loc.distance_to(global_position) < 3:
+			random_loc = null
+			collision_lock = false
+			timer.stop()
+			timer.start()
+	
+	if should_calculate:
+		new_force = calculate()
+
+	force = lerp(force, new_force, delta)
+	acceleration = force / mass
+	vel += acceleration * delta
+	speed = vel.length()
+	if speed > 0:		
+		if max_speed == 0:
+			print("max_speed is 0")
+		vel = vel.limit_length(max_speed)
+		
+		# damping
+		vel -= vel * delta * damping
+		
+		set_velocity(vel)
+		
+		# banking
+		var temp_up = global_transform.basis.y.lerp(Vector3.UP + acceleration/2, delta/2)
+		look_at(global_position - vel.normalized(),temp_up)
+		
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
-	if nav_agent.is_target_reachable():
-		var path = nav_agent.get_current_navigation_path()
-		if path.size() > 1:
-			var next_position = path[1]
-			var direction = (next_position - global_transform.origin).normalized()
-			velocity.x = direction.x * SPEED
-			velocity.z = direction.z * SPEED
-			
-			var rotation_angle = atan2(-velocity.z, velocity.x)
-			rotation.y = rotation_angle
-			
-		else:
-			set_random_destination()
-	else:
-		set_random_destination()
-
+	
 	move_and_slide()
+	
+func get_random_point_in_radius():
+	# choose a random angle within the field of view
+	var half_fov = field_of_view_angle / 2
+	var random_angle = randf_range(-half_fov, half_fov)
+	
+	# calculate the direction vector
+	var forward_direction = transform.basis.z.normalized()
+	var rotation = Quaternion(Vector3.UP, random_angle)
+	var direction = rotation*forward_direction
+	
+	# calculate the random point within the radius
+	var x = direction.x * radius * randf()
+	var z = direction.z * radius * randf()
 
-	# Pos Timer
-	destination_change_timer += delta
-	if destination_change_timer >= DESTINATION_CHANGE_INTERVAL:
-		set_random_destination()
-		destination_change_timer = 0.0
+	return global_position + Vector3(x, 0, z)
 
-func set_random_destination():
-	var random_x = randi_range(-10, 10)
-	var random_z = randi_range(-10, 10)
-	target_destination = Vector3(random_x, 0, random_z)
-	nav_agent.set_target_position(target_destination)
+func seek_force(target: Vector3):	
+	var toTarget = target - global_transform.origin
+	toTarget = toTarget.normalized()
+	var desired = toTarget * max_speed
+	return desired - vel
 
+func update_weights(weights):
+	for behavior in weights:
+		var b = get_node(behavior)
+		if b: 
+			b.weight = weights[behavior]
+
+func calculate():
+	var force_acc = Vector3.ZERO	
+	var behaviors_active = ""
+	for i in behaviors.size():
+		if behaviors[i].enabled:
+			var f = behaviors[i].calculate() * behaviors[i].weight
+			if is_nan(f.x) or is_nan(f.y) or is_nan(f.z):
+				print(str(behaviors[i]) + " is NAN")
+				f = Vector3.ZERO
+			behaviors_active += behaviors[i].name + ": " + str(round(f.length())) + " "
+			force_acc += f 
+			if force_acc.length() > max_force:
+				force_acc = force_acc.limit_length(max_force)
+				behaviors_active += " Limiting force"
+				break
+	if draw_gizmos:
+		DebugDraw2D.set_text(name, behaviors_active)
+	return force_acc
+
+func on_draw_gizmos():
+	DebugDraw3D.draw_arrow(global_position,  global_transform.origin + transform.basis.z * 2.0 , Color(0, 0, 1), 0.1)
+	DebugDraw3D.draw_arrow(global_position,  global_transform.origin + transform.basis.x * 2.0 , Color(1, 0, 0), 0.1)
+	DebugDraw3D.draw_arrow(global_position,  global_transform.origin + transform.basis.y * 2.0 , Color(0, 1, 0), 0.1)
+	DebugDraw3D.draw_arrow(global_position,  global_transform.origin + force, Color(1, 1, 0), 0.1)
+	
+
+func _on_timer_timeout():
+	random_loc = null
+	collision_lock = false
+	timer.start()

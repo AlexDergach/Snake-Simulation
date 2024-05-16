@@ -1,7 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://csvmu5rfx0dl1"]
 
 [ext_resource type="Script" path="res://Scripts/snake_options.gd" id="1_4o5bq"]
-[ext_resource type="PackedScene" uid="uid://d3mycy64mftpr" path="res://Scene/snake_bodypiece.tscn" id="1_bngrd"]
 [ext_resource type="Script" path="res://Scripts/SpineAnimator.gd" id="1_hayyj"]
 [ext_resource type="Script" path="res://Scripts/Snake.gd" id="2_7t54e"]
 [ext_resource type="Script" path="res://Scripts/Avoidance.gd" id="3_6hkfr"]
@@ -73,7 +72,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_3mxjy")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dw13o"]
-size = Vector3(0.536386, 0.464534, 0.386183)
+size = Vector3(1.72083, 1.25839, 1.80544)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xfixq"]
 
@@ -107,6 +106,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_fmjim")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_cax6a"]
+size = Vector3(1.16382, 1.80573, 1.95999)
+
 [node name="snake" type="Node3D"]
 script = ExtResource("1_4o5bq")
 
@@ -123,17 +125,16 @@ script = ExtResource("2_7t54e")
 damping = 1.0
 
 [node name="snake_head" type="MeshInstance3D" parent="entity/snakeHead"]
-transform = Transform3D(2.18557e-09, 1.91069e-16, -0.05, 4.37114e-09, -0.05, 0, -0.05, -4.37114e-09, -2.18557e-09, 0, 0, 0)
+transform = Transform3D(6.55671e-09, 9.90037e-16, -0.15, 2.26494e-08, -0.15, -1.07203e-21, -0.15, -2.26494e-08, -6.55671e-09, 0, 0, 0)
 mesh = SubResource("ArrayMesh_c3f6v")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="entity/snakeHead"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0216421, 0.00974724, 0.0137453)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00844765, 0.0701898, -0.0261827)
 shape = SubResource("BoxShape3D_dw13o")
 
 [node name="Behaviour_Avoidance" type="Node" parent="entity/snakeHead"]
 script = ExtResource("3_6hkfr")
-draw_gizmos = false
 enabled = false
 
 [node name="Behaviour_Harmonic" type="Node" parent="entity/snakeHead"]
@@ -141,12 +142,10 @@ script = ExtResource("3_veg7r")
 radius = 7.0
 amplitude = 100
 distance = 1
-draw_gizmos = false
 enabled = false
 
 [node name="Behaviour_Seek" type="Node" parent="entity/snakeHead"]
 script = ExtResource("5_y7t0y")
-draw_gizmos = false
 
 [node name="State_Wander" type="Node" parent="entity/snakeHead"]
 script = ExtResource("6_p13m4")
@@ -155,27 +154,21 @@ script = ExtResource("6_p13m4")
 script = ExtResource("5_bu41v")
 initial_state = NodePath("../State_Wander")
 
+[node name="Timer" type="Timer" parent="entity/snakeHead"]
+wait_time = 10.0
+one_shot = true
+
 [node name="tail" type="CharacterBody3D" parent="entity"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.03706, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.072, 0, 0)
 
 [node name="snake_tailpiece2" type="MeshInstance3D" parent="entity/tail"]
-transform = Transform3D(-2.18557e-09, 0, -0.05, 0, 0.05, 0, 0.05, 0, -2.18557e-09, 0, 0, 0)
+transform = Transform3D(-6.55671e-09, 0, -0.15, 0, 0.15, 0, 0.15, 0, -6.55671e-09, 0, 0, 0)
 mesh = SubResource("ArrayMesh_b21bq")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="entity/tail"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0715828, 0.00211334, -0.0278778)
-shape = SubResource("BoxShape3D_dw13o")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0143318, 0.0241776, -0.00532579)
+shape = SubResource("BoxShape3D_cax6a")
 disabled = true
 
-[node name="body" parent="entity" instance=ExtResource("1_bngrd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02504, 0, 0)
-visible = false
-
-[node name="body2" parent="entity" instance=ExtResource("1_bngrd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9159, 0, 0)
-visible = false
-
-[node name="body3" parent="entity" instance=ExtResource("1_bngrd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.86514, 0, 0)
-visible = false
+[connection signal="timeout" from="entity/snakeHead/Timer" to="entity/snakeHead/State_Wander" method="_on_timer_timeout"]

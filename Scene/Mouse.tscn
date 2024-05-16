@@ -1,6 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://ceh5w0lin4otd"]
+[gd_scene load_steps=25 format=3 uid="uid://ceh5w0lin4otd"]
 
 [ext_resource type="Script" path="res://Scripts/Mouse.gd" id="1_k5drl"]
+[ext_resource type="Script" path="res://Scripts/Avoidance.gd" id="2_clo42"]
+[ext_resource type="Script" path="res://Scene/Behaviour_Seek_Mouse.gd" id="3_4k2oh"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3xsc0"]
 
@@ -130,3 +132,16 @@ transform = Transform3D(0.037487, 1.16059, 0, -1.16059, 0.037487, 0, 0, 0, 1.161
 shape = SubResource("CapsuleShape3D_7ogm8")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="Behaviour_Avoidance" type="Node" parent="."]
+script = ExtResource("2_clo42")
+enabled = false
+
+[node name="Behaviour_Seek" type="Node" parent="."]
+script = ExtResource("3_4k2oh")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
