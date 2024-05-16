@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/camera.gd" id="1_v82m2"]
 [ext_resource type="Shader" path="res://Assets/Camera.gdshader" id="2_1hpiq"]
 [ext_resource type="AudioStream" uid="uid://cifc2xwryrli" path="res://Assets/Audio/air.mp3" id="2_r13f0"]
+[ext_resource type="Shader" path="res://Scripts/Camera.gdshader" id="3_lnejf"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_81e6g"]
 

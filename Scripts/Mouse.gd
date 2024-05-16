@@ -4,7 +4,7 @@ class_name Mouse extends CharacterBody3D
 @export var acceleration = Vector3.ZERO
 @export var force = Vector3.ZERO
 @export var speed = 1.0
-@export var max_speed: float = 2.0
+@export var max_speed: float = 1.0
 @export var vel = Vector3.ZERO
 
 var behaviors = [] 
@@ -83,7 +83,7 @@ func _physics_process(delta):
 	
 func get_random_point_in_radius():
 	# choose a random angle within the field of view
-	var half_fov = field_of_view_angle / 3
+	var half_fov = field_of_view_angle / 2
 	var random_angle = randf_range(-half_fov, half_fov)
 	
 	# calculate the direction vector
@@ -97,20 +97,26 @@ func get_random_point_in_radius():
 
 	var targetloc = global_position + Vector3(x, 0, z)
 	
+	var pos_on_ground = put_on_ground(targetloc)
+	
+	return pos_on_ground
+	
+func put_on_ground(loc):
 	var raycast = RayCast3D.new()
-	raycast.target_position = Vector3(0, -25, 0)  # Set the length and direction of the ray
-	raycast.global_position = targetloc + Vector3(0, 15, 0)
+	raycast.target_position = Vector3(0, -50, 0)  # Set the length and direction of the ray
+	raycast.global_position = loc + Vector3(0, 50, 0)
 	
 	add_child(raycast)
+	
 	raycast.force_raycast_update()
 	
 	if raycast.is_colliding():
-		targetloc.y = raycast.get_collision_point().y
+		loc.y = raycast.get_collision_point().y
 	
 	remove_child(raycast)
 	raycast.queue_free()
 	
-	return targetloc
+	return loc
 
 func seek_force(target: Vector3):	
 	var toTarget = target - global_transform.origin
