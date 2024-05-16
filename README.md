@@ -21,5 +21,8 @@ There is altitude noise if the camera goes too high, and the closer you get to t
 Run on Godot 4.2.2.stable.mono (The .NET version). Press F5 to run root scene
 
 ## In-Game Controls
-Base controls for the camera 
 
+Base controls for the camera 
+> W A S D
+> Shift for speed and camera FOV change
+> Space for elevation if flying, jump if on ground and double press for flight

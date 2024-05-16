@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Mouse.gd" id="1_k5drl"]
 [ext_resource type="Script" path="res://Scripts/Avoidance.gd" id="2_clo42"]
-[ext_resource type="Script" path="res://Scripts/Behaviour_Seek_Mouse.gd" id="3_ns2ah"]
+[ext_resource type="Script" path="res://Scripts/Behaviour_Seek_Mouse.gd" id="3_k2h6e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o6d2p"]
 size = Vector3(0.424255, 1, 0.754883)
@@ -70,7 +70,7 @@ script = ExtResource("2_clo42")
 enabled = false
 
 [node name="Behaviour_Seek" type="Node" parent="."]
-script = ExtResource("3_ns2ah")
+script = ExtResource("3_k2h6e")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0

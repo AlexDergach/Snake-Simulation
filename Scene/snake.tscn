@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/Snake.gd" id="2_7t54e"]
 [ext_resource type="Script" path="res://Scripts/Avoidance.gd" id="3_6hkfr"]
 [ext_resource type="Script" path="res://Scripts/Harmonic.gd" id="3_veg7r"]
-[ext_resource type="Material" uid="uid://d0v11qo21hksc" path="res://snakeskin.tres" id="4_y1l8h"]
+[ext_resource type="Material" uid="uid://wg1mkvcpk57x" path="res://snakeskin.tres" id="4_y1l8h"]
 [ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="5_bu41v"]
 [ext_resource type="Script" path="res://Scripts/Behaviour_Seek.gd" id="5_y7t0y"]
 [ext_resource type="Script" path="res://Scripts/State_Wander.gd" id="6_p13m4"]
@@ -165,7 +165,6 @@ initial_state = NodePath("../State_Wander")
 
 [node name="MainSound" type="AudioStreamPlayer3D" parent="entity/snakeHead"]
 stream = ExtResource("10_noo8e")
-volume_db = 10.0
 autoplay = true
 max_distance = 10.0
 bus = &"Snake"
