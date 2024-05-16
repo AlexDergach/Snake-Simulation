@@ -51,11 +51,81 @@ Base controls for the camera :
 
 ## Sound
 
+### Snake
+
+### Mouse
+
+### Air
+
+### Nature
+
 ## Map
+
+Map is made up of a number of different assets and the terrian is a plugin using C#. There are a number of different textures used for different terrian types made, sand by the water, transitional textures when going to grass
 
 ## Post Processing
 
-## Particals
+We enabled a post processing function that you can toggle for a different experince when obeserving the simulation.
+Pressing P you can switch camera states of visibility
+
+The shader is implemented as a spatial shader with an unshaded render mode, allowing for efficient processing of each fragment. It utilizes uniform variables for edge threshold, saturation strength, and contrast strength, enabling dynamic adjustments to the visual effect.
+
+It has a technique for edge detection by sampling depth and normal textures. By calculating differences in depth and normal values in both horizontal and vertical directions
+Color processing begins with the conversion of color values to a linear color space to ensure accurate adjustments. Saturation is enhanced by preserving luminance while intensifying color values, and contrast is increased by manipulating color values around a midpoint.
+
+```
+
+void fragment() {
+    vec4 color = texture(screen_texture, SCREEN_UV);
+    
+    // Sample depth and normal textures
+    float depth = texture(depth_texture, SCREEN_UV).r;
+    vec3 normal = texture(normal_texture, SCREEN_UV).rgb;
+
+    // Calculate edge strength
+    float depth_diff_x = abs(depth - texture(depth_texture, SCREEN_UV + vec2(0.001, 0)).r);
+    float depth_diff_y = abs(depth - texture(depth_texture, SCREEN_UV + vec2(0, 0.001)).r);
+    float depth_edge = smoothstep(0.0, edge_threshold, depth_diff_x + depth_diff_y);
+
+    vec3 normal_diff_x = abs(normal - texture(normal_texture, SCREEN_UV + vec2(0.001, 0)).rgb);
+    vec3 normal_diff_y = abs(normal - texture(normal_texture, SCREEN_UV + vec2(0, 0.001)).rgb);
+    float normal_edge = smoothstep(0.0, edge_threshold, length(normal_diff_x + normal_diff_y));
+
+    // Combine edge strengths
+    float edge = max(depth_edge, normal_edge);
+    
+    // Convert to linear color space
+    vec3 linear_color = color.rgb / max(color.a, 0.0001);  // Avoid division by zero
+    
+    // Apply saturation
+    vec3 gray = vec3(dot(vec3(0.2126, 0.7152, 0.0722), linear_color));
+    vec3 saturated_color = mix(gray, linear_color, saturation_strength);
+    
+    // Apply contrast
+    vec3 contrasted_color = (saturated_color - 0.55) * contrast_strength + 0.5;
+    
+    // Mix original color with edge-enhanced color based on edge strength
+    vec3 final_color = mix(contrasted_color, linear_color, edge);
+    
+    // Output the final color
+    ALBEDO = vec3(final_color);
+}
+```
+
+Having the vertex ensure the whole screen is encompassed
+
+```
+void vertex() {
+    POSITION = vec4(VERTEX, 1.0);
+}
+```
+
+## Particles
+
+Particles were implemented for both the snakes movements and the blood splatter of the mouse once it was eaten, creating an ont-shot splashing effect.
+Firefly parts were set up with a slight transparency for the environment, so with the day and night cycles bringing night to give the terrian a better nighttime atmosphere of glowling sparks of green
+
+[David add a little some of the code you added for particals of the snake and mouse]
 
 # List of classes/assets in the project
 
