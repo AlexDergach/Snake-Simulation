@@ -43,18 +43,13 @@ Base controls for the camera :
 
 ## Snake
 
-### UI
-The UI allows the player to tweak four values in game: max speed, slither radius, slither amplitude and seek radius. The max speed slider changes the overall speed of the snake. The slither radius changes how wide the slithering is performed. The slither amplitude determines how the amplitude of the slithering. Lastly, the seek radius determines how far the snake's seek behaviour will get a random position in the wander state.
-
-
-
 ### Behaviours
 The snake has three steering behaviours and two states: avoidance behaviour, harmonic behaviour, seek behaviour, wander state, and attack state. The state machine will initialise the wander state at game start, which adopts the avoidance, harmonic, and seek behaviours all at once. The avoidance detects and avoids obstacles, the harmonic allows the snake to move in a slithering style of movement, and the seek behaviour and go to a destination point. Once the snake detects a mouse in its vicinity, it will change its state to the attack state.  
 The attack state adopts all the behaviours as well up until it closly reaches the mouse, which will quickly lunge at the mouse with a chance of missing depending on its own orientation. When the snake successfully attacks the mouse, the mouse will die and the snake will return to the wander state.
 
 #### Wander State
 ```
-# in the _think function
+# ..within _think function
 if random_loc == null:
     random_loc = get_random_point_in_radius()
 else:
@@ -74,19 +69,128 @@ else:
         timer.stop()
         timer.start()
 ```
-The Wander state gets a random position in the snake's radius
+If `random_loc` is null, a new random target location within a defined radius is generated using `get_random_point_in_radius()`. If `random_loc` is not null, it sets the snake's seek behavior target to this location. It then checks if the avoidance force (calculated by `Behaviour_Avoidance`) is greater than half of the seek force. If so, it recalculates random_loc to a position in the opposite direction of the avoidance force, adjusts it to be on the ground using `put_on_ground()`, and updates the seek behavior target. If the snake gets within 3 units of `random_loc`, it resets `random_loc` to null, unlocks collision, stops the timer, and restarts it to trigger another target calculation after a delay.  
+<br>
+<br>
+```
+func get_random_point_in_radius():
+	# choose a random angle within the field of view
+	var half_fov = field_of_view_angle / 2
+	var random_angle = randf_range(-half_fov, half_fov)
+	
+	# calculate the direction vector
+	var forward_direction = snake.transform.basis.z.normalized()
+	var rotation = Quaternion(Vector3.UP, random_angle)
+	var direction = rotation*forward_direction
+	
+	# calculate the random point within the radius
+	var x = direction.x * radius * randf()
+	var z = direction.z * radius * randf()
 
-### Movement
+	var targetloc = snake.global_position + Vector3(x, 0, z)
+	
+	var pos_on_ground = put_on_ground(targetloc)
+	
+	return pos_on_ground
+```
+The `get_random_point_in_radius` function generates a random point within a specified radius around the snake, ensuring the point is within the snake's forward-facing field of view. It first calculates a random angle within half the field of view, then creates a direction vector based on this angle. Using this direction, it computes random x and z coordinates within the given radius, forming a target location. This target location is then adjusted to ensure it lies on the ground using the `put_on_ground` function, and the final adjusted location is returned.  
+<br>
+<br>
+```
+func put_on_ground(loc):
+	var raycast = RayCast3D.new()
+	raycast.target_position = Vector3(0, -50, 0)
+	raycast.global_position = loc + Vector3(0, 50, 0)
+	
+	add_child(raycast)
+	
+	raycast.force_raycast_update()
+	
+	if raycast.is_colliding():
+		loc.y = raycast.get_collision_point().y
+	
+	remove_child(raycast)
+	raycast.queue_free()
+	
+	return loc
+```
+The `put_on_ground` function adjusts a given location to ensure it is on the ground by using a `RayCast3D`. It creates a new `RayCast3D` instance, sets its target position to cast 50 units downward from 50 units above the given location, and adds it to the scene. The raycast is forced to update immediately, and if it detects a collision with the ground, it adjusts the y-coordinate of the given location to match the collision point's y-coordinate. Finally, the raycast is removed from the scene and freed from memory, and the adjusted location is returned.  
+<br>
+<br>
+```
+# ..within _think function
+    if !prey:
+        detect_prey()
+    else:
+        snake.prey = prey
+        var AttackState = load("res://Scripts/State_Attack.gd")
+        snake.get_node("StateMachine").change_state(AttackState.new())
+
+func detect_prey():
+	for p in snake.prey_list:
+		if is_instance_valid(p):
+			if p.global_position.distance_to(snake.global_position) < radius:
+				prey = p
+				break
+```
+Within the `_think` function, the code checks if there is no detected prey. If no prey is detected, it calls `detect_prey()`, which iterates through a list of potential prey objects (`prey_list`). For each valid prey object, it checks if the prey is within a specified radius from the snake's position. If a prey is found within this radius, it sets the `prey` variable to this object and breaks out of the loop. If prey is detected, the snake's prey is set to the detected prey, and the state of the snake is changed to `State_Attack` by loading and transitioning to the attack state script.  
+
+#### Attack State
+```
+func _think():
+	if prey.global_position.distance_to(snake.global_position) < 10:
+		if snake.get_node("Behaviour_Harmonic").is_enabled():
+			snake.get_node("Behaviour_Harmonic").set_enabled(false)
+			snake.get_node("Behaviour_Avoidance").set_enabled(false)
+		
+		snake.get_node("Behaviour_Seek").world_target = prey.global_position
+		snake.get_node("Behaviour_Seek").set_enabled(true)
+		snake.max_speed = 50
+		snake.speed = 50
+		snake.damping = -5
+		
+		if prey.global_position.distance_to(snake.global_position) < 3:
+			attack_sound.play()
+			mouse_sound.play()
+			blood_particle.restart()
+			
+			prey.queue_free()
+			snake.prey_list.erase(prey)
+			
+			var WanderState = load("res://Scripts/State_Wander.gd")
+			snake.get_node("StateMachine").change_state(WanderState.new())
+			
+	snake.get_node("Behaviour_Seek").world_target = prey.global_position
+```
+In the Attack State, the `_think` function controls the snake's behavior when it detects prey. If the prey is within 10 units of the snake, it disables the `Behaviour_Harmonic` and `Behaviour_Avoidance` behaviors to stop the snake's harmonic movement and avoidance. It then sets the snake's seek target to the prey's position, enabling the `Behaviour_Seek` behavior and increasing the snake's speed and reducing its damping to make it move faster towards the prey. If the prey gets within 3 units of the snake, the function plays attack and mouse sounds, restarts the blood particle effect, removes the prey from the scene and the snake's prey list, and transitions the snake back to the `State_Wander` state by loading and switching to the wander state script. The seek target is continuously updated to the prey's position.
+
+
+### UI
+The UI allows the player to tweak four values in game: max speed, slither radius, slither amplitude and seek radius. The max speed slider changes the overall speed of the snake. The slither radius changes how wide the slithering is performed. The slither amplitude determines how the amplitude of the slithering. Lastly, the seek radius determines how far the snake's seek behaviour will get a random position in the wander state.
+![image](https://github.com/AlexDergach/Snake-Simulation/assets/98461460/7cd874e1-a5ec-46c7-be28-bbc0ea31ee5f)
+
 
 ## Sound
+The sound is a mixture of free online sources and self-made sounds. For example, the sound of the snake is us hissing into the mic and adding sound effects to it.
 
-### Snake
+- Snake :
+Is a 3D sound node that gets louder the closer you get to the head of the snake, and it has an attack sound that plays once it attacks a mouse.
+- Mouse :
+Custom sound for the mouse once the snake eats it
+- Air :
+This sound gets louder as your 'Altitude elvates' and only starts playing at a certain Y level of the camera.
+- Nature :
+This is a mixture of sounds that play through out the whole simulation: nature and river sounds when you get closer to the water.
 
-### Mouse
+## Map
 
-### Air
+The map is made up of a number of different assets, and the terrian is a C# plugin. The assets are bunched into an array with different frequencies to spread them out and have different asset values. 
+There is a day and night cycle with an animation player controlling the colour of the world environment, rotation, and light levels of the directional light.
+There are mountainous regions, sandy beaches, and a rocky dune, letting the snake traverse a number of terrains.
 
-### Nature
+Night Example:
+![image](https://github.com/AlexDergach/Snake-Simulation/assets/98461460/61e8ac2c-1402-4ce4-a1ec-af8dcfa7a8a9)
+
 
 ## Map
 
