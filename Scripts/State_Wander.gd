@@ -9,6 +9,8 @@ var field_of_view_angle = PI / 5
 var collision_lock = false
 @onready var timer = get_node("../Timer")
 
+var first_point_delay = 0
+
 
 func _ready():
 	snake = get_parent()
@@ -18,8 +20,8 @@ func _enter():
 	snake.get_node("Behaviour_Avoidance").set_enabled(true)
 	snake.get_node("Behaviour_Harmonic").set_enabled(true)
 	
-	random_loc = get_random_point_in_radius()
-	snake.get_node("Behaviour_Seek").world_target = random_loc
+	#random_loc = get_random_point_in_radius()
+	#snake.get_node("Behaviour_Seek").world_target = random_loc
 	
 	timer.start(10)
 	
@@ -34,24 +36,29 @@ func _think():
 		#var AttackState = load("res://AttackState.gd")
 		#snake.get_node("StateMachine").change_state(AttackState.new())
 		
-	if random_loc == null:
-		random_loc = get_random_point_in_radius()
-	else:
-		snake.get_node("Behaviour_Seek").world_target = random_loc
-		
-		if snake.get_node("Behaviour_Avoidance").calculate().length() > snake.get_node("Behaviour_Seek").calculate().length():
-			var avoidance_force = snake.get_node("Behaviour_Avoidance").calculate()
-			var opposite_direction = -avoidance_force.normalized()
-			random_loc = snake.global_transform.origin + -opposite_direction * radius
+	# small delay for put_on_ground function to work
+	if first_point_delay == 10:
+		if random_loc == null:
+			random_loc = get_random_point_in_radius()
+		else:
 			snake.get_node("Behaviour_Seek").world_target = random_loc
-			collision_lock = true
-		
-		if random_loc.distance_to(snake.global_position) < 3:
-			random_loc = null
-			collision_lock = false
-			timer.stop()
-			timer.start()
 			
+			if snake.get_node("Behaviour_Avoidance").calculate().length() > snake.get_node("Behaviour_Seek").calculate().length()/2:
+				var avoidance_force = snake.get_node("Behaviour_Avoidance").calculate()
+				var opposite_direction = -avoidance_force.normalized()
+				random_loc = snake.global_position + -opposite_direction * radius/2
+				random_loc = put_on_ground(random_loc)
+				snake.get_node("Behaviour_Seek").world_target = random_loc
+				collision_lock = true
+			
+			if random_loc.distance_to(snake.global_position) < 3:
+				random_loc = null
+				collision_lock = false
+				timer.stop()
+				timer.start()
+	else:
+		first_point_delay += 1
+	
 
 func get_random_point_in_radius():
 	# choose a random angle within the field of view
@@ -69,20 +76,32 @@ func get_random_point_in_radius():
 
 	var targetloc = snake.global_position + Vector3(x, 0, z)
 	
+	var pos_on_ground = put_on_ground(targetloc)
+	
+	return pos_on_ground
+
+func put_on_ground(loc):
 	var raycast = RayCast3D.new()
 	raycast.target_position = Vector3(0, -25, 0)  # Set the length and direction of the ray
-	raycast.global_position = targetloc + Vector3(0, 15, 0)
+	raycast.global_position = loc + Vector3(0, 15, 0)
 	
 	add_child(raycast)
+	
+	
+	
 	raycast.force_raycast_update()
 	
 	if raycast.is_colliding():
-		targetloc.y = raycast.get_collision_point().y
-		
+		loc.y = raycast.get_collision_point().y
+	
+	
+	print(raycast.get_collision_point())
+	print(loc)
+	
 	remove_child(raycast)
 	raycast.queue_free()
 	
-	return targetloc
+	return loc
 
 func _on_timer_timeout():
 	random_loc = null

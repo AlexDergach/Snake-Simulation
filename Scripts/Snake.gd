@@ -31,8 +31,6 @@ func _process(delta):
 		on_draw_gizmos()
 
 func _physics_process(delta):
-	
-		
 	if should_calculate:
 		new_force = calculate()
 
@@ -55,22 +53,8 @@ func _physics_process(delta):
 		look_at(global_position - vel.normalized(),temp_up)
 		
 	
-	
 	move_and_slide()
 
-	# Adjust the height to stay on the ground
-	#var raycast_down = RayCast3D.new()
-	#add_child(raycast_down)
-	#raycast_down.target_position = Vector3(0, -10, 0)
-	#raycast_down.global_position = global_position + Vector3(0, 10, 0)
-	#raycast_down.force_raycast_update()
-#
-	#if raycast_down.is_colliding() or not is_on_floor():
-		#global_position.y = raycast_down.get_collision_point().y
-#
-	#remove_child(raycast_down)
-	#raycast_down.queue_free()
-	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
