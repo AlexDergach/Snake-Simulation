@@ -6,6 +6,12 @@ var default_fov = 80
 var sprint_fov_increase = 15
 var fov_change_speed = 50.0
 var sound_playing = false
+
+var vis = false
+
+@onready var post_processing = $Camera/Camera3D/PostProcessing
+
+
 # For pivot of Camera
 @onready var head = $Camera
 @onready var camera = $Camera/Camera3D
@@ -45,7 +51,13 @@ func _unhandled_input(event):
 			sprinting = true
 			speed = 9.0
 			camera.fov = default_fov + sprint_fov_increase
-
+	if Input.is_action_just_pressed("PostP"):
+		if vis:
+			post_processing.visible = false
+			vis = false
+		else:
+			post_processing.visible = true
+			vis = true
 	elif event is InputEventKey and not event.pressed:
 		if Input.is_action_just_released("Sprint"):
 			sprinting = false

@@ -160,7 +160,7 @@ script = ExtResource("27_d6v1h")
 WaterFactor = 1.0
 WaterInnerOffset = 0.2
 WaterColor = Color(0.4, 1, 1, 1)
-WaterFresnelColor = Color(1, 1, 1, 1)
+WaterFresnelColor = Color(0.894417, 0.412369, 0.32061, 1)
 WaterMetallic = 0.0
 WaterRoughness = 0.0
 WaterTimeScale = 0.1
@@ -381,6 +381,9 @@ _data = {
 [node name="Map" type="Node3D"]
 script = ExtResource("1_3pr23")
 
+[node name="Camera" parent="." instance=ExtResource("36_sfdh1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.0424, 0)
+
 [node name="TerraBrush" type="Node3D" parent="."]
 script = ExtResource("1_latr6")
 DataPath = "res://Scene/Map"
@@ -400,9 +403,6 @@ libraries = {
 "": SubResource("AnimationLibrary_7jo41")
 }
 autoplay = "sun"
-
-[node name="Camera" parent="." instance=ExtResource("36_sfdh1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.0424, 0)
 
 [node name="Waterbounderis" type="StaticBody3D" parent="."]
 
