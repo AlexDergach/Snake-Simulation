@@ -169,6 +169,10 @@ In the Attack State, the `_think` function controls the snake's behavior when it
 The UI allows the player to tweak four values in game: max speed, slither radius, slither amplitude and seek radius. The max speed slider changes the overall speed of the snake. The slither radius changes how wide the slithering is performed. The slither amplitude determines how the amplitude of the slithering. Lastly, the seek radius determines how far the snake's seek behaviour will get a random position in the wander state.
 ![image](https://github.com/AlexDergach/Snake-Simulation/assets/98461460/7cd874e1-a5ec-46c7-be28-bbc0ea31ee5f)
 
+## Mouse
+The behaviour of the mouse has more basic movements as its purpose is to only serve as food for the snake. It has the avoidance and seek behaviours, allowing it to traverse the map.  
+![image](https://github.com/AlexDergach/Snake-Simulation/assets/98461460/aa1338f8-e7fb-449f-9a9b-4968db2d8156)
+
 
 ## Sound
 The sound is a mixture of free online sources and self-made sounds. For example, the sound of the snake is us hissing into the mic and adding sound effects to it.
@@ -194,7 +198,7 @@ Night Example:
 
 ## Map
 
-Map is made up of a number of different assets and the terrian is a 
+Map is made up of a number of different assets and the terrian is a !!!!!!!!!!!!!!!!!! FIX !!!!!!!!!!!!!!!!!!!!!!!
 
 ## Post Processing
 
@@ -256,9 +260,7 @@ void vertex() {
 ## Particles
 
 Particles were implemented for both the snakes movements and the blood splatter of the mouse once it was eaten, creating an ont-shot splashing effect.
-Firefly parts were set up with a slight transparency for the environment, so with the day and night cycles bringing night to give the terrian a better nighttime atmosphere of glowling sparks of green
-
-[David add a little some of the code you added for particals of the snake and mouse]
+Firefly parts were set up with a slight transparency for the environment, so with the day and night cycles bringing night to give the terrain a better night time atmosphere of glowling sparks of green
 
 # List of classes/assets in the project
 
