@@ -9,8 +9,10 @@ Mouse - Done
 Start map logic - Done
 
 Day 2:
-Map - IN PROGRESS
+Map - DONE
 
+Day 3:
+	
 Alex :
 	Sounds - DONE
 	Finish Collisions for water and assets - DONE
@@ -19,8 +21,8 @@ Alex :
 	Altitude sound for camera - DONE
 	Particials - DONE
 	Breif
-	UI
-	Post Processing?
+	UI - DONE
+	Post Processing - DONE
 	Exporting it out of editor?
 	
 David:

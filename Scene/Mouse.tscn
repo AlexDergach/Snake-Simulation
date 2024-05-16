@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Mouse.gd" id="1_k5drl"]
 [ext_resource type="Script" path="res://Scripts/Avoidance.gd" id="2_clo42"]
-[ext_resource type="Script" path="res://Scene/Behaviour_Seek_Mouse.gd" id="3_4k2oh"]
+[ext_resource type="Script" path="res://Scripts/Behaviour_Seek_Mouse.gd" id="3_4k2oh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o6d2p"]
 size = Vector3(0.424255, 1, 0.754883)

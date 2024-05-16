@@ -2,8 +2,8 @@
 
 [ext_resource type="FontFile" uid="uid://covbr1f1dky7w" path="res://Assets/Fonts/Jersey15-Regular.ttf" id="1_8ho2i"]
 [ext_resource type="Script" path="res://Scripts/UI.gd" id="1_356e0"]
-[ext_resource type="LabelSettings" uid="uid://dffl0rdmoqskh" path="res://label.tres" id="2_f40kj"]
-[ext_resource type="LabelSettings" uid="uid://c5e3av3i78ut7" path="res://label2.tres" id="3_nr2ls"]
+[ext_resource type="LabelSettings" uid="uid://dffl0rdmoqskh" path="res://Assets/label.tres" id="2_f40kj"]
+[ext_resource type="LabelSettings" uid="uid://c5e3av3i78ut7" path="res://Assets/label2.tres" id="3_nr2ls"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nynd7"]
 
@@ -375,6 +375,7 @@ text = "M"
 label_settings = ExtResource("2_f40kj")
 
 [node name="Panel10" type="Panel" parent="Controls"]
+layout_mode = 0
 offset_left = 53.0
 offset_top = 525.0
 offset_right = 93.0
@@ -382,6 +383,7 @@ offset_bottom = 565.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_1meki")
 
 [node name="Label16" type="Label" parent="Controls"]
+layout_mode = 0
 offset_left = 22.0
 offset_top = 568.0
 offset_right = 136.0
@@ -390,6 +392,7 @@ text = "Full Screen"
 label_settings = ExtResource("3_nr2ls")
 
 [node name="Label17" type="Label" parent="Controls"]
+layout_mode = 0
 offset_left = 62.0
 offset_top = 519.0
 offset_right = 93.0
