@@ -6,7 +6,8 @@ Student Number: C20401562 & C20406272
 
 Class Group: TU856, Game Engines 2
 
-Video :
+Video (click the picture):  
+[![snakeimage](https://github.com/AlexDergach/Snake-Simulation/assets/98461460/ab866023-7dac-42bc-84f5-a9125ac378a4)](https://youtu.be/nBBGO2gEl0w)
 
 
 # Description of the project
@@ -306,25 +307,23 @@ Firefly parts were set up with a slight transparency for the environment, so wit
 
 # What I am most proud of in the assignment
 
-- We are proud of snake item 1
-- We are proud of snake item 2
-- We are proud of the custom sound design and atmosphere
-- We are proud of the partical designs
+- We are proud of the snake's movement implementation
+- We are proud of the snake's design
+- We are proud of the custom sound design, atmosphere, and models
+- We are proud of the particle designs
 - We are proud of the dynamically changing UI
-- We are proud of the mouse item 1
 - We are proud of how the camera works
 - We are proud we could mimic a cool lookin snake :D
 
 # What I learned
 
-- We learnt how snake item 1
-- We learnt how snake item 2
-- We learnt how snake item 3
-- We learnt how mouse item 1
-- We learnt about path finding and navigation
-- We learnt about godot's lighting and shadow system for maps
-- We learnt how challenging it can be to combine models and interact game systems and design
-- We learnt how you can edit sound pitch and other effects
+- We learned the ins and outs of steering behaviours
+- We learned the state machine functionalities
+- We learned how to procedurally animate and emulate the movement of animals
+- We learned about path finding and navigation
+- We learned about godot's lighting and shadow system for maps
+- We learned how challenging it can be to combine models and interact game systems and design
+- We learned how you can edit sound pitch and other effects
 
 ## Prior Snake Research
 
