@@ -3,8 +3,8 @@ class_name Mouse extends CharacterBody3D
 @export var mass = 1
 @export var acceleration = Vector3.ZERO
 @export var force = Vector3.ZERO
-@export var speed = 2.0
-@export var max_speed: float = 3.0
+@export var speed = 1.0
+@export var max_speed: float = 2.0
 @export var vel = Vector3.ZERO
 
 var behaviors = [] 
@@ -13,7 +13,7 @@ var behaviors = []
 
 var new_force = Vector3.ZERO
 var should_calculate = false
-@export var damping = 0.1
+@export var damping = 0
 
 var random_loc
 var field_of_view_angle = PI / 4
@@ -62,7 +62,7 @@ func _physics_process(delta):
 	if should_calculate:
 		new_force = calculate()
 
-	force = lerp(force, new_force, delta)
+	force = lerp(force, new_force, delta*5)
 	acceleration = force / mass
 	vel += acceleration * delta
 	speed = vel.length()
@@ -76,9 +76,7 @@ func _physics_process(delta):
 		
 		set_velocity(vel)
 		
-		# banking
-		var temp_up = global_transform.basis.y.lerp(Vector3.UP + acceleration/2, delta/2)
-		look_at(global_position - vel.normalized(),temp_up)
+		look_at(global_position - vel.normalized(),Vector3.UP)
 		
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -87,7 +85,7 @@ func _physics_process(delta):
 	
 func get_random_point_in_radius():
 	# choose a random angle within the field of view
-	var half_fov = field_of_view_angle / 2
+	var half_fov = field_of_view_angle / 3
 	var random_angle = randf_range(-half_fov, half_fov)
 	
 	# calculate the direction vector
@@ -99,7 +97,22 @@ func get_random_point_in_radius():
 	var x = direction.x * radius * randf()
 	var z = direction.z * radius * randf()
 
-	return global_position + Vector3(x, 0, z)
+	var targetloc = global_position + Vector3(x, 0, z)
+	
+	var raycast = RayCast3D.new()
+	raycast.target_position = Vector3(0, -25, 0)  # Set the length and direction of the ray
+	raycast.global_position = targetloc + Vector3(0, 15, 0)
+	
+	add_child(raycast)
+	raycast.force_raycast_update()
+	
+	if raycast.is_colliding():
+		targetloc.y = raycast.get_collision_point().y
+	
+	remove_child(raycast)
+	raycast.queue_free()
+	
+	return targetloc
 
 func seek_force(target: Vector3):	
 	var toTarget = target - global_transform.origin

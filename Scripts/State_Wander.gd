@@ -3,11 +3,12 @@ class_name State_Wander extends State
 var snake
 var prey
 var random_loc
-var field_of_view_angle = PI / 4
+var field_of_view_angle = PI / 5
 @export var radius : float = 25
 
 var collision_lock = false
 @onready var timer = get_node("../Timer")
+
 
 func _ready():
 	snake = get_parent()
@@ -43,7 +44,6 @@ func _think():
 			var opposite_direction = -avoidance_force.normalized()
 			random_loc = snake.global_transform.origin + -opposite_direction * radius
 			snake.get_node("Behaviour_Seek").world_target = random_loc
-			print(snake.get_node("Behaviour_Avoidance").calculate().length())
 			collision_lock = true
 		
 		if random_loc.distance_to(snake.global_position) < 3:
@@ -55,7 +55,7 @@ func _think():
 
 func get_random_point_in_radius():
 	# choose a random angle within the field of view
-	var half_fov = field_of_view_angle / 2
+	var half_fov = field_of_view_angle / 3
 	var random_angle = randf_range(-half_fov, half_fov)
 	
 	# calculate the direction vector
@@ -67,7 +67,22 @@ func get_random_point_in_radius():
 	var x = direction.x * radius * randf()
 	var z = direction.z * radius * randf()
 
-	return snake.global_position + Vector3(x, 0, z)
+	var targetloc = snake.global_position + Vector3(x, 0, z)
+	
+	var raycast = RayCast3D.new()
+	raycast.target_position = Vector3(0, -25, 0)  # Set the length and direction of the ray
+	raycast.global_position = targetloc + Vector3(0, 15, 0)
+	
+	add_child(raycast)
+	raycast.force_raycast_update()
+	
+	if raycast.is_colliding():
+		targetloc.y = raycast.get_collision_point().y
+		
+	remove_child(raycast)
+	raycast.queue_free()
+	
+	return targetloc
 
 func _on_timer_timeout():
 	random_loc = null

@@ -44,8 +44,7 @@ func _physics_process(delta):
 func feel(local_ray):
 	var feeler = {}
 	var ray_end = boid.global_transform * (local_ray)
-	var query = PhysicsRayQueryParameters3D.create(boid.global_transform.origin, ray_end, boid.collision_mask)
-	query.set_collision_mask(2)
+	var query = PhysicsRayQueryParameters3D.create(boid.global_transform.origin, ray_end,2)
 	var result = space_state.intersect_ray(query)
 	feeler.end = ray_end
 	feeler.hit = result
