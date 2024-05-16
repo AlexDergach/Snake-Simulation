@@ -1149,7 +1149,6 @@ libraries = {
 autoplay = "light"
 
 [node name="FireFlies" type="Node3D" parent="."]
-visible = false
 
 [node name="FireFlyParticles" parent="FireFlies" instance=ExtResource("58_q5mop")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 4.50849, 0)
