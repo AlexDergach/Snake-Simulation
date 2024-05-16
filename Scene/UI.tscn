@@ -331,56 +331,29 @@ offset_bottom = 277.0
 text = "Movement"
 label_settings = ExtResource("3_nr2ls")
 
-[node name="Label10" type="Label" parent="Controls"]
-layout_mode = 0
-offset_left = 58.0
-offset_top = 281.0
-offset_right = 83.0
-offset_bottom = 336.0
-theme_override_font_sizes/font_size = 40
-text = "C"
-label_settings = ExtResource("2_f40kj")
-
-[node name="Panel7" type="Panel" parent="Controls"]
-layout_mode = 0
-offset_left = 49.0
-offset_top = 286.0
-offset_right = 89.0
-offset_bottom = 326.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_1meki")
-
-[node name="Label11" type="Label" parent="Controls"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 332.0
-offset_right = 143.0
-offset_bottom = 358.0
-text = "Toggle Camera"
-label_settings = ExtResource("3_nr2ls")
-
 [node name="Panel8" type="Panel" parent="Controls"]
 layout_mode = 0
 offset_left = 50.0
-offset_top = 363.0
+offset_top = 289.0
 offset_right = 90.0
-offset_bottom = 403.0
+offset_bottom = 329.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_1meki")
 
 [node name="Label12" type="Label" parent="Controls"]
 layout_mode = 0
 offset_left = 17.0
-offset_top = 407.0
+offset_top = 333.0
 offset_right = 130.0
-offset_bottom = 433.0
+offset_bottom = 359.0
 text = "UI Visability"
 label_settings = ExtResource("3_nr2ls")
 
 [node name="Label13" type="Label" parent="Controls"]
 layout_mode = 0
 offset_left = 59.0
-offset_top = 359.0
+offset_top = 285.0
 offset_right = 84.0
-offset_bottom = 414.0
+offset_bottom = 340.0
 theme_override_font_sizes/font_size = 40
 text = "V"
 label_settings = ExtResource("2_f40kj")
@@ -388,26 +361,26 @@ label_settings = ExtResource("2_f40kj")
 [node name="Panel9" type="Panel" parent="Controls"]
 layout_mode = 0
 offset_left = 51.0
-offset_top = 448.0
+offset_top = 374.0
 offset_right = 91.0
-offset_bottom = 488.0
+offset_bottom = 414.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_1meki")
 
 [node name="Label14" type="Label" parent="Controls"]
 layout_mode = 0
 offset_left = 9.0
-offset_top = 490.0
+offset_top = 416.0
 offset_right = 141.0
-offset_bottom = 516.0
+offset_bottom = 442.0
 text = "Mouse Usable"
 label_settings = ExtResource("3_nr2ls")
 
 [node name="Label15" type="Label" parent="Controls"]
 layout_mode = 0
 offset_left = 55.0
-offset_top = 443.0
+offset_top = 369.0
 offset_right = 86.0
-offset_bottom = 498.0
+offset_bottom = 424.0
 theme_override_font_sizes/font_size = 40
 text = "M"
 label_settings = ExtResource("2_f40kj")
@@ -415,26 +388,26 @@ label_settings = ExtResource("2_f40kj")
 [node name="Panel10" type="Panel" parent="Controls"]
 layout_mode = 0
 offset_left = 53.0
-offset_top = 525.0
+offset_top = 451.0
 offset_right = 93.0
-offset_bottom = 565.0
+offset_bottom = 491.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_1meki")
 
 [node name="Label16" type="Label" parent="Controls"]
 layout_mode = 0
 offset_left = 22.0
-offset_top = 568.0
+offset_top = 494.0
 offset_right = 136.0
-offset_bottom = 594.0
+offset_bottom = 520.0
 text = "Full Screen"
 label_settings = ExtResource("3_nr2ls")
 
 [node name="Label17" type="Label" parent="Controls"]
 layout_mode = 0
 offset_left = 62.0
-offset_top = 519.0
+offset_top = 445.0
 offset_right = 93.0
-offset_bottom = 574.0
+offset_bottom = 500.0
 theme_override_font_sizes/font_size = 40
 text = "F"
 label_settings = ExtResource("2_f40kj")
