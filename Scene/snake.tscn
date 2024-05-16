@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://csvmu5rfx0dl1"]
+[gd_scene load_steps=24 format=3 uid="uid://csvmu5rfx0dl1"]
 
 [ext_resource type="Script" path="res://Scripts/snake_options.gd" id="1_4o5bq"]
 [ext_resource type="Script" path="res://Scripts/SpineAnimator.gd" id="1_hayyj"]
@@ -13,6 +13,9 @@
 [ext_resource type="AudioStream" uid="uid://dh07od4e831iu" path="res://Assets/Audio/snake.mp3" id="10_noo8e"]
 [ext_resource type="AudioStream" uid="uid://wrh4vcwxiumd" path="res://Assets/Audio/whoose.mp3" id="11_s3xef"]
 [ext_resource type="Script" path="res://Scripts/State_Attack.gd" id="11_sp34n"]
+[ext_resource type="PackedScene" uid="uid://d00ogrswyepu6" path="res://Scene/GroundParticle.tscn" id="14_8gnqy"]
+[ext_resource type="AudioStream" uid="uid://bxvrosesdy7y0" path="res://Assets/Audio/mouse.mp3" id="14_h11kq"]
+[ext_resource type="PackedScene" uid="uid://h7gpv0ogynkl" path="res://Scene/BloodParticle.tscn" id="15_0gej1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jnkwp"]
 resource_name = "Material.001"
@@ -165,19 +168,28 @@ initial_state = NodePath("../State_Wander")
 
 [node name="MainSound" type="AudioStreamPlayer3D" parent="entity/snakeHead"]
 stream = ExtResource("10_noo8e")
-volume_db = 10.0
+volume_db = 20.0
 autoplay = true
 max_distance = 10.0
 bus = &"Snake"
-emission_angle_enabled = true
 
 [node name="AttackSound" type="AudioStreamPlayer3D" parent="entity/snakeHead"]
 stream = ExtResource("11_s3xef")
+volume_db = 10.0
 bus = &"Whoose"
+
+[node name="MouseSound" type="AudioStreamPlayer3D" parent="entity/snakeHead"]
+stream = ExtResource("14_h11kq")
+volume_db = 10.0
 
 [node name="Timer" type="Timer" parent="entity/snakeHead"]
 wait_time = 10.0
 one_shot = true
+
+[node name="GroundParticle" parent="entity/snakeHead" instance=ExtResource("14_8gnqy")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -0.472, 0)
+
+[node name="BloodParticle" parent="entity/snakeHead" instance=ExtResource("15_0gej1")]
 
 [node name="tail" type="CharacterBody3D" parent="entity"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.072, 0, 0)
@@ -191,5 +203,8 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0143318, 0.0241776, -0.00532579)
 shape = SubResource("BoxShape3D_cax6a")
 disabled = true
+
+[node name="GroundParticle" parent="entity/tail" instance=ExtResource("14_8gnqy")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -0.472, 0)
 
 [connection signal="timeout" from="entity/snakeHead/Timer" to="entity/snakeHead/State_Wander" method="_on_timer_timeout"]

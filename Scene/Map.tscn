@@ -1252,10 +1252,10 @@ volume_db = -33.564
 autoplay = true
 
 [node name="snake" parent="." instance=ExtResource("59_yjti4")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -27.4062, 1.55529, 3.59933)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -27.4062, 1.55529, 3.59933)
 
 [node name="Mouse" parent="." instance=ExtResource("63_2cwlc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.935352, -3.55385, 28.0256)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.50237, -3.64868, 47.0169)
 
 [node name="Mouse2" parent="." instance=ExtResource("63_2cwlc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.6753, 0.636484, 39.8503)

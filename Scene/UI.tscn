@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://05jdkdjwclli"]
+[gd_scene load_steps=11 format=3 uid="uid://0imu8y5fgl3g"]
 
 [ext_resource type="FontFile" uid="uid://covbr1f1dky7w" path="res://Assets/Fonts/Jersey15-Regular.ttf" id="1_8ho2i"]
 [ext_resource type="Script" path="res://Scripts/UI.gd" id="1_356e0"]
-[ext_resource type="LabelSettings" uid="uid://dffl0rdmoqskh" path="res://Assets/label.tres" id="2_f40kj"]
-[ext_resource type="LabelSettings" uid="uid://c5e3av3i78ut7" path="res://Assets/label2.tres" id="3_nr2ls"]
+[ext_resource type="LabelSettings" path="res://Assets/label.tres" id="2_f40kj"]
+[ext_resource type="LabelSettings" path="res://Assets/label2.tres" id="3_nr2ls"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nynd7"]
 
@@ -144,9 +144,18 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_wcvmf")
 
 [node name="Label" type="Label" parent="Info"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -64.0
+offset_top = 1.0
+offset_right = 369.0
+offset_bottom = 62.0
 text = "Current behaviour :"
+label_settings = SubResource("LabelSettings_1bfmn")
+
+[node name="Label2" type="Label" parent="Info"]
+offset_left = 391.0
+offset_top = 2.0
+offset_right = 824.0
+offset_bottom = 63.0
 label_settings = SubResource("LabelSettings_1bfmn")
 
 [node name="Controls" type="Panel" parent="."]
@@ -313,11 +322,11 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_1meki")
 
 [node name="Label11" type="Label" parent="Controls"]
 layout_mode = 0
-offset_left = -7.0
-offset_top = 332.0
-offset_right = 144.0
-offset_bottom = 358.0
-text = "First Peron View"
+offset_left = -13.0
+offset_top = 331.0
+offset_right = 149.0
+offset_bottom = 357.0
+text = "First Person View"
 label_settings = ExtResource("3_nr2ls")
 
 [node name="Panel8" type="Panel" parent="Controls"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjrn05asukivk"]
+[gd_scene load_steps=6 format=3 uid="uid://bjrn05asukivk"]
 
-[ext_resource type="Material" uid="uid://wg1mkvcpk57x" path="res://snakeskin.tres" id="1_kv5j2"]
+[ext_resource type="Material" uid="uid://d0v11qo21hksc" path="res://snakeskin.tres" id="1_kv5j2"]
+[ext_resource type="PackedScene" uid="uid://d00ogrswyepu6" path="res://Scene/GroundParticle.tscn" id="2_xvdyn"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_nn785"]
 _surfaces = [{
@@ -48,3 +49,6 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0229215, -0.0256091, -0.00067842)
 shape = SubResource("BoxShape3D_vhlqx")
 disabled = true
+
+[node name="GroundParticle" parent="." instance=ExtResource("2_xvdyn")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -0.472, 0)

@@ -6,9 +6,11 @@ var full = false
 
 @onready var max_speed_slider = $Sliders/HSlider
 @onready var snake_length_slider = $Sliders/HSlider2
-@onready var slither_radiu_slider = $Sliders/HSlider3
+@onready var slither_radius_slider = $Sliders/HSlider3
 @onready var slither_amp_slider = $Sliders/HSlider4
 @onready var seek_radius_slider = $Sliders/HSlider5
+
+@onready var label_2 = $Info/Label2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

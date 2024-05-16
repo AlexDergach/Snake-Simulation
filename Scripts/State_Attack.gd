@@ -10,7 +10,9 @@ var collision_lock = false
 @onready var timer = get_node("../Timer")
 
 var first_point_delay = 0
-
+@onready var attack_sound = $"../AttackSound"
+@onready var mouse_sound = $"../MouseSound"
+@onready var blood_particle = $"../BloodParticle/GPUParticles3D"
 
 func _ready():
 	snake = get_parent()
@@ -24,9 +26,6 @@ func _enter():
 	
 	prey = snake.prey
 	timer.start(10)
-	
-	print("attack state entered")
-	
 	
 
 func _exit():
@@ -47,6 +46,10 @@ func _think():
 		snake.damping = -5
 		
 		if prey.global_position.distance_to(snake.global_position) < 3:
+			attack_sound.play()
+			mouse_sound.play()
+			blood_particle.restart()
+			
 			prey.queue_free()
 			snake.prey_list.erase(prey)
 			

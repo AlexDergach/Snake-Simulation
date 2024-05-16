@@ -13,12 +13,13 @@ vertex_color_use_as_albedo = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_qptqo"]
 material = SubResource("StandardMaterial3D_h1ah0")
+size = Vector3(0.5, 0.5, 0.5)
 
 [node name="BloodParticle" type="Node3D"]
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 emitting = false
-amount = 16
+amount = 20
 one_shot = true
 speed_scale = 2.85
 explosiveness = 1.0
