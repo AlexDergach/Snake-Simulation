@@ -103,8 +103,8 @@ func get_random_point_in_radius():
 	
 func put_on_ground(loc):
 	var raycast = RayCast3D.new()
-	raycast.target_position = Vector3(0, -25, 0)  # Set the length and direction of the ray
-	raycast.global_position = loc + Vector3(0, 15, 0)
+	raycast.target_position = Vector3(0, -50, 0)  # Set the length and direction of the ray
+	raycast.global_position = loc + Vector3(0, 50, 0)
 	
 	add_child(raycast)
 	
