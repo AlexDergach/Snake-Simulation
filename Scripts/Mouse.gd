@@ -21,6 +21,8 @@ var radius = 10
 var collision_lock = true
 @onready var timer = get_node("Timer")
 
+var first_point_delay = 0
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -41,23 +43,19 @@ func _process(delta):
 
 func _physics_process(delta):
 	
-	if random_loc == null:
-		random_loc = get_random_point_in_radius()
-	else:
-		get_node("Behaviour_Seek").world_target = random_loc
-		
-		if get_node("Behaviour_Avoidance").calculate().length() > get_node("Behaviour_Seek").calculate().length():
-			var avoidance_force = get_node("Behaviour_Avoidance").calculate()
-			var opposite_direction = -avoidance_force.normalized()
-			random_loc = global_transform.origin + -opposite_direction * radius
+	if first_point_delay == 10:
+		if random_loc == null:
+			random_loc = get_random_point_in_radius()
+		else:
 			get_node("Behaviour_Seek").world_target = random_loc
-			collision_lock = true
-		
-		if random_loc.distance_to(global_position) < 3:
-			random_loc = null
-			collision_lock = false
-			timer.stop()
-			timer.start()
+			
+			if random_loc.distance_to(global_position) < 3:
+				random_loc = null
+				collision_lock = false
+				timer.stop()
+				timer.start()
+	else:
+		first_point_delay += 1
 	
 	if should_calculate:
 		new_force = calculate()

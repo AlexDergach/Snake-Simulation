@@ -63,6 +63,18 @@ func seek_force(target: Vector3):
 	toTarget = toTarget.normalized()
 	var desired = toTarget * max_speed
 	return desired - vel
+	
+func arrive_force(target:Vector3, slowingDistance:float):
+	var toTarget = target - global_transform.origin
+	var dist = toTarget.length()
+	
+	if dist < 2:
+		return Vector3.ZERO
+	
+	var ramped = (dist / slowingDistance) * max_speed
+	var limit_length = min(max_speed, ramped)
+	var desired = (toTarget * limit_length) / dist 
+	return desired - vel
 
 func update_weights(weights):
 	for behavior in weights:

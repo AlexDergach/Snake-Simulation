@@ -1,9 +1,8 @@
 class_name State_Wander extends State
 
 var snake
-var prey
 var random_loc
-var field_of_view_angle = PI / 5
+var field_of_view_angle = PI / 4
 @export var radius : float = 25
 
 var collision_lock = false
@@ -11,33 +10,45 @@ var collision_lock = false
 
 var first_point_delay = 0
 
+var prey
+var prey_list = []
+
 
 func _ready():
 	snake = get_parent()
+	
 
 func _enter():
 	snake.get_node("Behaviour_Seek").set_enabled(true)
 	snake.get_node("Behaviour_Avoidance").set_enabled(true)
 	snake.get_node("Behaviour_Harmonic").set_enabled(true)
 	
-	#random_loc = get_random_point_in_radius()
-	#snake.get_node("Behaviour_Seek").world_target = random_loc
-	
+	for prey in get_tree().get_nodes_in_group("mouse"):
+		prey_list.append(prey)
+		
 	timer.start(10)
+	
+	
+	
 	
 
 func _exit():
 	snake.get_node("Behaviour_Seek").set_enabled(false)
 	snake.get_node("Behaviour_Harmonic").set_enabled(false)
 	snake.get_node("Behaviour_Avoidance").set_enabled(false)
+	
+	
 
 func _think():
-	#if prey.distance_to(snake.global_transform.origin) < 5:
-		#var AttackState = load("res://AttackState.gd")
-		#snake.get_node("StateMachine").change_state(AttackState.new())
-		
-	# small delay for put_on_ground function to work
+	# small delay for put_on_ground function's raycast to work
 	if first_point_delay == 10:
+		# detect prey
+		if !prey:
+			detect_prey()
+		else:
+			var AttackState = load("res://AttackState.gd")
+			snake.get_node("StateMachine").change_state(AttackState.new())
+		
 		if random_loc == null:
 			random_loc = get_random_point_in_radius()
 		else:
@@ -56,13 +67,14 @@ func _think():
 				collision_lock = false
 				timer.stop()
 				timer.start()
+				
 	else:
 		first_point_delay += 1
 	
 
 func get_random_point_in_radius():
 	# choose a random angle within the field of view
-	var half_fov = field_of_view_angle / 3
+	var half_fov = field_of_view_angle / 2
 	var random_angle = randf_range(-half_fov, half_fov)
 	
 	# calculate the direction vector
@@ -87,13 +99,10 @@ func put_on_ground(loc):
 	
 	add_child(raycast)
 	
-	
-	
 	raycast.force_raycast_update()
 	
 	if raycast.is_colliding():
 		loc.y = raycast.get_collision_point().y
-	
 	
 	print(raycast.get_collision_point())
 	print(loc)
@@ -103,7 +112,14 @@ func put_on_ground(loc):
 	
 	return loc
 
+func detect_prey():
+	for p in prey_list:
+		if p.global_position.distance_to(snake.global_position) < 5:
+			prey = p
+			break
+
 func _on_timer_timeout():
 	random_loc = null
 	collision_lock = false
 	timer.start()
+

@@ -1215,4 +1215,4 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 4.50849, 34.9647)
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 4.50849, 30.7871)
 
 [node name="snake" parent="." instance=ExtResource("59_yjti4")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.809183, -0.472203, -11.0767)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -27.4062, 1.55529, 3.59933)
