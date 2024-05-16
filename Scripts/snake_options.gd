@@ -3,7 +3,7 @@ extends Node3D
 var default_speed : float = 2.0
 var default_max_speed : float = 3.0
 var default_damping : float = 1.0
-var default_snake_length : int = 15
+var default_snake_length : int = 20
 var default_slither_frequency : float = 0.5
 var default_slither_radius : int = 7
 var default_slither_amplitude : int = 100
@@ -13,7 +13,7 @@ var default_seek_radius : int = 25
 @export var speed : float = 4.0
 @export var max_speed : float = 5.0
 @export var damping : float = 1.0
-@export var snake_length : int = 15
+@export var snake_length : int = 20
 @export var slither_frequency : float = 0.3
 @export var slither_radius : int = 10
 @export var slither_amplitude : int = 60

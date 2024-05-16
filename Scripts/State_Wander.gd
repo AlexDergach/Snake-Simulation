@@ -11,7 +11,6 @@ var collision_lock = false
 var first_point_delay = 0
 
 var prey
-var prey_list = []
 
 
 func _ready():
@@ -24,8 +23,8 @@ func _enter():
 	snake.get_node("Behaviour_Harmonic").set_enabled(true)
 	
 	for prey in get_tree().get_nodes_in_group("mouse"):
-		prey_list.append(prey)
-		
+		snake.prey_list.append(prey)
+	
 	timer.start(10)
 	
 	
@@ -46,8 +45,10 @@ func _think():
 		if !prey:
 			detect_prey()
 		else:
-			var AttackState = load("res://AttackState.gd")
+			snake.prey = prey
+			var AttackState = load("res://Scripts/State_Attack.gd")
 			snake.get_node("StateMachine").change_state(AttackState.new())
+			
 		
 		if random_loc == null:
 			random_loc = get_random_point_in_radius()
@@ -94,7 +95,7 @@ func get_random_point_in_radius():
 
 func put_on_ground(loc):
 	var raycast = RayCast3D.new()
-	raycast.target_position = Vector3(0, -25, 0)  # Set the length and direction of the ray
+	raycast.target_position = Vector3(0, -25, 0)
 	raycast.global_position = loc + Vector3(0, 15, 0)
 	
 	add_child(raycast)
@@ -104,19 +105,17 @@ func put_on_ground(loc):
 	if raycast.is_colliding():
 		loc.y = raycast.get_collision_point().y
 	
-	print(raycast.get_collision_point())
-	print(loc)
-	
 	remove_child(raycast)
 	raycast.queue_free()
 	
 	return loc
 
 func detect_prey():
-	for p in prey_list:
-		if p.global_position.distance_to(snake.global_position) < 5:
-			prey = p
-			break
+	for p in snake.prey_list:
+		if is_instance_valid(p):
+			if p.global_position.distance_to(snake.global_position) < radius:
+				prey = p
+				break
 
 func _on_timer_timeout():
 	random_loc = null

@@ -19,7 +19,10 @@ var should_calculate = false
 
 @onready var attack_sound = $AttackSound
 @onready var main_sound = $MainSound
-	
+
+var prey
+var prey_list = []
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://cydh3egvc4umg"]
+[gd_scene load_steps=96 format=3 uid="uid://cydh3egvc4umg"]
 
 [ext_resource type="Script" path="res://Scripts/Map.gd" id="1_3pr23"]
 [ext_resource type="Script" path="res://addons/terrabrush/TerraBrush.cs" id="1_latr6"]
@@ -59,9 +59,10 @@
 [ext_resource type="PackedScene" uid="uid://dcy0p8iqde28r" path="res://Assets/Map Models/tree_fat.glb" id="45_w56cx"]
 [ext_resource type="PackedScene" uid="uid://cdpb7fck2fqgo" path="res://Scene/FireFlyParticles.tscn" id="58_q5mop"]
 [ext_resource type="AudioStream" uid="uid://cmhop24gittdm" path="res://Assets/Audio/river.mp3" id="59_82ef7"]
+[ext_resource type="PackedScene" uid="uid://csvmu5rfx0dl1" path="res://Scene/snake.tscn" id="59_yjti4"]
 [ext_resource type="AudioStream" uid="uid://4k73kum8fj1c" path="res://Assets/Audio/background.mp3" id="60_0sp2c"]
 [ext_resource type="AudioStream" uid="uid://bbxn7dt8v67tl" path="res://Assets/Audio/background2.mp3" id="61_cmfag"]
-[ext_resource type="PackedScene" uid="uid://csvmu5rfx0dl1" path="res://Scene/snake.tscn" id="59_yjti4"]
+[ext_resource type="PackedScene" uid="uid://ceh5w0lin4otd" path="res://Scene/Mouse.tscn" id="63_2cwlc"]
 
 [sub_resource type="Resource" id="Resource_uyjch"]
 script = ExtResource("5_geed2")
@@ -1250,5 +1251,21 @@ autoplay = true
 stream = ExtResource("61_cmfag")
 volume_db = -33.564
 autoplay = true
+
 [node name="snake" parent="." instance=ExtResource("59_yjti4")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -27.4062, 1.55529, 3.59933)
+
+[node name="Mouse" parent="." instance=ExtResource("63_2cwlc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.935352, -3.55385, 28.0256)
+
+[node name="Mouse2" parent="." instance=ExtResource("63_2cwlc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.6753, 0.636484, 39.8503)
+
+[node name="Mouse3" parent="." instance=ExtResource("63_2cwlc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.6679, 0.382883, 2.49552)
+
+[node name="Mouse4" parent="." instance=ExtResource("63_2cwlc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3513, -4.39186, -32.8482)
+
+[node name="Mouse5" parent="." instance=ExtResource("63_2cwlc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0381, -4.80525, -15.0134)
